@@ -4,7 +4,8 @@
   "description": "An online hub for grumbles, gripes, and other grievances. Dreddit is a Reddit clone built with the MERN stack, \r a combination of following four technologies: MongoDB, Express, React, and Node.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "server": "nodemon app.js"
   },
   "repository": {
     "type": "git",
