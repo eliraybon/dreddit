@@ -27,7 +27,7 @@ router.post('/', (req, res) => {
     .then(post => {
       User.findOne({ _id: post.user.toJSON() })
         .then(user => {
-          user.posts.push(post);
+          user.posts.push(post._id);
           user.save()
             .then(() => res.send(post))
         })

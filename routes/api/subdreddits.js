@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Subdreddit = require('../../models/Subdreddit');
 const Post = require('../../models/Post');
+const User = require('../../models/User');
 const passport = require('passport');
 
 // router.get("/:id", (req, res) => {
@@ -12,19 +13,18 @@ const passport = require('passport');
 
 router.get("/:id", (req, res) => {
   const postsObj = {};
-  const subsObj = {};
 
   Subdreddit.findById(req.params.id)
     .then(sub => {
-      subsObj[sub._id] = sub;
       Post.find({ subDreddit: sub._id })
         .then(posts => {
           posts.forEach(post => postsObj[post._id] = post);
-          return res.send({ subs: subsObj, posts: postsObj });
+          return res.send({ sub, posts: postsObj });
         })
     })
     .catch(err => res.status(404).json({ missing: 'No SubDreddit found' }))
 })
+
 
 router.get('/', (req, res) => {
   Subdreddit.find({})
@@ -36,14 +36,21 @@ router.get('/', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  debugger;
   const newSub = new Subdreddit({
     title: req.body.title,
-    description: req.body.description
+    description: req.body.description,
+    user: req.body.user
   })
 
   newSub.save()
-    .then(sub => res.send(sub))
+    .then(sub => {
+      User.findById(sub.user.toJSON())
+        .then(user => {
+          user.subs.push(sub._id);
+          return res.send({ sub, user })
+        })
+    })
+    
 })
 
 module.exports = router;

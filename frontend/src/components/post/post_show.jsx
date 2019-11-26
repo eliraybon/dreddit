@@ -7,6 +7,7 @@ export default class PostShow extends React.Component {
 
   render() {
     const { post } = this.props;
+    if (!post) return null;
 
     return (
       <div className="post-show">

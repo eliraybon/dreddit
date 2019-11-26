@@ -11,6 +11,7 @@ const userSchema = new Schema({
     required: true 
   },
   posts: [{ type: mongoose.Schema.Types.ObjectId, ref: "posts" }],
+  subs: [{ type: mongoose.Schema.Types.ObjectId, ref: "subDreddits"}],
   date: {
     type: Date, 
     default: Date.now

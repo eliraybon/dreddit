@@ -13,7 +13,7 @@ class SubDredditShow extends React.Component {
 
     return (
       <div className="sub-dreddit">
-        <h1>{this.props.sub.title}</h1>
+        <h1>{sub.title}</h1>
 
         <PostForm subId={sub._id} />
         <PostIndex posts={this.props.posts} />

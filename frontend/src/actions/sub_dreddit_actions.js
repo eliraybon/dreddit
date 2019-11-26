@@ -1,7 +1,9 @@
 import * as APIUtil from '../util/sub_dreddit_util';
+import create_subdreddit_form_container from '../components/subdreddit/create_subdreddit_form_container';
 
 export const RECEIVE_SUBDREDDIT = 'RECEIVE_SUBDREDDIT';
 export const RECEIVE_ALL_SUBDREDDITS = 'RECEIVE_ALL_SUBDREDDITS';
+export const RECEIVE_NEW_SUBDREDDIT = "CREATE_SUBDREDDIT";
 
 
 const receiveSubdreddit = payload => {
@@ -10,6 +12,13 @@ const receiveSubdreddit = payload => {
     payload
   }
 }
+
+const receiveNewSubDreddit = payload => {
+  return {
+    type: RECEIVE_NEW_SUBDREDDIT,
+    payload
+  };
+};
 
 const receiveAllSubdreddits = (subs) => {
   return {
@@ -30,5 +39,5 @@ export const fetchSubDreddits = () => dispatch => {
 
 export const createSubDreddit = (sub) => dispatch => {
   return APIUtil.createSubDreddit(sub)
-    .then( (res => dispatch(receiveSubdreddit(res.data))))
+    .then( (res => dispatch(receiveNewSubDreddit(res.data))))
 }

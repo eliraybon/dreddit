@@ -4,14 +4,21 @@ class SubRedditForm extends React.Component {
   constructor(props){
     super(props)
     this.state = this.props.sub;
+    this.state = {
+      title: this.props.sub.title,
+      description: this.props.sub.description,
+      user: this.props.currentUserId
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createSubDreddit(this.state)
-      .then(res => this.props.history.push('/'));
+    this.props.formAction(this.state)
+      .then(res => {
+        this.props.history.push(`/subdreddits/${res.payload.sub._id}`)
+      });
   }
 
   update(field) {
@@ -43,7 +50,7 @@ class SubRedditForm extends React.Component {
             </label>
           </div>
           <div>
-            <button>Create</button>
+            <button>{this.props.formType}</button>
           </div>
         </form>
       </div>
