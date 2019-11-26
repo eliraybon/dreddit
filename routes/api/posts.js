@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+// const SubDreddit = require('../../models/SubDreddit');
 const passport = require('passport');
 // const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
@@ -37,6 +38,15 @@ router.get('/', (req, res) => {
     .then(posts => {
       let postsObj = {};
       posts.forEach(post => postsObj[post._id] = post);
+      return res.json(postsObj);
+    })
+})
+
+router.get('/:subId', (req, res) => {
+  SubDreddit.findById(req.params.subId)
+    .then(sub => {
+      let postsObj = {};
+      sub.posts.forEach(post => postsObj[post._id = post]);
       return res.json(postsObj);
     })
 })

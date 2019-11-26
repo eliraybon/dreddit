@@ -22,6 +22,11 @@ export const fetchPosts = () => dispatch => {
     .then(res => dispatch(receivePosts(res.data)));
 };
 
+export const fetchSubDredditPosts = subId => dispatch => {
+  return PostAPIUtil.fetchSubDredditPosts(subId)
+    .then(res => dispatch(receivePosts(res.data)));
+}
+
 export const fetchPost = postId => dispatch => {
   return PostAPIUtil.fetchPost(postId)
     .then(res => dispatch(receivePost(res.data)));

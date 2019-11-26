@@ -5,6 +5,10 @@ export const fetchPosts = () => {
   return axios.get('/api/posts');
 };
 
+export const fetchSubDredditPosts = subId => {
+  return axios.get(`/api/posts/${subId}`);
+}
+
 export const fetchPost = postId => {
   return axios.get(`/api/posts/${postId}`);
 }
