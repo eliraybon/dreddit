@@ -17,6 +17,27 @@
   width: 440px;
 }
 
+.auth-logo {
+  border: 8px solid rgba(248, 68, 1, 1);
+  width: 38px;
+  height: 38px;
+  border-radius: 20px;
+  /* background-color: rgba(248, 68, 1, 1); */
+  margin-left: 22px;
+  font-size:
+}
+
+.form-type {
+  /* border: 3px solid black; */
+  display: flex;
+  align-items: center;
+  height: 64px;
+  width: 90%;
+  margin-left: 22px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .username-div, .password-div {
   border: 1px solid #e6e5e5;
   height: 48px;
@@ -25,10 +46,16 @@
   display: flex;
   justify-content: flex-start;
   margin-left: 22px;
+  font-weight: bold;
 }
 
 .username-div:hover , .password-div:hover{
   border: 1px solid #a5a4a4;
+}
+
+.username-input, .password-input {
+  margin-left: 10px;
+  width: 100%;
 }
 
 .auth-btn {
@@ -40,5 +67,6 @@
   margin-left: 22px;
   display: flex;
   justify-content: center;
+  font-weight: bold;
 }
 
