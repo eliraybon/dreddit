@@ -17,11 +17,6 @@ span, article, footer, time, small {
   -webkit-font-smoothing: antialiased;
 }
 
-body {
-  padding-bottom: 70px;
-  overflow: hidden;
-}
-
 ul {
   list-style: none;
 }
