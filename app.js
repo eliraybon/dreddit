@@ -8,7 +8,7 @@ require('./config/passport')(passport);
 
 //import routes 
 const users = require('./routes/api/users');
-
+const subdreddits = require('./routes/api/subdreddits');
 const posts = require("./routes/api/posts");
 //
 
@@ -48,5 +48,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/users', users);
 app.use('/api/posts', posts);
+
+app.use('/api/subDreddits', subdreddits);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
