@@ -10,7 +10,6 @@ export default class PostIndex extends React.Component {
 
   render() {
     const { posts } = this.props;
-    debugger;
     //get rid of this later
     if (!posts.length) return null;
 

@@ -3,7 +3,7 @@ const validText = require('./valid-text');
 
 module.exports = function validatePostInput(data) {
   let errors = {};
-
+  
   data.title = validText(data.title) ? data.title : '';
 
   if (Validator.isEmpty(data.title)) {

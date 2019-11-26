@@ -38,7 +38,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  // debugger;   
   const user = new User({
     username: 'testUser',
     password: 'password'
