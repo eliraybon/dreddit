@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class PostIndexItem extends React.Component {
   //you will need state to hover over upvote/downvote
@@ -9,7 +10,9 @@ export default class PostIndexItem extends React.Component {
 
     return (
       <li>  
-        {post.title}
+        <Link to={`/posts/${post._id}`}>
+          {post.title}
+        </Link>
       </li>
     )
   }

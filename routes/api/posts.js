@@ -33,4 +33,10 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => res.json(post))
+    .catch(err => res.status(404).json({ missing: 'No post found' }));
+})
+
 module.exports = router;

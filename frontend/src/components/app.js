@@ -10,12 +10,15 @@ import SignupFormContainer from './session/signup_form_container';
 
 import CreatePostForm from './post/create_post_form_container';
 
+import PostShow from './post/post_show_container';
+
 const App = () => (
   <div>
     <NavBarContainer />
     <Switch>
       <Route exact path="/" component={MainPage} />
       <ProtectedRoute exact path="/submit" component={CreatePostForm}/>
+      <Route path="/posts/:postId" component={PostShow}/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
     </Switch>

@@ -5,7 +5,10 @@ export const fetchPosts = () => {
   return axios.get('/api/posts');
 };
 
-export const createPost = data => {
-  return axios.post('/api/posts', data)
-};
+export const fetchPost = postId => {
+  return axios.get(`/api/posts/${postId}`);
+}
 
+export const createPost = data => {
+  return axios.post('/api/posts', data);
+}
