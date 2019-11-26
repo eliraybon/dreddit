@@ -1,0 +1,6 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  margin-bottom: 20px;
+}
