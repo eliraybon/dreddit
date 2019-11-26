@@ -1,0 +1,25 @@
+/* The font for the post headers on Reddit is IBM Plex Sans
+   You can get it on Google Fonts
+*/
+
+.pii {
+  list-style: none;
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid lightgray;
+  border-bottom: none;
+}
+
+.pii:last-of-type { 
+  border-bottom: 1px solid lightgray;
+}
+
+.pii:hover {
+  border-color: gray;
+}
+
+.pii a {
+  color: black;
+  text-decoration: none;
+}

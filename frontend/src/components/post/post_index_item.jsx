@@ -9,7 +9,7 @@ export default class PostIndexItem extends React.Component {
     const { post } = this.props;
 
     return (
-      <li>  
+      <li className="pii">  
         <Link to={`/posts/${post._id}`}>
           {post.title}
         </Link>
