@@ -17,11 +17,11 @@ const postSchema = new Schema({
   imgUrl: {
     type: String
   },
-  // subDreddit: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "subDreddits",
-  //   required: true
-  // },
+  subDreddit: {
+    type: Schema.Types.ObjectId,
+    ref: "subDreddits",
+    required: true
+  },
   comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
   votes: [{ type: mongoose.Schema.Types.ObjectId, ref: "votes"}],
   date: {

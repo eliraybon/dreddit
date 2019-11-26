@@ -3,10 +3,11 @@ import * as APIUtil from '../util/sub_dreddit_util';
 export const RECEIVE_SUBDREDDIT = 'RECEIVE_SUBDREDDIT';
 export const RECEIVE_ALL_SUBDREDDITS = 'RECEIVE_ALL_SUBDREDDITS';
 
-const receiveSubdreddit = (sub) => {
+
+const receiveSubdreddit = payload => {
   return {
     type: RECEIVE_SUBDREDDIT,
-    sub
+    payload
   }
 }
 

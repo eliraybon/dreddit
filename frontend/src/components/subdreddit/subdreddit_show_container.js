@@ -4,7 +4,8 @@ import { fetchSubDreddit } from '../../actions/sub_dreddit_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    sub: state.entities.subs[ownProps.match.params.subId]
+    sub: state.entities.subs[ownProps.match.params.subId],
+    posts: Object.values(state.entities.posts)
   };
 };
 

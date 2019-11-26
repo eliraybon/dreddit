@@ -6,7 +6,8 @@ export default class PostForm extends React.Component {
     this.state = {
       title: this.props.post.title,
       text: this.props.post.text,
-      user: this.props.currentUserId
+      user: this.props.currentUserId,
+      subDreddit: this.props.subId
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);

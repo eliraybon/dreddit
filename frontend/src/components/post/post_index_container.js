@@ -8,13 +8,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts())
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchPosts: () => dispatch(fetchPosts())
+//   };
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(PostIndex);

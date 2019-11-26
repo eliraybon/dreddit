@@ -4,11 +4,26 @@ const Subdreddit = require('../../models/Subdreddit');
 const Post = require('../../models/Post');
 const passport = require('passport');
 
+// router.get("/:id", (req, res) => {
+//   Subdreddit.findById(req.params.id)
+//     .then(subdreddit => res.json(subdreddit))
+//     .catch(err => res.status(404).json({ missing: 'No SubDreddit found'}))
+// })
+
 router.get("/:id", (req, res) => {
-  // debugger;
+  const postsObj = {};
+  const subsObj = {};
+
   Subdreddit.findById(req.params.id)
-    .then(subdreddit => res.json(subdreddit))
-    .catch(err => res.status(404).json({ missing: 'No SubDreddit found'}))
+    .then(sub => {
+      subsObj[sub._id] = sub;
+      Post.find({ subDreddit: sub._id })
+        .then(posts => {
+          posts.forEach(post => postsObj[post._id] = post);
+          return res.send({ subs: subsObj, posts: postsObj });
+        })
+    })
+    .catch(err => res.status(404).json({ missing: 'No SubDreddit found' }))
 })
 
 router.get('/', (req, res) => {
