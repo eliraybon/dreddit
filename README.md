@@ -58,8 +58,8 @@ Seth Ullman & Eli Raybon
 -  Complete features & style (Eli & Seth)
 
 ### Day 4
--  Comments (Eli)
--  Upvotes (Seth)
+-  Comments (Seth)
+-  Upvotes (Eli)
 
 ### Day 5
 -  Tie up loose ends and deploy to Heroku
