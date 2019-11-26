@@ -22,6 +22,7 @@ router.post('/', (req, res) => {
     subDreddit: req.body.subDreddit,
   })
 
+  //this will need to updated to also add the newPost to it's subdreddit
   newPost.save()
     .then(post => {
       User.findOne({ _id: post.user.toJSON() })
