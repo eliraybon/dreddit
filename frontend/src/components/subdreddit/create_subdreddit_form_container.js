@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SubRedditForm from './subreddit_form';
-import { createSubreddit } from '../../actions/sub_dreddit_actions';
+import SubDredditForm from './subdreddit_form';
+import { createSubDreddit } from '../../actions/sub_dreddit_actions';
 import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = state => {
@@ -12,11 +12,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createSubreddit: sub => dispatch(createSubreddit(sub))
+    createSubDreddit: sub => dispatch(createSubDreddit(sub))
   }
 }
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SubRedditForm));
+)(SubDredditForm));

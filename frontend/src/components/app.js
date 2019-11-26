@@ -12,6 +12,9 @@ import CreatePostForm from './post/create_post_form_container';
 
 import PostShow from './post/post_show_container';
 
+import CreateSubDredditForm from './subdreddit/create_subdreddit_form_container';
+import SubdredditShow from './subdreddit/subdreddit_show_container';
+
 const App = () => (
   <div>
     <NavBarContainer />
@@ -21,6 +24,7 @@ const App = () => (
       <Route path="/posts/:postId" component={PostShow}/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
+      <AuthRoute exact path="/subDreddit" component={CreateSubDredditForm} />
     </Switch>
   </div>
 );

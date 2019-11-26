@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connnect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SubDredditShow);
