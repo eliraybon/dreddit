@@ -9,5 +9,5 @@ export const fetchSubDreddits = () => {
 }
 
 export const createSubDreddit = data => {
-  return axios.post('/api/subDreddit', data);
+  return axios.post('/api/subDreddits', data);
 }

@@ -19,4 +19,15 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/', (req, res) => {
+  debugger;
+  const newSub = new Subdreddit({
+    title: req.body.title,
+    description: req.body.description
+  })
+
+  newSub.save()
+    .then(sub => res.send(sub))
+})
+
 module.exports = router;

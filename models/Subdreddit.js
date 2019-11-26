@@ -2,14 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const SubDredditSchema = new Schema({
-  name: {
+  title: {
     type: String,
   },
   description: {
     type: String,
   },
   followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'users' }],
-  posts: [{ type: mongoosse.Schema.Types.ObjectId, ref: 'posts' }],
+  posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'posts' }],
   date: {
     type: Date,
     default: Date.now
