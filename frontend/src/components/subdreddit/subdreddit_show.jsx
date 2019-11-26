@@ -6,7 +6,7 @@ class SubDredditShow extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchSubDreddit(1);
+    this.props.fetchSubDreddit(this.props.match.params.subId);
   }
 
   render(){

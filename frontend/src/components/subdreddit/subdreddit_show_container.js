@@ -3,7 +3,6 @@ import SubDredditShow from './subdreddit_show';
 import { fetchSubDreddit } from '../../actions/sub_dreddit_actions';
 
 const mapStateToProps = (state, ownProps) => {
-  debugger;
   return {
     sub: state.entities.subs[ownProps.match.params.subId]
   };

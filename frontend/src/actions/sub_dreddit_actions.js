@@ -19,7 +19,7 @@ const receiveAllSubdreddits = (subs) => {
 
 export const fetchSubDreddit = (subId) => dispatch => {
   return APIUtil.fetchSubDreddit(subId)
-    .then( (sub) => dispatch(receiveSubdreddit(sub)));
+    .then( (res) => dispatch(receiveSubdreddit(res.data)));
 }
 
 export const fetchSubDreddits = () => dispatch => {

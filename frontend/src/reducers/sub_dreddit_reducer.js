@@ -4,9 +4,9 @@ const subDredditReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type){
     case RECEIVE_SUBDREDDIT:
-      return action.subs
+      return Object.assign({}, state, { [action.sub._id]: action.sub})
     case RECEIVE_ALL_SUBDREDDITS:
-      return Object.assign({}, state, { [action.sub._id]: action.sub});
+      return action.subs;
     default:
       return state;
   }

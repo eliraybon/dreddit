@@ -5,6 +5,7 @@ const Post = require('../../models/Post');
 const passport = require('passport');
 
 router.get("/:id", (req, res) => {
+  // debugger;
   Subdreddit.findById(req.params.id)
     .then(subdreddit => res.json(subdreddit))
     .catch(err => res.status(404).json({ missing: 'No SubDreddit found'}))
