@@ -14,7 +14,7 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 -  Persistant auth token across refreshes 
 
 ### Posts
--  Users can create, read, udpdate, and delete posts
+-  Users can create, read, uddate, and delete posts
 
 ### Comments 
 -  Users can comment on posts and other comments
