@@ -1,4 +1,4 @@
-import { RECEIVE_SUBDREDDIT, RECEIVE_ALL_SUBDREDDITS } from './actions/sub_dreddit_actions';
+import { RECEIVE_SUBDREDDIT, RECEIVE_ALL_SUBDREDDITS } from '../actions/sub_dreddit_actions';
 
 const subDredditReducer = (state = {}, action) => {
   Object.freeze(state);

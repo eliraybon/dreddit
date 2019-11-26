@@ -25,6 +25,7 @@ const App = () => (
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/subDreddit" component={CreateSubDredditForm} />
+      <Route path="/subDreddits/:subId" component={SubdredditShow} />
     </Switch>
   </div>
 );

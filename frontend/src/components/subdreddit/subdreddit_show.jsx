@@ -5,7 +5,12 @@ class SubDredditShow extends React.Component {
     super(props);
   }
 
+  componentDidMount(){
+    this.props.fetchSubDreddit(1);
+  }
+
   render(){
+    console.log(this.props);
     return (
       <div>
         <h1>I am a subDreddit!</h1>
