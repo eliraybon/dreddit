@@ -8,6 +8,8 @@ require('./config/passport')(passport);
 
 //import routes 
 const users = require('./routes/api/users');
+
+const posts = require("./routes/api/posts");
 //
 
 //import models
@@ -36,7 +38,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  // debugger;   
   const user = new User({
     username: 'testUser',
     password: 'password'
@@ -46,5 +47,6 @@ app.get("/", (req, res) => {
 });
 
 app.use('/api/users', users);
+app.use('/api/posts', posts);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
