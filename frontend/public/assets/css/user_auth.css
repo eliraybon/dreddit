@@ -1,0 +1,44 @@
+.auth-div {
+  display: flex;
+  flex-direction: row;
+  height: 95vh;
+}
+
+.auth-image {
+  width: 130px;
+  background-color: lightblue;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  width: 440px;
+}
+
+.username-div, .password-div {
+  border: 1px solid #e6e5e5;
+  height: 48px;
+  width: 90%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 22px;
+}
+
+.username-div:hover , .password-div:hover{
+  border: 1px solid #a5a4a4;
+}
+
+.auth-btn {
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  height: 36px;
+  width: 33%;
+  border-radius: 5px;
+  margin-left: 22px;
+  display: flex;
+  justify-content: center;
+}
+
