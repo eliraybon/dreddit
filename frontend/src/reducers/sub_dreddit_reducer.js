@@ -9,7 +9,6 @@ const subDredditReducer = (state = {}, action) => {
       return Object.assign({}, state, { [action.sub._id]: action.sub});
     default:
       return state;
-
   }
 }
 
