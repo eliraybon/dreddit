@@ -3,7 +3,11 @@ import React from 'react';
 export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.post;
+    this.state = {
+      title: this.props.post.title,
+      text: this.props.post.text,
+      user: this.props.currentUserId
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }

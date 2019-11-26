@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../../models/Post');
+const User = require('../../models/User');
 const passport = require('passport');
 // const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
@@ -21,7 +22,14 @@ router.post('/', (req, res) => {
   })
 
   newPost.save()
-    .then(post => res.send(post))
+    .then(post => {
+      User.findOne({ _id: post.user.toJSON() })
+        .then(user => {
+          user.posts.push(post);
+          user.save()
+            .then(() => res.send(post))
+        })
+    });
 })
 
 router.get('/', (req, res) => {

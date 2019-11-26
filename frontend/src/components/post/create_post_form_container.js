@@ -6,7 +6,8 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = state => {
   return {
     post: { title: '', text: '' },
-    formType: 'Create'
+    formType: 'Create',
+    currentUserId: state.session.user.id
   };
 };
 
