@@ -13,3 +13,5 @@ class SubDredditShow extends React.Component {
     )
   }
 }
+
+export default SubDredditShow;

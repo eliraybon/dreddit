@@ -5,5 +5,9 @@ export const fetchSubDreddit = (subId) => {
 };
 
 export const fetchSubDreddits = () => {
-  return axios.get('/api/subDreddit');
+  return axios.get('/api/subDreddits');
+}
+
+export const createSubDreddit = data => {
+  return axios.post('/api/subDreddit', data);
 }

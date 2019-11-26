@@ -26,3 +26,8 @@ export const fetchSubDreddits = () => dispatch => {
   return APIUtil.fetchSubDreddits()
     .then( (subs) => dispatch(receiveAllSubdreddits(subs)));
 }
+
+export const createSubDreddit = (sub) => dispatch => {
+  return APIUtil.createSubDreddit(sub)
+    .then( (res => dispatch(receiveSubdreddit(res.data))))
+}
