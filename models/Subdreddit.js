@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const SubdredditSchema = new Schema({
+const SubDredditSchema = new Schema({
   name: {
     type: String,
   },
@@ -16,4 +16,4 @@ const SubdredditSchema = new Schema({
   }
 });
 
-module.exports = Subdreddit = mongoose.model('subdreddits', SubdredditSchema);
+module.exports = Subdreddit = mongoose.model('subDreddits', SubDredditSchema);
