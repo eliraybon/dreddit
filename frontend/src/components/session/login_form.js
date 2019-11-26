@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -64,7 +66,6 @@ class LoginForm extends React.Component {
         </div>
         <form onSubmit={this.handleSubmit} className="auth-form">
           <div className='auth-logo'>
-            
           </div>
           <div className='form-type'>
             Sign in
@@ -88,8 +89,16 @@ class LoginForm extends React.Component {
           </div>
             <br />
           <div className='auth-btn'>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Sign In" />
             {this.renderErrors()}
+          </div>
+          <div className='auth-signup-link'>
+            <div className='auth-new'>
+              New to Dreddit?
+            </div>
+            <div className='new-signup-link'>
+              <Link to={'/signup'}>Signup</Link>
+            </div>
           </div>
         </form>
       </div>
