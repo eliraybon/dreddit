@@ -18,11 +18,33 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div className='nav-links'>
-          <Link to={'/tweets'}>Subdreddits</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/submit'}>Create a Post</Link>
-          <button onClick={this.logoutUser}>Logout</button>
+        <div className='nav-auth-links'>
+          <div className='nav-subdreddits'>
+            <Link to={'/tweets'}>Subdreddits</Link>
+          </div>
+          <div className='nav-search'>
+            <label>
+              <div className='nav-search-logo'>
+              </div>
+            </label>
+            <input
+              className='nav-search-input'
+              type='text'
+              placeholder="Search Dreddit"
+            />
+            
+          </div>
+          <div className='nav-right-links'>
+            <Link className='nav-post' to={'/submit'}></Link>
+            <div className='nav-profile-div'>
+              <div className='nav-profile'>
+                <div className='nav-drop-down'>
+                  <Link to={'/profile'}>Profile</Link>
+                  <button onClick={this.logoutUser}>Logout</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     } else {
@@ -42,9 +64,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar">
-
-        <div className='nav-logo'>
+        <div className='nav-logo-div'>
+          <div className='nav-logo'>
+          </div>
+          <div className='nav-site-name'>
+            dreddit
+          </div>
         </div>
+        
         {this.getLinks()}
       </div>
     );
