@@ -13,6 +13,7 @@ export default class PostIndexItem extends React.Component {
 
     this.countVotes = this.countVotes.bind(this);
     this.upvote = this.upvote.bind(this);
+    this.downvote = this.downvote.bind(this);
     this.renderTest = this.renderTest.bind(this);
   }
 
@@ -54,14 +55,15 @@ export default class PostIndexItem extends React.Component {
     const postId = this.props.post._id;
     const upvote = true;
     this.props.voteOnPost({ postId, upvote })
-      .then(this.setState({ upvoted: true, isCounted: false }))
+      .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
   }
 
-  // downvote() {
-  //   const postId = this.props.post._id;
-  //   const upvote = false;
-  //   this.props.u
-  // }
+  downvote() {
+    const postId = this.props.post._id;
+    const upvote = false;
+    this.props.voteOnPost({ postId, upvote })
+      .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+  }
 
   renderTest() {
     if (this.state.upvoted) return <h1>User has upvoted</h1>
@@ -79,6 +81,7 @@ export default class PostIndexItem extends React.Component {
         {this.renderTest()}
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
+        <button onClick={this.downvote}>Downvote</button>
       </li>
     )
   }
