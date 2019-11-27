@@ -1,28 +1,50 @@
 const express = require("express");
 const router = express.Router();
 const Post = require('../../models/Post');
+const User = require('../../models/User');
+const SubDreddit = require('../../models/Subdreddit');
 const passport = require('passport');
-// const jwt_decode = require('jwt-decode');
+const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
 
 router.post('/', (req, res) => {
   const { errors, isValid } = validatePostInput(req.body);
 
+  // const token = req.headers.authorization;
+  // const user = jwt_decode(token);
+  // console.log(user);
+  // return user;
+
   if (!isValid) {
     return res.status(422).json(errors);
   }
-
   const newPost = new Post({
     user: req.body.user,
-    title: req.body.title, 
+    title: req.body.title,
     text: req.body.text,
     imgUrl: req.body.imgUrl,
     subDreddit: req.body.subDreddit,
   })
 
   newPost.save()
-    .then(post => res.send(post))
+    .then(post => {
+      User.findOne({ _id: post.user.toJSON() })
+        .then(user => {
+          user.posts.push(post._id);
+          user.save()
+            .then(user => {
+              SubDreddit.findById(post.subDreddit.toJSON())
+                .then(sub => {
+                  sub.posts.push(post._id);
+                  sub.save()
+                    .then(sub => res.send({ post, user, sub }))
+                  // return res.send({post, user, sub});
+                })
+            })
+        })
+    });
 })
+
 
 router.get('/', (req, res) => {
   Post.find({})
@@ -31,6 +53,16 @@ router.get('/', (req, res) => {
       posts.forEach(post => postsObj[post._id] = post);
       return res.json(postsObj);
     })
+})
+
+router.get('/:subId', (req, res) => {
+  SubDreddit.findById(req.params.subId)
+    .then(sub => {
+      let postsObj = {};
+      sub.posts.forEach(post => postsObj[post._id = post]);
+      return res.json(postsObj);
+    })
+    .catch(err => console.log(err))
 })
 
 router.get('/:id', (req, res) => {

@@ -6,13 +6,14 @@ import { withRouter } from 'react-router-dom';
 const mapStateToProps = state => {
   return {
     sub: { title: '', description: '' },
-    formType: 'Create'
+    formType: 'Create',
+    currentUserId: state.session.user.id || state.session.user._id
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    createSubDreddit: sub => dispatch(createSubDreddit(sub))
+    formAction: sub => dispatch(createSubDreddit(sub))
   }
 }
 

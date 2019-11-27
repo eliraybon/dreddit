@@ -4,12 +4,17 @@ import {
   RECEIVE_USER_SIGN_IN
 } from '../actions/session_actions';
 
+//do we need a users reducer for this?
+import { RECEIVE_NEW_SUBDREDDIT } from '../actions/sub_dreddit_actions';
+import { RECEIVE_NEW_POST } from '../actions/post_actions';
+
 const initialState = {
   isAuthenticated: false,
   user: {}
 };
 
 export default function (state = initialState, action) {
+  let newState;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {
@@ -28,6 +33,14 @@ export default function (state = initialState, action) {
         // isSignedIn: true,
         isAuthenticated: true
       }
+    case RECEIVE_NEW_SUBDREDDIT:
+      newState = Object.assign({}, state);
+      newState['user'] = action.payload.user;
+      return newState;
+    case RECEIVE_NEW_POST:
+      newState = Object.assign({}, state);
+      newState['user'] = action.payload.user;
+      return newState;
     default:
       return state;
   }

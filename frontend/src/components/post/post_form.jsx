@@ -3,15 +3,21 @@ import React from 'react';
 export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = this.props.post;
+    this.state = {
+      title: this.props.post.title,
+      text: this.props.post.text,
+      user: this.props.currentUserId,
+      subDreddit: this.props.subId
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.processForm(this.state)
-      .then(res => this.props.history.push('/'));
+    debugger;
+    this.props.processForm(this.state);
+      // .then(res => this.props.history.push('/'));
   }
 
   update(field) {

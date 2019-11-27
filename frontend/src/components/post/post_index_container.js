@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
-import { fetchPosts } from '../../actions/post_actions';
+// import { fetchPosts } from '../../actions/post_actions';
 
 const mapStateToProps = state => {
   return {
@@ -8,13 +8,13 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchPosts: () => dispatch(fetchPosts())
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     fetchPosts: () => dispatch(fetchPosts())
+//   };
+// };
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  // mapDispatchToProps
 )(PostIndex);
