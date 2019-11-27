@@ -91,10 +91,11 @@ class SignupForm extends React.Component {
               placeholder="Confirm Password"
             />
           </div>
-            <br />
+          <div className='auth-errors'>
+            {this.renderErrors()}
+          </div>
           <div className='auth-btn'>
             <input type="submit" value="Submit" />
-            {this.renderErrors()}
           </div>
           <div className='auth-signin-link'>
             <div className='auth-user'>

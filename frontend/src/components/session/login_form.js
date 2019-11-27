@@ -87,10 +87,13 @@ class LoginForm extends React.Component {
               placeholder="Password"
             />
           </div>
-            <br />
+           
+          <div className='auth-errors'>
+            {this.renderErrors()}
+          </div>
+          
           <div className='auth-btn'>
             <input type="submit" value="Sign In" />
-            {this.renderErrors()}
           </div>
           <div className='auth-signup-link'>
             <div className='auth-new'>

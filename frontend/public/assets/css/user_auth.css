@@ -97,10 +97,16 @@
   color: #5c9fdf;
 }
 
-
-
 .new-signup-link, .new-signin-link {
   font-weight: bolder;
   color: #3279d3;
+}
+
+.auth-errors {
+  color: #ea1427;
+  font-size: 14px;
+  margin-left: 22px;
+  width: 390px;
+  padding: 10px 0 10px 0;
 }
 
