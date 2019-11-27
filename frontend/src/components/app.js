@@ -24,7 +24,7 @@ const App = () => (
       <Route path="/posts/:postId" component={PostShow}/>
       <AuthRoute exact path="/login" component={LoginFormContainer} />
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
-      <ProtectedRoute exact path="/subDreddit" component={CreateSubDredditForm} />
+      <ProtectedRoute exact path="/subDreddits/new" component={CreateSubDredditForm} />
       <ProtectedRoute path="/subDreddits/:subId" component={SubdredditShow} />
     </Switch>
   </div>

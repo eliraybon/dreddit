@@ -30,11 +30,14 @@ router.post('/', (req, res) => {
           user.posts.push(post._id);
           user.save()
             .then(user => {
+              const userJSON = user.toJSON();
+              delete userJSON['password'];
+              delete userJSON['date'];
               SubDreddit.findById(post.subDreddit.toJSON())
                 .then(sub => {
                   sub.posts.push(post._id);
                   sub.save()
-                    .then(sub => res.send({ post, user, sub }))
+                    .then(sub => res.send({ post, user: userJSON, sub }))
                   // return res.send({post, user, sub});
                 })
             })
@@ -52,17 +55,6 @@ router.get('/', (req, res) => {
     })
 })
 
-//get a subDreddit's posts
-router.get('/:subId', (req, res) => {
-  SubDreddit.findById(req.params.subId)
-    .then(sub => {
-      let postsObj = {};
-      sub.posts.forEach(post => postsObj[post._id = post]);
-      return res.json(postsObj);
-    })
-    .catch(err => console.log(err))
-})
-
 // get a single post
 router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
@@ -73,7 +65,6 @@ router.get('/:id', (req, res) => {
 
 router.post('/upvote', (req, res) => {
   const postId = req.body.postId;
-  // debugger;
   const token = req.headers.authorization;
   const currentUser = jwt_decode(token);
 
@@ -94,10 +85,12 @@ router.post('/upvote', (req, res) => {
               post.votes.push(vote.id);
               user.save()
                 .then(user => {
-                  // debugger;
+                  const userJSON = user.toJSON();
+                  delete userJSON['password'];
+                  delete userJSON['date'];
                   post.save()
                     .then(post => {
-                      return res.send({ post, user });
+                      return res.send({ post, user: userJSON });
                     })
                 })
             })
@@ -105,10 +98,10 @@ router.post('/upvote', (req, res) => {
     })
 })
 
+//route that returns all the votes on a post 
 router.get('/:id/votes', (req, res) => {
   Vote.find({ post: req.params.id })
     .then(votes => {
-      debugger;
       res.send(votes)
     });
 })

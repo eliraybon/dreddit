@@ -5,7 +5,8 @@ import { fetchPostVotes } from '../../util/vote_api_util';
 
 const mapStateToProps = state => {
   return {
-    posts: Object.values(state.entities.posts)
+    posts: Object.values(state.entities.posts),
+    currentUserId: state.session.user.id || state.session.user._id
   };
 };
 

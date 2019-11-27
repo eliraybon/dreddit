@@ -3,8 +3,13 @@ import PostIndexItem from './post_index_item';
 
 export default class PostIndex extends React.Component {
   render() {
-    const { posts, upvotePost, fetchPostVotes } = this.props;
-    //get rid of this later
+    const { 
+      posts, 
+      upvotePost, 
+      fetchPostVotes, 
+      currentUserId 
+    } = this.props;
+    
     if (!posts.length) return null;
 
     return (
@@ -12,6 +17,7 @@ export default class PostIndex extends React.Component {
         {posts.map(post => {
           return <PostIndexItem 
             post={ post } 
+            currentUserId={ currentUserId }
             upvotePost={ upvotePost }
             fetchPostVotes={ fetchPostVotes }
             key={ post._id } 

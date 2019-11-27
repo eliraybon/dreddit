@@ -42,11 +42,9 @@ export default function (state = initialState, action) {
       newState['user'] = action.payload.user;
       return newState;
     case RECEIVE_UPVOTE_POST:
-      return Object.assign(
-        {}, 
-        state, 
-        { [action.payload.user._id]: action.payload.user }
-      )
+      newState = Object.assign({}, state);
+      newState['user'] = action.payload.user;
+      return newState;
     default:
       return state;
   }
