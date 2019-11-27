@@ -57,6 +57,12 @@ export default class PostIndexItem extends React.Component {
       .then(this.setState({ upvoted: true, isCounted: false }))
   }
 
+  // downvote() {
+  //   const postId = this.props.post._id;
+  //   const upvote = false;
+  //   this.props.u
+  // }
+
   renderTest() {
     if (this.state.upvoted) return <h1>User has upvoted</h1>
   }

@@ -77,10 +77,8 @@ router.post('/upvote', (req, res) => {
             post: post._id,
             upvote: req.body.upvote
           });
-          // debugger;
           newVote.save()
             .then(vote => {
-              // debugger;
               user.votes.push(vote.id);
               post.votes.push(vote.id);
               user.save()
