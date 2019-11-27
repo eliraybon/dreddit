@@ -14,14 +14,14 @@
   height: 38px;
   margin-left: 22px;
   transform: rotate(180deg);
+  cursor: pointer;
 }
 
 .nav-links {
-  border: 3px solid red;
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-evenly;
-  width: 25%;
+  justify-content: center;
+  width: 30%;
 }
 
 .nav-signup {
@@ -30,20 +30,30 @@
   height: 32px;
   background-color: rgba(50, 121, 211, 1);
   color: white;
-  border-radius: 6px;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
 }
 
+.nav-signup:hover {
+  background-color: rgba(50, 121, 211, .6);
+}
+
+.nav-login:hover {
+  color: rgba(50, 121, 211, .8);
+  border: 1px solid rgba(50, 121, 211, .8);
+}
+
 .nav-login {
   display: flex;
-  border: 3px solid rgba(50, 121, 211, 1); 
+  border: 1px solid rgba(50, 121, 211, 1); 
   width: 76px; 
   height: 32px;
   color: rgba(50, 121, 211, 1);
-  border-radius: 6px;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
+  margin-right: 4px;
 }
 
 .nav-signup-link, .nav-login-link {
