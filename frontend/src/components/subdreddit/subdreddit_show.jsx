@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom';
 
 class SubDredditShow extends React.Component {
   componentDidMount(){
-    debugger;
     this.props.fetchSubDreddit(this.props.match.params.subId);
   }
 
   componentDidUpdate(prevProps) {
-    debugger;
     if (this.props.subId !== prevProps.subId) {
       this.props.fetchSubDreddit(this.props.subId);
     }
