@@ -1,5 +1,4 @@
 import * as APIUtil from '../util/sub_dreddit_util';
-import create_subdreddit_form_container from '../components/subdreddit/create_subdreddit_form_container';
 
 export const RECEIVE_SUBDREDDIT = 'RECEIVE_SUBDREDDIT';
 export const RECEIVE_ALL_SUBDREDDITS = 'RECEIVE_ALL_SUBDREDDITS';

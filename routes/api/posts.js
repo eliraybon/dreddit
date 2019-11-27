@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Post = require('../../models/Post');
 const User = require('../../models/User');
-// const SubDreddit = require('../../models/SubDreddit');
+const SubDreddit = require('../../models/Subdreddit');
 const passport = require('passport');
 // const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
@@ -13,26 +13,34 @@ router.post('/', (req, res) => {
   if (!isValid) {
     return res.status(422).json(errors);
   }
-
+  debugger;
   const newPost = new Post({
     user: req.body.user,
-    title: req.body.title, 
+    title: req.body.title,
     text: req.body.text,
     imgUrl: req.body.imgUrl,
     subDreddit: req.body.subDreddit,
   })
 
-  //this will need to updated to also add the newPost to it's subdreddit
   newPost.save()
     .then(post => {
       User.findOne({ _id: post.user.toJSON() })
         .then(user => {
           user.posts.push(post._id);
           user.save()
-            .then(() => res.send(post))
+            .then(user => {
+              SubDreddit.findById(post.subDreddit.toJSON())
+                .then(sub => {
+                  sub.posts.push(post._id);
+                  sub.save()
+                    .then(sub => res.send({ post, user, sub }))
+                  // return res.send({post, user, sub});
+                })
+            })
         })
     });
 })
+
 
 router.get('/', (req, res) => {
   Post.find({})

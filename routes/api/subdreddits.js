@@ -47,7 +47,9 @@ router.post('/', (req, res) => {
       User.findById(sub.user.toJSON())
         .then(user => {
           user.subs.push(sub._id);
-          return res.send({ sub, user })
+          user.save()
+            .then(user => res.send({ sub, user }))
+          // return res.send({ sub, user })
         })
     })
     
