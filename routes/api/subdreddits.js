@@ -42,8 +42,6 @@ router.post('/', (req, res) => {
     user: req.body.user
   })
 
-  debugger;
-
   newSub.save()
     .then(sub => {
       User.findById(sub.user.toJSON())

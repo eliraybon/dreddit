@@ -2,18 +2,15 @@ const express = require("express");
 const router = express.Router();
 const Post = require('../../models/Post');
 const User = require('../../models/User');
+const Vote = require('../../models/Vote');
 const SubDreddit = require('../../models/Subdreddit');
 const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
 
+//create new post
 router.post('/', (req, res) => {
   const { errors, isValid } = validatePostInput(req.body);
-
-  // const token = req.headers.authorization;
-  // const user = jwt_decode(token);
-  // console.log(user);
-  // return user;
 
   if (!isValid) {
     return res.status(422).json(errors);
@@ -45,7 +42,7 @@ router.post('/', (req, res) => {
     });
 })
 
-
+// get posts 
 router.get('/', (req, res) => {
   Post.find({})
     .then(posts => {
@@ -55,6 +52,7 @@ router.get('/', (req, res) => {
     })
 })
 
+//get a subDreddit's posts
 router.get('/:subId', (req, res) => {
   SubDreddit.findById(req.params.subId)
     .then(sub => {
@@ -65,10 +63,54 @@ router.get('/:subId', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// get a single post
 router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
     .then(post => res.json(post))
     .catch(err => res.status(404).json({ missing: 'No post found' }));
+})
+
+
+router.post('/upvote', (req, res) => {
+  const postId = req.body.postId;
+  // debugger;
+  const token = req.headers.authorization;
+  const currentUser = jwt_decode(token);
+
+  Post.findOne({ _id: postId })
+    .then(post => {
+      User.findOne({ _id: currentUser.id })
+        .then(user => {
+          const newVote = new Vote({
+            user: user._id,
+            post: post._id,
+            upvote: req.body.upvote
+          });
+          // debugger;
+          newVote.save()
+            .then(vote => {
+              // debugger;
+              user.votes.push(vote.id);
+              post.votes.push(vote.id);
+              user.save()
+                .then(user => {
+                  // debugger;
+                  post.save()
+                    .then(post => {
+                      return res.send({ post, user });
+                    })
+                })
+            })
+        })
+    })
+})
+
+router.get('/:id/votes', (req, res) => {
+  Vote.find({ post: req.params.id })
+    .then(votes => {
+      debugger;
+      res.send(votes)
+    });
 })
 
 module.exports = router;

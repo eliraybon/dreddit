@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
-// import { fetchPosts } from '../../actions/post_actions';
+import { upvotePost } from '../../actions/post_actions';
+import { fetchPostVotes } from '../../util/vote_api_util';
 
 const mapStateToProps = state => {
   return {
@@ -8,13 +9,14 @@ const mapStateToProps = state => {
   };
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchPosts: () => dispatch(fetchPosts())
-//   };
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    upvotePost: upvoteInfo => dispatch(upvotePost(upvoteInfo)),
+    fetchPostVotes: postId => fetchPostVotes(postId)
+  };
+};
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(PostIndex);

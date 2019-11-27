@@ -3,6 +3,7 @@ import * as PostAPIUtil from "./../util/post_api_util";
 export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_NEW_POST = "RECEIVE_NEW_POST";
+export const RECEIVE_UPVOTE_POST = "UPVOTE_POST";
 
 const receivePosts = posts => {
   return {
@@ -25,6 +26,13 @@ const receivePost = post => {
   };
 };
 
+const receiveUpvotePost = payload => {
+  return {
+    type: RECEIVE_UPVOTE_POST,
+    payload
+  };
+};
+
 export const fetchPosts = () => dispatch => {
   return PostAPIUtil.fetchPosts()
     .then(res => dispatch(receivePosts(res.data)));
@@ -43,6 +51,11 @@ export const fetchPost = postId => dispatch => {
 export const createPost = post => dispatch => {
   return PostAPIUtil.createPost(post)
     .then(res => dispatch(receiveNewPost(res.data)));
+};
+
+export const upvotePost = upvoteInfo => dispatch => {
+  return PostAPIUtil.upvotePost(upvoteInfo)
+    .then(res => dispatch(receiveUpvotePost(res.data)));
 };
 
 

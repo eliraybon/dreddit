@@ -6,7 +6,7 @@ import {
 
 //do we need a users reducer for this?
 import { RECEIVE_NEW_SUBDREDDIT } from '../actions/sub_dreddit_actions';
-import { RECEIVE_NEW_POST } from '../actions/post_actions';
+import { RECEIVE_NEW_POST, RECEIVE_UPVOTE_POST } from '../actions/post_actions';
 
 const initialState = {
   isAuthenticated: false,
@@ -41,6 +41,12 @@ export default function (state = initialState, action) {
       newState = Object.assign({}, state);
       newState['user'] = action.payload.user;
       return newState;
+    case RECEIVE_UPVOTE_POST:
+      return Object.assign(
+        {}, 
+        state, 
+        { [action.payload.user._id]: action.payload.user }
+      )
     default:
       return state;
   }
