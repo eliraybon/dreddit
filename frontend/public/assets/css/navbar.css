@@ -1,6 +1,56 @@
 .navbar {
+  border: 3px solid black;
   display: flex;
   justify-content: space-between;
-  height: 30px;
+  align-items: center;
+  height: 56px;
   margin-bottom: 20px;
+}
+
+.nav-logo {
+  background: url('../images/logo.png');
+  background-size: cover;
+  width: 38px;
+  height: 38px;
+  margin-left: 22px;
+  transform: rotate(180deg);
+}
+
+.nav-links {
+  border: 3px solid red;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  width: 25%;
+}
+
+.nav-signup {
+  display: flex;
+  width: 86px;
+  height: 32px;
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-login {
+  display: flex;
+  border: 3px solid rgba(50, 121, 211, 1); 
+  width: 76px; 
+  height: 32px;
+  color: rgba(50, 121, 211, 1);
+  border-radius: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-signup-link, .nav-login-link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  font-weight: 900;
 }

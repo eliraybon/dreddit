@@ -18,7 +18,7 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div>
+        <div className='nav-links'>
           <Link to={'/tweets'}>Subdreddits</Link>
           <Link to={'/profile'}>Profile</Link>
           <Link to={'/submit'}>Create a Post</Link>
@@ -27,9 +27,13 @@ class NavBar extends React.Component {
       );
     } else {
       return (
-        <div>
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+        <div className='nav-links'>
+          <div className='nav-signup'>
+            <Link className='nav-signup-link' to={'/signup'}>Signup</Link>
+          </div>
+          <div className='nav-login'>
+            <Link className='nav-login-link' to={'/login'}>Login</Link>
+          </div>
         </div>
       );
     }
@@ -38,7 +42,9 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <h1>Dreddit</h1>
+
+        <div className='nav-logo'>
+        </div>
         {this.getLinks()}
       </div>
     );
