@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -59,23 +61,47 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
+      <div className='auth-div'>
+        <div className='auth-image'>
+        </div>
+        <form onSubmit={this.handleSubmit} className="auth-form">
+          <div className='auth-logo'>
+          </div>
+          <div className='form-type'>
+            Sign in
+          </div>
+          <div className="username-div">
             <input type="text"
+              className='username-input'
               value={this.state.username}
               onChange={this.update('username')}
               placeholder="Username"
             />
+          </div>
             <br />
+          <div className="password-div">
             <input type="password"
+              className='password-input'
               value={this.state.password}
               onChange={this.update('password')}
               placeholder="Password"
             />
-            <br />
-            <input type="submit" value="Submit" />
+          </div>
+           
+          <div className='auth-errors'>
             {this.renderErrors()}
+          </div>
+          
+          <div className='auth-btn'>
+            <input className='auth-btn-text' type="submit" value="SIGN IN" />
+          </div>
+          <div className='auth-signup-link'>
+            <div className='auth-new'>
+              New to Dreddit?
+            </div>
+            <div className='new-signup-link'>
+              <Link to={'/signup'}>Sign Up</Link>
+            </div>
           </div>
         </form>
       </div>
