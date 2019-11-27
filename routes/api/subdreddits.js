@@ -93,7 +93,6 @@ router.post('/', (req, res) => {
               delete userJSON['date'];
               return res.send({ sub, user: userJSON })
           })
-          // return res.send({ sub, user })
         })
     })
     

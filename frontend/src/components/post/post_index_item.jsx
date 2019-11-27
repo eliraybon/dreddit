@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 export default class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { upvotes: 0, upvoted: false, downvoted: false };
+    this.state = { 
+      votes: 0, 
+      upvoted: false, 
+      downvoted: false, 
+      isCounted: false 
+    };
 
     this.countVotes = this.countVotes.bind(this);
     this.upvote = this.upvote.bind(this);
@@ -20,25 +25,27 @@ export default class PostIndexItem extends React.Component {
   }
 
   countVotes() {
+    if (this.state.isCounted) return;
+
     let count = 0;
+    let upvoted = false;
+    let downvoted = false; 
+
     this.props.fetchPostVotes(this.props.post._id)
       .then(res => {
         const votes = Object.values(res.data);
         votes.forEach(vote => {
           (vote.upvote) ? count += 1 : count -= 1;
-          debugger;
+
           if (vote.user === this.props.currentUserId) {
-            //not using set state here because i don't want to trigger re-render
-            //check into shouldComponentUpdate if you want to use setState later 
-            if (vote.upvote) this.state.upvoted = true;
-            if (!vote.upvote) this.state.downvoted = true;
-          } else {
-            this.state.upvoted = false;
-            this.state.downvoted = false;
+            if (vote.upvote) upvoted = true;
+            if (!vote.upvote) downvoted = true;
           }
+
         });
-        if (this.state.upvotes !== count) {
-          this.setState({ upvotes: count })
+
+        if (this.state.votes !== count) {
+          this.setState({ votes: count, upvoted, downvoted })
         }
       })
   }
@@ -46,14 +53,13 @@ export default class PostIndexItem extends React.Component {
   upvote() {
     const postId = this.props.post._id;
     const upvote = true;
-    this.props.upvotePost({ postId, upvote });
+    this.props.upvotePost({ postId, upvote })
+      .then(this.setState({ upvoted: true, isCounted: false }))
   }
 
   renderTest() {
-    if (this.state.upvoted) return <h1>It's working</h1>
+    if (this.state.upvoted) return <h1>User has upvoted</h1>
   }
-
-
 
   render() {
     const { post } = this.props;
@@ -65,7 +71,7 @@ export default class PostIndexItem extends React.Component {
         </Link>
 
         {this.renderTest()}
-        {this.state.upvotes}
+        {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
       </li>
     )
