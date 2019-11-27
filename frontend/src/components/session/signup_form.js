@@ -95,11 +95,11 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
           </div>
           <div className='auth-btn'>
-            <input type="submit" value="Submit" />
+            <input className='auth-btn-text' type="submit" value="Submit" />
           </div>
           <div className='auth-signin-link'>
             <div className='auth-user'>
-              Have an account?
+              Already a Dredditer?
             </div>
             <div className='new-signin-link'>
               <Link to={'/login'}>Sign In</Link>

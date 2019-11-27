@@ -93,14 +93,14 @@ class LoginForm extends React.Component {
           </div>
           
           <div className='auth-btn'>
-            <input type="submit" value="Sign In" />
+            <input className='auth-btn-text' type="submit" value="SIGN IN" />
           </div>
           <div className='auth-signup-link'>
             <div className='auth-new'>
               New to Dreddit?
             </div>
             <div className='new-signup-link'>
-              <Link to={'/signup'}>Signup</Link>
+              <Link to={'/signup'}>Sign Up</Link>
             </div>
           </div>
         </form>
