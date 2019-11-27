@@ -63,7 +63,7 @@ router.get('/:id', (req, res) => {
 })
 
 
-router.post('/upvote', (req, res) => {
+router.post('/vote', (req, res) => {
   const postId = req.body.postId;
   const token = req.headers.authorization;
   const currentUser = jwt_decode(token);

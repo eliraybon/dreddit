@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
-import { upvotePost } from '../../actions/post_actions';
+import { voteOnPost } from '../../actions/post_actions';
 import { fetchPostVotes } from '../../util/vote_api_util';
 
 const mapStateToProps = state => {
@@ -12,7 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    upvotePost: upvoteInfo => dispatch(upvotePost(upvoteInfo)),
+    voteOnPost: voteInfo => dispatch(voteOnPost(voteInfo)),
     fetchPostVotes: postId => fetchPostVotes(postId)
   };
 };

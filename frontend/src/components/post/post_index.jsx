@@ -5,7 +5,7 @@ export default class PostIndex extends React.Component {
   render() {
     const { 
       posts, 
-      upvotePost, 
+      voteOnPost, 
       fetchPostVotes, 
       currentUserId 
     } = this.props;
@@ -18,7 +18,7 @@ export default class PostIndex extends React.Component {
           return <PostIndexItem 
             post={ post } 
             currentUserId={ currentUserId }
-            upvotePost={ upvotePost }
+            voteOnPost={ voteOnPost }
             fetchPostVotes={ fetchPostVotes }
             key={ post._id } 
           />

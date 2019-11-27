@@ -2,7 +2,7 @@ import {
   RECEIVE_POSTS,
   RECEIVE_POST,
   RECEIVE_NEW_POST,
-  RECEIVE_UPVOTE_POST 
+  RECEIVE_VOTE
 } from '../actions/post_actions';
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
 
@@ -21,7 +21,7 @@ const postsReducer = (state = {}, action) => {
       );
     case RECEIVE_SUBDREDDIT:
       return action.payload.posts;
-    case RECEIVE_UPVOTE_POST:
+    case RECEIVE_VOTE:
       return Object.assign(
         {}, 
         state, 

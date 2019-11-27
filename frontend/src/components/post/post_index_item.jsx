@@ -53,7 +53,7 @@ export default class PostIndexItem extends React.Component {
   upvote() {
     const postId = this.props.post._id;
     const upvote = true;
-    this.props.upvotePost({ postId, upvote })
+    this.props.voteOnPost({ postId, upvote })
       .then(this.setState({ upvoted: true, isCounted: false }))
   }
 

@@ -17,6 +17,6 @@ export const createPost = data => {
   return axios.post('/api/posts', data);
 };
 
-export const upvotePost = upvoteInfo => {
-  return axios.post('/api/posts/upvote', upvoteInfo);
+export const voteOnPost = voteInfo => {
+  return axios.post('/api/posts/vote', voteInfo);
 };
