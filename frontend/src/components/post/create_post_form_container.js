@@ -7,7 +7,7 @@ const mapStateToProps = state => {
   return {
     post: { title: '', text: '' },
     formType: 'Create',
-    currentUserId: state.session.user.id
+    currentUserId: state.session.user.id || state.session.user._id
   };
 };
 

@@ -3,7 +3,6 @@ import React from 'react';
 class SubRedditForm extends React.Component {
   constructor(props){
     super(props)
-    this.state = this.props.sub;
     this.state = {
       title: this.props.sub.title,
       description: this.props.sub.description,
