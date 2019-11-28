@@ -95,14 +95,32 @@ router.post('/vote', (req, res) => {
     })
 })
 
+router.patch('/vote', (req, res) => {
+  const { postId, userId } = req.body;
 
+  Vote.findOne({ user: userId, post: postId })
+    .then(vote => {
+      vote.upvote = req.body.upvote;
+      vote.save()
+        .then(vote => {
+          Post.findById(vote.post)
+            .then(post => {
+              return res.send(post)
+            })
+        })
+    })
+
+})
+
+
+//this is one of the most confoluded methods I've ever written.
+//Whoever is reading this... I am sincerely sorry 
 router.delete('/vote', (req, res) => {
   const postId = req.body.postId;
   const userId = req.body.userId;
 
   Vote.findOne({ user: userId, post: postId })
     .then(vote => {
-      // if (!vote) return;
 
       User.findById(userId)
         .then(user => {

@@ -24,3 +24,7 @@ export const voteOnPost = voteInfo => {
 export const removeVote = voteInfo => {
   return axios.delete('/api/posts/vote', { data: voteInfo });
 }
+
+export const updateVote = voteInfo => {
+  return axios.patch('/api/posts/vote', voteInfo);
+}

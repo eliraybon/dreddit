@@ -57,11 +57,16 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = true;
 
-    this.props.removeVote({ userId, postId })
-      .then(res => {
-        this.props.voteOnPost({ postId, userId, upvote })
-          .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
-      })
+    if (this.state.upvoted || this.state.downvoted) {
+      this.props.removeVote({ userId, postId })
+        .then(res => {
+          this.props.voteOnPost({ postId, userId, upvote })
+            .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
+        })
+    } else {
+      this.props.voteOnPost({ postId, userId, upvote })
+        .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
+    }
   }
 
   downvote() {
@@ -69,11 +74,16 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = false;
 
-    this.props.removeVote({ userId, postId })
-      .then(res => {
-        this.props.voteOnPost({ postId, userId, upvote })
-          .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
-      })
+    if (this.state.upvoted || this.state.downvoted) {
+      this.props.removeVote({ userId, postId })
+        .then(res => {
+          this.props.voteOnPost({ postId, userId, upvote })
+            .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+        })
+    } else {
+      this.props.voteOnPost({ postId, userId, upvote })
+        .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+    }
   }
 
   removeVote() {
@@ -96,7 +106,7 @@ export default class PostIndexItem extends React.Component {
           {post.title}  
         </Link>
 
-        {this.renderTest()}
+        {/* {this.renderTest()} */}
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
         <button onClick={this.downvote}>Downvote</button>

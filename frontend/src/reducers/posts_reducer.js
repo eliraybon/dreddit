@@ -3,7 +3,8 @@ import {
   RECEIVE_POST,
   RECEIVE_NEW_POST,
   RECEIVE_VOTE,
-  RECEIVE_UNVOTE
+  RECEIVE_UNVOTE,
+  RECEIVE_UPDATED_VOTE
 } from '../actions/post_actions';
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
 
@@ -34,6 +35,8 @@ const postsReducer = (state = {}, action) => {
         state,
         { [action.payload.post._id]: action.payload.post }
       )
+    case RECEIVE_UPDATED_VOTE:
+      return Object.assign({}, state, { [action.post._id]: action.post })
     default: 
       return state;
   }
