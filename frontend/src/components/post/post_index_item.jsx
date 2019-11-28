@@ -57,8 +57,11 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = true;
 
-    this.props.voteOnPost({ postId, userId, upvote })
-      .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
+    this.props.removeVote({ userId, postId })
+      .then(res => {
+        this.props.voteOnPost({ postId, userId, upvote })
+          .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
+      })
   }
 
   downvote() {
@@ -66,8 +69,11 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = false;
 
-    this.props.voteOnPost({ postId, userId, upvote })
-      .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+    this.props.removeVote({ userId, postId })
+      .then(res => {
+        this.props.voteOnPost({ postId, userId, upvote })
+          .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+      })
   }
 
   removeVote() {
@@ -94,7 +100,7 @@ export default class PostIndexItem extends React.Component {
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
         <button onClick={this.downvote}>Downvote</button>
-        <button onClick={this.removeVote}>Test Remove Vote</button>
+        {/* <button onClick={this.removeVote}>Test Remove Vote</button> */}
       </li>
     )
   }
