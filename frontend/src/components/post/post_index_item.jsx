@@ -54,15 +54,19 @@ export default class PostIndexItem extends React.Component {
 
   upvote() {
     const postId = this.props.post._id;
+    const userId = this.props.currentUserId;
     const upvote = true;
-    this.props.voteOnPost({ postId, upvote })
+
+    this.props.voteOnPost({ postId, userId, upvote })
       .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
   }
 
   downvote() {
     const postId = this.props.post._id;
+    const userId = this.props.currentUserId;
     const upvote = false;
-    this.props.voteOnPost({ postId, upvote })
+
+    this.props.voteOnPost({ postId, userId, upvote })
       .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
   }
 

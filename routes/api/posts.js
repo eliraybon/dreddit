@@ -65,12 +65,11 @@ router.get('/:id', (req, res) => {
 
 router.post('/vote', (req, res) => {
   const postId = req.body.postId;
-  const token = req.headers.authorization;
-  const currentUser = jwt_decode(token);
+  const userId = req.body.userId;
 
   Post.findOne({ _id: postId })
     .then(post => {
-      User.findOne({ _id: currentUser.id })
+      User.findOne({ _id: userId })
         .then(user => {
           const newVote = new Vote({
             user: user._id,
@@ -100,12 +99,14 @@ router.post('/vote', (req, res) => {
 router.delete('/vote', (req, res) => {
   const postId = req.body.postId;
   const userId = req.body.userId;
-  debugger;
+
   Vote.findOne({ user: userId, post: postId })
     .then(vote => {
+      // if (!vote) return;
+
       User.findById(userId)
         .then(user => {
-          debugger;
+
           const userJSON = user.toJSON();
           const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
           delete userJSON.votes[voteIdx];
@@ -115,7 +116,7 @@ router.delete('/vote', (req, res) => {
             .then(user => {
               Post.findById(postId)
                 .then(post => {
-                  debugger;
+        
                   const postJSON = post.toJSON();
                   const voteIdx = postJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
                   delete postJSON.votes[voteIdx];
