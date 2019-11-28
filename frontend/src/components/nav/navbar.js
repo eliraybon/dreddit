@@ -20,7 +20,10 @@ class NavBar extends React.Component {
       return (
         <div className='nav-auth-links'>
           <div className='nav-subdreddits'>
-            <Link to={'/tweets'}>Subdreddits</Link>
+            <div className='nav-subdreddits-link'>
+              <Link className='drop-subdreddits-link' to={'/tweets'}>Subdreddits</Link>
+            </div>
+            
           </div>
           <div className='nav-search'>
             <label>
