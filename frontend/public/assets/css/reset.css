@@ -18,6 +18,10 @@ span, article, footer, time, small {
   -webkit-font-smoothing: antialiased;
 }
 
+html {
+  background-color: #dae0e6;
+}
+
 ul {
   list-style: none;
 }
