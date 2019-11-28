@@ -31,7 +31,7 @@ app.use(passport.initialize());
 
 //app will respond to Postman for testing
 app.use(bodyParser.urlencoded({
-  extended: false 
+  extended: true 
 }));
 
 //app will respond to json

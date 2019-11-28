@@ -4,6 +4,7 @@ export const RECEIVE_POSTS = "RECEIVE_POSTS";
 export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_NEW_POST = "RECEIVE_NEW_POST";
 export const RECEIVE_VOTE = "RECEIVE_VOTE";
+export const RECEIVE_UNVOTE = "RECEIVE_UNVOTE";
 
 const receivePosts = posts => {
   return {
@@ -33,6 +34,13 @@ const receiveVote = payload => {
   };
 };
 
+const receiveUnvote = payload => {
+  return {
+    type: RECEIVE_UNVOTE,
+    payload
+  };
+};
+
 export const fetchPosts = () => dispatch => {
   return PostAPIUtil.fetchPosts()
     .then(res => dispatch(receivePosts(res.data)));
@@ -57,6 +65,11 @@ export const voteOnPost = voteInfo => dispatch => {
   return PostAPIUtil.voteOnPost(voteInfo)
     .then(res => dispatch(receiveVote(res.data)));
 };
+
+export const removeVote = voteInfo => dispatch => {
+  return PostAPIUtil.removeVote(voteInfo)
+    .then(res => dispatch(receiveUnvote(res.data)));
+}
 
 
 

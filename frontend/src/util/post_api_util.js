@@ -20,3 +20,7 @@ export const createPost = data => {
 export const voteOnPost = voteInfo => {
   return axios.post('/api/posts/vote', voteInfo);
 };
+
+export const removeVote = voteInfo => {
+  return axios.delete('/api/posts/vote', { data: voteInfo });
+}

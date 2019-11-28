@@ -15,6 +15,7 @@ export default class PostIndexItem extends React.Component {
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
     this.renderTest = this.renderTest.bind(this);
+    this.removeVote = this.removeVote.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,13 @@ export default class PostIndexItem extends React.Component {
       .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
   }
 
+  removeVote() {
+    const userId = this.props.currentUserId;
+    const postId = this.props.post._id;
+    
+    this.props.removeVote({ userId, postId });
+  }
+
   renderTest() {
     if (this.state.upvoted) return <h1>User has upvoted</h1>
   }
@@ -82,6 +90,7 @@ export default class PostIndexItem extends React.Component {
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
         <button onClick={this.downvote}>Downvote</button>
+        <button onClick={this.removeVote}>Test Remove Vote</button>
       </li>
     )
   }

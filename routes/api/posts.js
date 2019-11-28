@@ -96,6 +96,44 @@ router.post('/vote', (req, res) => {
     })
 })
 
+
+router.delete('/vote', (req, res) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
+  debugger;
+  Vote.findOne({ user: userId, post: postId })
+    .then(vote => {
+      User.findById(userId)
+        .then(user => {
+          debugger;
+          const userJSON = user.toJSON();
+          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+          delete userJSON.votes[voteIdx];
+          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
+          user.votes = newVotes;
+          user.save()
+            .then(user => {
+              Post.findById(postId)
+                .then(post => {
+                  debugger;
+                  const postJSON = post.toJSON();
+                  const voteIdx = postJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+                  delete postJSON.votes[voteIdx];
+                  const newVotes = postJSON.votes.filter(ele => ele !== undefined);
+                  post.votes = newVotes;
+                  post.save()
+                    .then(post => {
+                      Vote.deleteOne({ user: user._id, post: post._id })
+                        .then(vote => {
+                          return res.send({ user, post });
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
+
 //route that returns all the votes on a post 
 router.get('/:id/votes', (req, res) => {
   Vote.find({ post: req.params.id })
@@ -103,5 +141,6 @@ router.get('/:id/votes', (req, res) => {
       res.send(votes)
     });
 })
+
 
 module.exports = router;

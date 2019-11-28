@@ -1,6 +1,10 @@
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_SUBDREDDIT, RECEIVE_NEW_SUBDREDDIT } from '../actions/sub_dreddit_actions';
-import { RECEIVE_NEW_POST, RECEIVE_VOTE } from '../actions/post_actions';
+import { 
+  RECEIVE_NEW_POST, 
+  RECEIVE_VOTE,
+  RECEIVE_UNVOTE 
+} from '../actions/post_actions';
 
 
 const usersReducer = (state = {}, action) => {
@@ -31,6 +35,12 @@ const usersReducer = (state = {}, action) => {
         { [action.payload.user._id]: action.payload.user }
       )
     case RECEIVE_VOTE:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.user._id]: action.payload.user }
+      )
+    case RECEIVE_UNVOTE:
       return Object.assign(
         {},
         state,
