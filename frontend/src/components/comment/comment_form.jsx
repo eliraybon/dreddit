@@ -7,7 +7,7 @@ export default class CommentForm extends React.Component {
       text: this.props.comment.text,
       user: this.props.currentUserId,
       post: this.props.postId,
-      comment: this.props.commentId || ""
+      comment: this.props.commentId 
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);

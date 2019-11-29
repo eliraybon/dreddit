@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
 
   newComment.save()
     .then(comment => {
-      debugger;
       User.findById(comment.user.toJSON())
         .then(user => {
           user.comments.push(comment._id);
@@ -41,9 +40,9 @@ router.post('/', (req, res) => {
     })
 })
 
-// router.post('/:commentId/reply', (req, res) => {
-
-// })
+router.post('/:commentId/reply', (req, res) => {
+  
+})
 
 // router.delete('/:commentId', (req, res) => {
 
