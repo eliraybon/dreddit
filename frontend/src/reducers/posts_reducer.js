@@ -2,6 +2,7 @@ import {
   RECEIVE_POSTS,
   RECEIVE_POST,
   RECEIVE_NEW_POST,
+  REMOVE_POST,
   RECEIVE_VOTE,
   RECEIVE_UNVOTE,
   RECEIVE_UPDATED_VOTE
@@ -9,6 +10,7 @@ import {
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
 
 const postsReducer = (state = {}, action) => {
+  debugger;
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_POSTS:
@@ -37,6 +39,10 @@ const postsReducer = (state = {}, action) => {
       )
     case RECEIVE_UPDATED_VOTE:
       return Object.assign({}, state, { [action.post._id]: action.post })
+    case REMOVE_POST:
+      const newState = Object.assign({}, state);
+      delete newState[action.payload.postId]
+      return newState;
     default: 
       return state;
   }

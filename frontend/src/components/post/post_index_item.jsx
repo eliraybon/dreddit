@@ -103,6 +103,7 @@ export default class PostIndexItem extends React.Component {
         <button onClick={this.upvote}>Upvote</button>
         <button onClick={this.downvote}>Downvote</button>
         {/* <button onClick={this.removeVote}>Test Remove Vote</button> */}
+        <button onClick={ () => this.props.deletePost(post._id)}>Delete</button>
       </li>
     )
   }

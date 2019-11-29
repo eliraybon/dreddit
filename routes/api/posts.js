@@ -62,6 +62,38 @@ router.get('/:id', (req, res) => {
     .catch(err => res.status(404).json({ missing: 'No post found' }));
 })
 
+router.delete('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      SubDreddit.findById(post.subDreddit)
+        .then(sub => {
+          const subJSON = sub.toJSON();
+          const postIdx = subJSON.posts.findIndex(ele => ele.toJSON() === post._id.toJSON());
+          delete subJSON.posts[postIdx];
+          const newPosts = subJSON.posts.filter(ele => ele !== undefined);
+          sub.posts = newPosts;
+          sub.save()
+            .then(sub => {
+              User.findById(post.user)
+                .then(user => {
+                  const userJSON = user.toJSON();
+                  const postIdx = userJSON.posts.findIndex(ele => ele.toJSON() === post._id.toJSON());
+                  delete userJSON.posts[postIdx];
+                  const newPosts = userJSON.posts.filter(ele => ele !== undefined);
+                  user.posts = newPosts;
+                  user.save()
+                    .then(user => {
+                      Post.deleteOne({ user: user._id, subDreddit: sub._id})
+                        .then(post => {
+                          return res.send({ user, sub, postId: req.params.id })
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
+
 
 router.post('/vote', (req, res) => {
   const postId = req.body.postId;

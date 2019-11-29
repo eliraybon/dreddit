@@ -3,7 +3,8 @@ import PostIndex from './post_index';
 import { 
   voteOnPost, 
   removeVote,
-  updateVote 
+  updateVote,
+  deletePost 
 } from '../../actions/post_actions';
 import { fetchPostVotes } from '../../util/vote_api_util';
 
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => {
     removeVote: voteInfo => dispatch(removeVote(voteInfo)),
     updateVote: voteInfo => dispatch(updateVote(voteInfo)),
     fetchPostVotes: postId => fetchPostVotes(postId),
+    deletePost: postId => dispatch(deletePost(postId))
   };
 };
 
