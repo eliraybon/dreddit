@@ -6,6 +6,7 @@ import {
   RECEIVE_VOTE,
   RECEIVE_UNVOTE 
 } from '../actions/post_actions';
+import { RECEIVE_COMMENT } from '../actions/comment_actions';
 
 
 const usersReducer = (state = {}, action) => {
@@ -48,6 +49,12 @@ const usersReducer = (state = {}, action) => {
         { [action.payload.user._id]: action.payload.user }
       )
     case REMOVE_POST:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.user._id]: action.payload.user }
+      )
+    case RECEIVE_COMMENT:
       return Object.assign(
         {},
         state,

@@ -8,15 +8,19 @@ import {
   RECEIVE_UPDATED_VOTE
 } from '../actions/post_actions';
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
+import { RECEIVE_COMMENT } from '../actions/comment_actions';
 
 const postsReducer = (state = {}, action) => {
-  debugger;
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_POSTS:
       return action.posts;
     case RECEIVE_POST:
-      return Object.assign({}, state, { [action.post._id]: action.post });
+      return Object.assign(
+        {}, 
+        state,
+        { [action.payload.post._id]: action.payload.post }
+      );
     case RECEIVE_NEW_POST:
       return Object.assign(
         {}, 
@@ -43,6 +47,12 @@ const postsReducer = (state = {}, action) => {
       const newState = Object.assign({}, state);
       delete newState[action.payload.postId]
       return newState;
+    case RECEIVE_COMMENT:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.post._id]: action.payload.post }
+      )
     default: 
       return state;
   }

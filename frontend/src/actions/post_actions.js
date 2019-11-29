@@ -22,10 +22,10 @@ const receiveNewPost = payload => {
   };
 };
 
-const receivePost = post => {
+const receivePost = payload => {
   return {
     type: RECEIVE_POST,
-    post
+    payload
   };
 };
 

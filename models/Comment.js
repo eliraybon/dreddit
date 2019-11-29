@@ -13,7 +13,8 @@ const commentSchema = new Schema({
   },
   post: {
     type: Schema.Types.ObjectId,
-    ref: 'posts'
+    ref: 'posts',
+    required: true
   },
   comment: {
     type: Schema.Types.ObjectId,
