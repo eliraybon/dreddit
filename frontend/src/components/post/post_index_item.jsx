@@ -58,11 +58,7 @@ export default class PostIndexItem extends React.Component {
     const upvote = true;
 
     if (this.state.upvoted || this.state.downvoted) {
-      this.props.removeVote({ userId, postId })
-        .then(res => {
-          this.props.voteOnPost({ postId, userId, upvote })
-            .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
-        })
+      this.props.updateVote({ postId, userId, upvote });
     } else {
       this.props.voteOnPost({ postId, userId, upvote })
         .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
@@ -75,11 +71,7 @@ export default class PostIndexItem extends React.Component {
     const upvote = false;
 
     if (this.state.upvoted || this.state.downvoted) {
-      this.props.removeVote({ userId, postId })
-        .then(res => {
-          this.props.voteOnPost({ postId, userId, upvote })
-            .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
-        })
+      this.props.updateVote({ postId, userId, upvote });
     } else {
       this.props.voteOnPost({ postId, userId, upvote })
         .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
