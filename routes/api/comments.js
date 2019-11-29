@@ -15,7 +15,6 @@ router.post('/', (req, res) => {
     user: req.body.user,
     post: req.body.post,
   })
-  debugger;
 
   newComment.save()
     .then(comment => {
@@ -41,7 +40,37 @@ router.post('/', (req, res) => {
 })
 
 router.post('/:commentId/reply', (req, res) => {
-  
+  const reply = new Comment({
+    text: req.body.text,
+    user: req.body.user,
+    post: req.body.post,
+    comment: req.body.comment
+  })
+  debugger;
+  reply.save()
+    .then(reply => {
+      User.findById(reply.user.toJSON())
+        .then(user => {
+          debugger;
+          user.comments.push(reply._id);
+          user.save()
+            .then(user => {
+              const userJSON = user.toJSON();
+              delete userJSON['password'];
+              delete userJSON['date'];
+              Post.findById(reply.post.toJSON())
+                .then(post => {
+                  debugger;
+                  post.comments.push(reply._id);
+                  post.save()
+                    .then(post => {
+                      debugger;
+                      return res.send({ post, comment: reply, user: userJSON })
+                    })
+                })
+            })
+        })
+    })
 })
 
 // router.delete('/:commentId', (req, res) => {

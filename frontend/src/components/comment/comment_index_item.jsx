@@ -38,7 +38,11 @@ export default class CommentIndexItem extends React.Component {
     return (
       <li>
         {comment.text}
-        <CommentIndex comments={ this.props.comments } context="comment"/>
+        <CommentIndex 
+          comments={ this.props.comments } 
+          commentId={ comment._id }
+          context="comment"
+        />
         <button onClick={ this.openReplyForm }>Reply</button>
         {this.renderReplyForm()}
         <br></br>

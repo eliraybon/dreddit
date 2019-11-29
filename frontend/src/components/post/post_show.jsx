@@ -17,14 +17,14 @@ export default class PostShow extends React.Component {
   render() {
     const { post } = this.props;
     if (!post) return null;
-
+    debugger;
     return (
       <div className="post-show">
         <h1>{post.title}</h1>
         <p>{post.text}</p>
 
         <CommentForm postId={ post._id } />
-        <CommentIndex comments={ this.props.comments } context={'post'} />
+        <CommentIndex comments={ this.props.comments } context="post" />
       </div>
     )
   }

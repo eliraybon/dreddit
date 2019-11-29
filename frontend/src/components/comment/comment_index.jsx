@@ -25,12 +25,12 @@ export default class CommentIndex extends React.Component {
       return (
         <ul className="comment-index">
           {this.props.comments.map(comment => {
-            if (comment.comment) {
+            if (comment.comment === this.props.commentId) {
               return <CommentIndexItem
                 comment={ comment }
                 comments={ this.props.comments }
-                currentUserId={this.props.currentUserId}
-                makeReply={this.props.makeReply}
+                currentUserId={ this.props.currentUserId }
+                makeReply={ this.props.makeReply }
                 key={ comment._id }
               />
             } else {
