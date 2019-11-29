@@ -17,7 +17,6 @@ export default class UserShow extends React.Component {
   render() {
     const { user, subs, posts, comments } = this.props;
     if (!user) return null; 
-    // debugger;
     return (
       <div className="user-show">
         <h1>{user.username}</h1>

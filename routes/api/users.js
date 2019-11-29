@@ -86,16 +86,28 @@ router.post("/login", (req, res) => {
 });
 
 router.get('/:userId', (req, res) => {
+  let subsObj = {};
+  let postsObj = {};
+  let commentsObj = {};
+
   User.findById(req.params.userId)
     .then(user => {
       SubDreddit.find({ user: user._id.toJSON() })
         .then(subs => {
-          debugger;
           Post.find({ user: user._id.toJSON() })
             .then(posts => {
               Comment.find({ user: user._id.toJSON() })
                 .then(comments => {
-                  return res.send({ user, subs, posts, comments })
+                  subs.forEach(sub => subsObj[sub._id] = sub);
+                  posts.forEach(post => postsObj[post._id] = post);
+                  comments.forEach(comment => commentsObj[comment._id] = comment);
+
+                  return res.send({ 
+                    user, 
+                    subs: subsObj, 
+                    posts: postsObj, 
+                    comments: commentsObj
+                  })
                 })
             })
         })
