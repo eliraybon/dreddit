@@ -15,6 +15,8 @@ import PostShow from './post/post_show_container';
 import CreateSubDredditForm from './subdreddit/create_subdreddit_form_container';
 import SubdredditShow from './subdreddit/subdreddit_show_container';
 
+import UserShow from './user/user_show_container';
+
 const App = () => (
   <div>
     <NavBarContainer />
@@ -26,6 +28,7 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <ProtectedRoute exact path="/subDreddits/new" component={CreateSubDredditForm} />
       <ProtectedRoute path="/subDreddits/:subId" component={SubdredditShow} />
+      <ProtectedRoute path="/users/:userId" component={UserShow} />
     </Switch>
   </div>
 );

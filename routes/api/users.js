@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+const SubDreddit = require('../../models/Subdreddit');
+const Post = require('../../models/Post');
+const Comment = require('../../models/Comment');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
@@ -81,6 +84,22 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.get('/:userId', (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      SubDreddit.find({ user: user._id.toJSON() })
+        .then(subs => {
+          Post.find({ user: user._id.toJSON() })
+            .then(posts => {
+              Comment.find({ user: user._id.toJSON() })
+                .then(comments => {
+                  return res.send({ user, subs, posts, comments })
+                })
+            })
+        })
+    })
+})
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
