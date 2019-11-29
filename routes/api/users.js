@@ -90,6 +90,7 @@ router.get('/:userId', (req, res) => {
     .then(user => {
       SubDreddit.find({ user: user._id.toJSON() })
         .then(subs => {
+          debugger;
           Post.find({ user: user._id.toJSON() })
             .then(posts => {
               Comment.find({ user: user._id.toJSON() })
