@@ -91,7 +91,6 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
-    debugger;
     return (
       <li className="pii">  
         <Link to={`/posts/${post._id}`}>
@@ -103,6 +102,15 @@ export default class PostIndexItem extends React.Component {
             width="200px"
             height="200px"
           />
+        )}
+
+        {post.videoUrl && (
+          <video src={post.videoUrl}
+            width="320px"
+            height="240px"
+            controls
+          >
+          </video>
         )}
         {/* {this.renderTest()} */}
         {this.state.votes}

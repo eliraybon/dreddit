@@ -19,14 +19,22 @@ export default class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.content) {
+      debugger;
       const formData = new FormData();
       formData.append('content', this.state.content, this.state.content.name);
-      axios.post('/api/files/upload', formData)
-        .then(res => {
-          debugger;
-          this.setState({ imgUrl: res.data.imgUrl });
-          this.props.processForm(this.state);
-        })
+      if (this.state.content.type === "video/mp4") {
+        axios.post('/api/files/upload', formData)
+          .then(res => {
+            this.setState({ videoUrl: res.data.imgUrl });
+            this.props.processForm(this.state);
+          })
+      } else {
+        axios.post('/api/files/upload', formData)
+          .then(res => {
+            this.setState({ imgUrl: res.data.imgUrl });
+            this.props.processForm(this.state);
+          })
+      }
     } else {
       this.props.processForm(this.state);
     }

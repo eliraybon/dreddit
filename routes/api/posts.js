@@ -27,6 +27,7 @@ router.post('/', (req, res) => {
     title: req.body.title,
     text: req.body.text,
     imgUrl: req.body.imgUrl,
+    videoUrl: req.body.videoUrl,
     subDreddit: req.body.subDreddit,
   })
 
