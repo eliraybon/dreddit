@@ -8,7 +8,8 @@ const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_POST:
-      return Object.assign({}, state, action.payload.comments);
+      return action.payload.comments;
+      // return Object.assign({}, state, action.payload.comments);
     case RECEIVE_COMMENT:
       return Object.assign(
         {},
