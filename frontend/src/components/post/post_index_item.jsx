@@ -91,13 +91,19 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
-
+    debugger;
     return (
       <li className="pii">  
         <Link to={`/posts/${post._id}`}>
           {post.title}  
         </Link>
-
+        {post.imgUrl && (
+          <img
+            src={post.imgUrl}
+            width="200px"
+            height="200px"
+          />
+        )}
         {/* {this.renderTest()} */}
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>

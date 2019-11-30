@@ -9,13 +9,19 @@ const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
 
+//for file uploads 
+const upload = require('../../services/file_upload');
+const singleUpload = upload.single('content');
+
+
 //create new post
 router.post('/', (req, res) => {
-  const { errors, isValid } = validatePostInput(req.body);
+  // const { errors, isValid } = validatePostInput(req.body);
 
-  if (!isValid) {
-    return res.status(422).json(errors);
-  }
+  // if (!isValid) {
+  //   return res.status(422).json(errors);
+  // }
+  debugger;
   const newPost = new Post({
     user: req.body.user,
     title: req.body.title,
@@ -39,7 +45,6 @@ router.post('/', (req, res) => {
                   sub.posts.push(post._id);
                   sub.save()
                     .then(sub => res.send({ post, user: userJSON, sub }))
-                  // return res.send({post, user, sub});
                 })
             })
         })
@@ -93,7 +98,7 @@ router.delete('/:id', (req, res) => {
                   user.posts = newPosts;
                   user.save()
                     .then(user => {
-                      Post.deleteOne({ user: user._id, subDreddit: sub._id})
+                      Post.deleteOne({ _id: req.params.id})
                         .then(post => {
                           return res.send({ user, sub, postId: req.params.id })
                         })
