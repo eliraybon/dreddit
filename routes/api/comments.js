@@ -73,8 +73,38 @@ router.post('/:commentId/reply', (req, res) => {
     })
 })
 
-// router.delete('/:commentId', (req, res) => {
+//this does not recursively delete all of a comment's replies 
+router.delete('/:id', (req, res) => {
 
-// })
+  Comment.findById(req.params.id)
+    .then(comment => {
+      Post.findById(comment.post)
+        .then(post => {
+          const postJSON = post.toJSON();
+          const commentIdx = postJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
+          delete postJSON.comments[commentIdx];
+          const newComments = postJSON.comments.filter(ele => ele !== undefined);
+          post.comments = newComments;
+          post.save()
+            .then(post => {
+              User.findById(comment.user)
+                .then(user => {
+                  const userJSON = user.toJSON();
+                  const commentIdx = userJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
+                  delete userJSON.comments[commentIdx];
+                  const newComments = userJSON.comments.filter(ele => ele !== undefined);
+                  user.comments = newComments;
+                  user.save()
+                    .then(user => {
+                      Comment.deleteOne({ user: user._id, post: post._id })
+                        .then(comment => {
+                          return res.send({ user, post, commentId: req.params.id });
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
 
 module.exports = router;

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import CommentIndex from './comment_index';
-import { makeReply } from '../../actions/comment_actions';  
+import { makeReply, deleteComment } from '../../actions/comment_actions';  
 
 const mapStateToProps = state => {
   return {
@@ -10,7 +10,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    makeReply: comment => dispatch(makeReply(comment)) 
+    makeReply: comment => dispatch(makeReply(comment)),
+    // deleteComment: commentId => dispatch(deleteComment(commentId)) 
   };
 };
 

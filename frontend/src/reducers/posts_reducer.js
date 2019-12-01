@@ -8,7 +8,7 @@ import {
   RECEIVE_UPDATED_VOTE
 } from '../actions/post_actions';
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
-import { RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 
 const postsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -48,6 +48,12 @@ const postsReducer = (state = {}, action) => {
       delete newState[action.payload.postId]
       return newState;
     case RECEIVE_COMMENT:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.post._id]: action.payload.post }
+      )
+    case REMOVE_COMMENT:
       return Object.assign(
         {},
         state,

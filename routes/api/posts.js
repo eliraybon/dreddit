@@ -69,6 +69,7 @@ router.get('/:id', (req, res) => {
 })
 
 // delete's a post. This also needs to delete all of a posts comments and those comments' replies 
+//not a big deal for now thought. Just a note that there will be some orphaned data.
 router.delete('/:id', (req, res) => {
   Post.findById(req.params.id)
     .then(post => {

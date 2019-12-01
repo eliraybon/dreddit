@@ -12,7 +12,8 @@ export default class CommentIndex extends React.Component {
                 comment={ comment }
                 comments={ this.props.comments }
                 currentUserId={ this.props.currentUserId }
-                makeReply = { this.props.makeReply }
+                makeReply ={ this.props.makeReply }
+                deleteComment={ this.props.deleteComment }
                 key={ comment._id } 
               />
             } else {

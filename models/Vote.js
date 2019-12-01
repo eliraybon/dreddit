@@ -10,7 +10,10 @@ const voteSchema = new Schema({
   post: {
     type: Schema.Types.ObjectId,
     ref: 'posts',
-    required: true
+  },
+  comment: {
+    type: Schema.Types.ObjectId,
+    ref: 'comments'
   },
   upvote: {
     type: Boolean,
