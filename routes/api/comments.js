@@ -107,4 +107,97 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.post('/vote', (req, res) => {
+  const { commentId, userId } = req.body;
+
+  Comment.findOne({ _id: commentId })
+    .then(comment => {
+      User.findOne({ _id: userId })
+        .then(user => {
+          const newVote = new Vote({
+            user: user._id,
+            comment: comment._id,
+            upvote: req.body.upvote
+          });
+          newVote.save()
+            .then(vote => {
+              user.votes.push(vote.id);
+              comment.votes.push(vote.id);
+              user.save()
+                .then(user => {
+                  const userJSON = user.toJSON();
+                  delete userJSON['password'];
+                  delete userJSON['date'];
+                  comment.save()
+                    .then(comment => {
+                      return res.send({ comment, user: userJSON });
+                    })
+                })
+            })
+        })
+    })
+})
+
+router.patch('/vote', (req, res) => {
+  const { commentId, userId } = req.body;
+
+  Vote.findOne({ user: userId, comment: commentId })
+    .then(vote => {
+      vote.upvote = req.body.upvote;
+      vote.save()
+        .then(vote => {
+          Comment.findById(vote.comment)
+            .then(comment => {
+              return res.send(comment)
+            })
+        })
+    })
+})
+
+router.delete('/vote', (req, res) => {
+  const { commentId, userId } = req.body;
+
+  Vote.findOne({ user: userId, comment: commentId })
+    .then(vote => {
+
+      User.findById(userId)
+        .then(user => {
+
+          const userJSON = user.toJSON();
+          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+          delete userJSON.votes[voteIdx];
+          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
+          user.votes = newVotes;
+          user.save()
+            .then(user => {
+              Comment.findById(commentId)
+                .then(comment => {
+
+                  const commentJSON = comment.toJSON();
+                  const voteIdx = commentJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+                  delete commentJSON.votes[voteIdx];
+                  const newVotes = commentJSON.votes.filter(ele => ele !== undefined);
+                  comment.votes = newVotes;
+                  comment.save()
+                    .then(comment => {
+                      Vote.deleteOne({ user: user._id, comment: comment._id })
+                        .then(vote => {
+                          return res.send({ user, comment });
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
+
+//route that returns all the votes on a comment
+router.get('/:id/votes', (req, res) => {
+  Vote.find({ comment: req.params.id })
+    .then(votes => {
+      res.send(votes)
+    });
+})
+
+
 module.exports = router;

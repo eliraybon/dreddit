@@ -58,11 +58,13 @@ router.get('/', (req, res) => {
 
 // get a single post
 router.get('/:id', (req, res) => {
+  let commentsObj = {};
   Post.findById(req.params.id)
     .then(post => {
       Comment.find({ post: post._id })
         .then(comments => {
-          return res.send({ post, comments })
+          comments.forEach(comment => commentsObj[comment._id] = comment)
+          return res.send({ post, comments: commentsObj })
         })
     })
     .catch(err => res.status(404).json({ missing: 'No post found' }));

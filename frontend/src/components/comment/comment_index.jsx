@@ -14,6 +14,10 @@ export default class CommentIndex extends React.Component {
                 currentUserId={ this.props.currentUserId }
                 makeReply ={ this.props.makeReply }
                 deleteComment={ this.props.deleteComment }
+                fetchCommentVotes={ this.props.fetchCommentVotes }
+                voteOnComment={ this.props.voteOnComment }
+                removeVote={ this.props.removeVote }
+                updateVote={ this.props.updateVote }
                 key={ comment._id } 
               />
             } else {

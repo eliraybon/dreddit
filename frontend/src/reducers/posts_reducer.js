@@ -30,18 +30,21 @@ const postsReducer = (state = {}, action) => {
     case RECEIVE_SUBDREDDIT:
       return action.payload.posts;
     case RECEIVE_VOTE:
+      if (!action.payload.post) return state;
       return Object.assign(
         {}, 
         state, 
         { [action.payload.post._id]: action.payload.post }
       )
     case RECEIVE_UNVOTE:
+      if (!action.payload.post) return state;
       return Object.assign(
         {},
         state,
         { [action.payload.post._id]: action.payload.post }
       )
     case RECEIVE_UPDATED_VOTE:
+      if (!action.post) return state;
       return Object.assign({}, state, { [action.post._id]: action.post })
     case REMOVE_POST:
       const newState = Object.assign({}, state);
