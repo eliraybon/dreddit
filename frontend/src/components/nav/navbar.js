@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-// import './navbar.css'
+import SearchBar from './search_bar_container';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -19,6 +19,7 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div>
+          <SearchBar />
           <Link to={'/tweets'}>Subdreddits</Link>
           <Link to={'/profile'}>Profile</Link>
           <Link to={'/submit'}>Create a Post</Link>
