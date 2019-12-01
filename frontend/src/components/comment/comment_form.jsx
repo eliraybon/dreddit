@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class CommentForm extends React.Component {
   constructor(props) {
+
     super(props);
     this.state = {
       text: this.props.comment.text,
@@ -17,6 +18,7 @@ export default class CommentForm extends React.Component {
     e.preventDefault();
     if (this.props.commentId) {
       this.props.makeReply(this.state);
+      this.props.closeReplyForm();
     } else { 
       this.props.makeComment(this.state);
     }

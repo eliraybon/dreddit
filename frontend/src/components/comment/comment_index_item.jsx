@@ -24,9 +24,17 @@ export default class CommentIndexItem extends React.Component {
 
   renderReplyForm() {
     const { comment } = this.props; 
+    const commentId = comment._id;
+    const closeReplyForm = this.closeReplyForm;
 
     if (this.state.replyForm) {
-      return <CommentForm postId={ comment.post } commentId={ comment._id } />
+      return (
+        <CommentForm 
+          postId={ comment.post } 
+          commentId={ commentId } 
+          closeReplyForm={ closeReplyForm }
+        />
+      )
     } else {
       return null;
     }

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // window.location.href = '/login';
 
       //I'm gonna try changing it
-      window.location.href = '/';
+      window.location.href = '/login';
     }
   } else {
     // If this is a first time user, start with an empty store
