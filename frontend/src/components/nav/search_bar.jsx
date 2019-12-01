@@ -13,8 +13,6 @@ export default class SearchBar extends React.Component {
     e.preventDefault();
     this.props.updateSearchTerm(e.currentTarget.value)
       .then(res => {
-        debugger;
-        //i need to see how i can add the things that it returns to the state
         this.setState({ subs: res.subDreddits })
       })
   }

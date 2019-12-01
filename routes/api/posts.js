@@ -178,6 +178,8 @@ router.delete('/vote', (req, res) => {
           delete userJSON.votes[voteIdx];
           const newVotes = userJSON.votes.filter(ele => ele !== undefined);
           user.votes = newVotes;
+          delete userJSON['password'];
+          delete userJSON['date'];
           user.save()
             .then(user => {
               Post.findById(postId)
