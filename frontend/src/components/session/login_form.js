@@ -84,6 +84,7 @@ class LoginForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+        {/* <button onClick={this.demoLogin}>Log In As Demo User</button> */}
       </div>
     );
   }
