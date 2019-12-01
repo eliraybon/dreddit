@@ -42,6 +42,9 @@ export default class CommentForm extends React.Component {
   
           <button>{buttonText}</button>
         </form>
+        {this.props.commentId && (
+          <button onClick={ this.props.closeReplyForm }>cancel</button>
+        )}
       </div>
     )
   }
