@@ -15,6 +15,7 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -52,6 +53,11 @@ class SignupForm extends React.Component {
         ))}
       </ul>
     );
+  }
+
+  demoLogin() {
+    const demoUser = { username: 'demo', password: 'lola12' };
+    this.props.login(demoUser);
   }
 
   render() {
@@ -106,6 +112,7 @@ class SignupForm extends React.Component {
             </div>
           </div>
         </form>
+        {/* <button onClick={this.demoLogin}>Log In As Demo User</button> */}
       </div>
     );
   }

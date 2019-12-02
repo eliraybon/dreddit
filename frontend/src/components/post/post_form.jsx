@@ -16,11 +16,10 @@ export default class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.processForm(this.state);
-      // .then(res => this.props.history.push('/'));
   }
 
   update(field) {
-    return e => this.setState({ [field]: e.currentTarget.value })
+    return e => this.setState({ [field]: e.currentTarget.value });
   }
 
   render() {

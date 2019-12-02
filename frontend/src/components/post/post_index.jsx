@@ -6,9 +6,11 @@ export default class PostIndex extends React.Component {
     const { 
       posts, 
       voteOnPost,
-      removeVote, 
+      removeVote,
+      updateVote, 
       fetchPostVotes, 
-      currentUserId 
+      currentUserId,
+      deletePost 
     } = this.props;
     
     if (!posts.length) return null;
@@ -21,7 +23,9 @@ export default class PostIndex extends React.Component {
             currentUserId={ currentUserId }
             voteOnPost={ voteOnPost }
             removeVote={ removeVote }
+            updateVote={ updateVote }
             fetchPostVotes={ fetchPostVotes }
+            deletePost={ deletePost }
             key={ post._id } 
           />
         })}

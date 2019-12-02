@@ -14,8 +14,8 @@ export default class PostIndexItem extends React.Component {
     this.countVotes = this.countVotes.bind(this);
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
-    this.renderTest = this.renderTest.bind(this);
     this.removeVote = this.removeVote.bind(this);
+    this.renderDeleteButton = this.renderDeleteButton.bind(this);
   }
 
   componentDidMount() {
@@ -57,11 +57,12 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = true;
 
-    this.props.removeVote({ userId, postId })
-      .then(res => {
-        this.props.voteOnPost({ postId, userId, upvote })
-          .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
-      })
+    if (this.state.upvoted || this.state.downvoted) {
+      this.props.updateVote({ postId, userId, upvote });
+    } else {
+      this.props.voteOnPost({ postId, userId, upvote })
+        .then(this.setState({ upvoted: true, downvoted: false, isCounted: false }))
+    }
   }
 
   downvote() {
@@ -69,11 +70,12 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = false;
 
-    this.props.removeVote({ userId, postId })
-      .then(res => {
-        this.props.voteOnPost({ postId, userId, upvote })
-          .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
-      })
+    if (this.state.upvoted || this.state.downvoted) {
+      this.props.updateVote({ postId, userId, upvote });
+    } else {
+      this.props.voteOnPost({ postId, userId, upvote })
+        .then(this.setState({ upvoted: false, downvoted: true, isCounted: false }))
+    }
   }
 
   removeVote() {
@@ -83,8 +85,13 @@ export default class PostIndexItem extends React.Component {
     this.props.removeVote({ userId, postId });
   }
 
-  renderTest() {
-    if (this.state.upvoted) return <h1>User has upvoted</h1>
+  renderDeleteButton() {
+    const { post, currentUserId } = this.props;
+    if (post.user !== currentUserId) return null;
+    return <button 
+      onClick={() => this.props.deletePost(post._id)}>
+      Delete
+    </button>
   }
 
   render() {
@@ -96,11 +103,10 @@ export default class PostIndexItem extends React.Component {
           {post.title}  
         </Link>
 
-        {this.renderTest()}
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>
         <button onClick={this.downvote}>Downvote</button>
-        {/* <button onClick={this.removeVote}>Test Remove Vote</button> */}
+        {this.renderDeleteButton()}
       </li>
     )
   }

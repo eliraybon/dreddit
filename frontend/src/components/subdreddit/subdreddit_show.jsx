@@ -25,10 +25,6 @@ class SubDredditShow extends React.Component {
 
         <PostForm subId={sub._id} />
         <PostIndex posts={this.props.posts} />
-
-        <Link to={`/subdreddits/5dddf4842d6ef52836428198`}>
-          Test
-        </Link>
       </div>
     )
   }
