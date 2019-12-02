@@ -5,6 +5,7 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+export const RECEIVE_USER_SUBS = "RECEIVE_USER_SUBS";
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -27,6 +28,13 @@ export const receiveErrors = errors => ({
 export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
 });
+
+const receiveUserSubs = subs => {
+  return {
+    type: RECEIVE_USER_SUBS,
+    subs
+  };
+};
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 // export const signup = user => dispatch => (
@@ -70,3 +78,9 @@ export const logout = () => dispatch => {
   APIUtil.setAuthToken(false)
   dispatch(logoutUser())
 };
+
+export const fetchUserSubs = userId => dispatch => {
+  return APIUtil.fetchUserSubs(userId)
+    .then(res => dispatch(receiveUserSubs(res.data)));
+};
+

@@ -27,7 +27,9 @@ export default class SearchBar extends React.Component {
           onChange={this.handleUpdate}
         />
 
-        <SubDredditIndex subs={ this.state.subs } />
+        <div className="search-results">
+          <SubDredditIndex subs={ this.state.subs } />
+        </div>
       </div>
     )
   }

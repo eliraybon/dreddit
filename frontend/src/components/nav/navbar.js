@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from './search_bar_container';
+import SubdredditIndex from '../subdreddit/subdreddit_index_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchUserSubs(this.props.currentUserId);
   }
 
   logoutUser(e) {
@@ -24,10 +29,9 @@ class NavBar extends React.Component {
       return (
         <div className='nav-auth-links'>
           <div className='nav-subdreddits'>
-            <div className='nav-subdreddits-link'>
-              <Link className='drop-subdreddits-link' to={'/tweets'}>Subdreddits</Link>
+            <div className="user-subs">
+              <SubdredditIndex subs={ this.props.userSubs } />
             </div>
-            
           </div>
           <div className='nav-search'>
             <label>
@@ -37,7 +41,7 @@ class NavBar extends React.Component {
             <SearchBar />
           </div>
           <div className='nav-right-links'>
-            <Link className='nav-post' to={'/submit'}></Link>
+            <Link className='nav-post' to={'/subdreddits/new'}></Link>
             <div className='nav-profile-div'>
               <div className='nav-profile'>
                 <div className='nav-drop-down'>

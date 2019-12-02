@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
     // Create a preconfigured state we can immediately add to our store
-    const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+    const preloadedState = { session: { isAuthenticated: true, user: decodedUser, userSubs: {} } };
 
     store = configureStore(preloadedState);
 
