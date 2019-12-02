@@ -4,6 +4,7 @@ const Post = require('../../models/Post');
 const User = require('../../models/User');
 const Vote = require('../../models/Vote');
 const SubDreddit = require('../../models/Subdreddit');
+const Comment = require('../../models/Comment');
 const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
@@ -58,8 +59,46 @@ router.get('/', (req, res) => {
 // get a single post
 router.get('/:id', (req, res) => {
   Post.findById(req.params.id)
-    .then(post => res.json(post))
+    .then(post => {
+      Comment.find({ post: post._id })
+        .then(comments => {
+          return res.send({ post, comments })
+        })
+    })
     .catch(err => res.status(404).json({ missing: 'No post found' }));
+})
+
+// delete's a post. This also needs to delete all of a posts comments and those comments' replies 
+router.delete('/:id', (req, res) => {
+  Post.findById(req.params.id)
+    .then(post => {
+      SubDreddit.findById(post.subDreddit)
+        .then(sub => {
+          const subJSON = sub.toJSON();
+          const postIdx = subJSON.posts.findIndex(ele => ele.toJSON() === post._id.toJSON());
+          delete subJSON.posts[postIdx];
+          const newPosts = subJSON.posts.filter(ele => ele !== undefined);
+          sub.posts = newPosts;
+          sub.save()
+            .then(sub => {
+              User.findById(post.user)
+                .then(user => {
+                  const userJSON = user.toJSON();
+                  const postIdx = userJSON.posts.findIndex(ele => ele.toJSON() === post._id.toJSON());
+                  delete userJSON.posts[postIdx];
+                  const newPosts = userJSON.posts.filter(ele => ele !== undefined);
+                  user.posts = newPosts;
+                  user.save()
+                    .then(user => {
+                      Post.deleteOne({ user: user._id, subDreddit: sub._id})
+                        .then(post => {
+                          return res.send({ user, sub, postId: req.params.id })
+                        })
+                    })
+                })
+            })
+        })
+    })
 })
 
 
@@ -95,14 +134,32 @@ router.post('/vote', (req, res) => {
     })
 })
 
+router.patch('/vote', (req, res) => {
+  const { postId, userId } = req.body;
 
+  Vote.findOne({ user: userId, post: postId })
+    .then(vote => {
+      vote.upvote = req.body.upvote;
+      vote.save()
+        .then(vote => {
+          Post.findById(vote.post)
+            .then(post => {
+              return res.send(post)
+            })
+        })
+    })
+
+})
+
+
+//this is one of the most confoluded methods I've ever written.
+//Whoever is reading this... I am sincerely sorry 
 router.delete('/vote', (req, res) => {
   const postId = req.body.postId;
   const userId = req.body.userId;
 
   Vote.findOne({ user: userId, post: postId })
     .then(vote => {
-      // if (!vote) return;
 
       User.findById(userId)
         .then(user => {

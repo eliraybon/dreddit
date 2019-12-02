@@ -10,6 +10,7 @@ require('./config/passport')(passport);
 const users = require('./routes/api/users');
 const subdreddits = require('./routes/api/subdreddits');
 const posts = require("./routes/api/posts");
+const comments = require('./routes/api/comments');
 //
 
 //import models
@@ -48,6 +49,7 @@ app.get("/", (req, res) => {
 
 app.use('/api/users', users);
 app.use('/api/posts', posts);
+app.use('/api/comments', comments);
 
 app.use('/api/subDreddits', subdreddits);
 
