@@ -2,7 +2,13 @@ import React from 'react';
 import CommentIndex from './comment_index_container';
 import CommentForm from './create_comment_form_container';
 import { connect } from 'react-redux';
-import { deleteComment } from '../../actions/comment_actions';
+import {
+  makeReply,
+  voteOnComment,
+  removeVote,
+  updateVote,
+  deleteComment
+} from '../../actions/comment_actions';  
 import { fetchCommentVotes } from '../../util/vote_api_util';
 
 class CommentIndexItem extends React.Component {
@@ -157,7 +163,10 @@ class CommentIndexItem extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     deleteComment: commentId => dispatch(deleteComment(commentId)),
-    fetchCommentVotes: commentId => fetchCommentVotes(commentId)
+    fetchCommentVotes: commentId => fetchCommentVotes(commentId),
+    voteOnComment: voteInfo => dispatch(voteOnComment(voteInfo)),
+    removeVote: voteInfo => dispatch(removeVote(voteInfo)),
+    updateVote: voteInfo => dispatch(updateVote(voteInfo))
   };
 };
 
