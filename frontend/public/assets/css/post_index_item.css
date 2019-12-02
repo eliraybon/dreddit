@@ -19,8 +19,11 @@
 }
 
 .pii-top {
+  /* border: 3px solid black; */
   display: flex;
   flex-direction: row;
+  font-size: 18px;
+  margin-left: 10px;
 }
 
 .pii-votes {
@@ -64,14 +67,64 @@
 .pii-show-link {
   display: flex;
   flex-direction: column;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
   color: black;
   text-decoration: none;
   width: 100%;
 }
 
 .pii-media {
-  border: 3px solid yellow;
+  /* border: 3px solid yellow; */
   display: flex;
   justify-content: center;
+  margin: 5px 0 5px 0;
+}
+
+.pii-bottom {
+  display: flex;
+  flex-direction: row;
+  /* border: 3px solid blue; */
+  height: 20px;
+  color: #878a8c;
+}
+
+.pii-comment {
+  /* border: 3px solid black; */
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.pii-comment:hover {
+  background-color: rgba(135, 138, 140, .2);
+}
+
+.pii-comment-image {
+  /* border: 3px solid red; */
+  width: 26px;
+  height: 100%;
+  background: url('../images/post_item/comment.png') no-repeat;
+  background-size: 15px 15px;
+  background-position: center;
+}
+
+.pii-comment-image:hover {
+  background: url('../images/post_item/comment_hover.png') no-repeat;
+  background-size: 15px 15px;
+  background-position: center;
+}
+
+.pii-comment-image:hover .pii-comment {
+  background-color: rgba(135, 138, 140, .2);
+}
+
+.pii-comment:hover .pii-comment-image {
+  background: url('../images/post_item/comment_hover.png') no-repeat;
+  background-size: 16px 15px;
+  background-position: center;
 }

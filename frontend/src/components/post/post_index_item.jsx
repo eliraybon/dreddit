@@ -129,6 +129,15 @@ export default class PostIndexItem extends React.Component {
                 </video>
               )} 
             </div>
+            <div className='pii-bottom'>
+              <div className='pii-comment'>
+                <div className='pii-comment-image'>
+                </div>
+                <div>
+                  Comments
+                </div>
+              </div>
+            </div>
           </Link>
 
         {/* {this.renderTest()} */}
