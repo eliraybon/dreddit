@@ -31,6 +31,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (decodedUser.exp < currentTime) {
       // Logout the user and redirect to the login page
       store.dispatch(logout());
+
+      //is this what's causing the weird url?
+      // window.location.href = '/login';
+
+      //I'm gonna try changing it
       window.location.href = '/login';
     }
   } else {

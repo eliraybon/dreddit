@@ -14,7 +14,12 @@ span, article, footer, time, small {
   vertical-align: inherit;
   box-sizing: border-box;
   background: transparent;
+  font-family: 'IBM Plex Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  background-color: #dae0e6;
 }
 
 ul {
