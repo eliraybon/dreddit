@@ -1,0 +1,132 @@
+.auth-div {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  z-index: 4;
+  top: 0;
+}
+
+.auth-image {
+  width: 155px;
+  background: url('../images/reddit_space.png') no-repeat;
+  background-size: cover;
+  
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+  color: black;
+}
+
+.auth-logo {
+  background: url('../images/logo.png');
+  background-size: cover;
+  width: 38px;
+  height: 38px;
+  margin-left: 22px;
+  transform: rotate(180deg);
+}
+
+.form-type {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  width: 90%;
+  margin-left: 22px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.username-div, .password-div {
+  border: 1px solid #e6e5e5;
+  height: 48px;
+  width: 390px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 22px;
+  font-weight: bold;
+  color: black;
+}
+
+::placeholder {
+  color: #a5a4a4;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.username-div:hover , .password-div:hover{
+  border: 1px solid #a5a4a4;
+}
+
+.username-input, .password-input {
+  margin-left: 10px;
+  width: 100%;
+}
+
+.auth-btn {
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  height: 36px;
+  width: 155px;
+  border-radius: 5px;
+  margin-left: 22px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+.auth-btn-text {
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  letter-spacing: .5px;
+  width: 100%;
+}
+
+.auth-signup-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 22px;
+  height: 48px;
+  width: 155px;
+  font-size: 14px;
+}
+
+.auth-signin-link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 22px;
+  height: 48px;
+  width: 180px;
+  font-size: 14px;
+}
+
+.auth-new, .auth-user {
+  color: black;
+}
+
+.new-signup-link, .new-signin-link {
+  font-weight: 900;
+  color: #3279d3;
+}
+
+.auth-errors {
+  color: #ea1427;
+  font-size: 14px;
+  margin-left: 22px;
+  width: 390px;
+  padding: 10px 0 10px 0;
+}
+

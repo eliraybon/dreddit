@@ -1,5 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class SignupForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.clearedErrors = false;
+    this.demoLogin = this.demoLogin.bind(this);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -52,34 +55,64 @@ class SignupForm extends React.Component {
     );
   }
 
+  demoLogin() {
+    const demoUser = { username: 'demo', password: 'lola12' };
+    this.props.login(demoUser);
+  }
+
   render() {
     return (
-      <div className="login-form-container">
-        <form onSubmit={this.handleSubmit}>
-          <div className="login-form">
-            <br />
+      <div className="auth-div">
+        <div className='auth-image'>
+        </div>
+        <form onSubmit={this.handleSubmit} className='auth-form'>
+          <div className='auth-logo'>
+          </div>
+          <div className='form-type'>
+            Sign Up
+          </div>
+          <div className="username-div">
             <input type="text"
+              className='username-input'
               value={this.state.username}
               onChange={this.update('username')}
               placeholder="Username"
             />
+          </div>
             <br />
+          <div className='password-div'>
             <input type="password"
+              className='password-input'
               value={this.state.password}
               onChange={this.update('password')}
               placeholder="Password"
             />
+          </div>
             <br />
+          <div className='password-div'>
             <input type="password"
+              className='password-input'
               value={this.state.password2}
               onChange={this.update('password2')}
               placeholder="Confirm Password"
             />
-            <br />
-            <input type="submit" value="Submit" />
+          </div>
+          <div className='auth-errors'>
             {this.renderErrors()}
           </div>
+          <div className='auth-btn'>
+            <input className='auth-btn-text' type="submit" value="Submit" />
+          </div>
+          <div className='auth-signin-link'>
+            <div className='auth-user'>
+              Already a Dredditer?
+            </div>
+            <div className='new-signin-link'>
+              <Link to={'/login'}>Sign In</Link>
+            </div>
+          </div>
         </form>
+        {/* <button onClick={this.demoLogin}>Log In As Demo User</button> */}
       </div>
     );
   }

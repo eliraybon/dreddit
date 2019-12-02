@@ -18,19 +18,59 @@ class NavBar extends React.Component {
   getLinks() {
     if (this.props.loggedIn) {
       return (
-        <div>
-          <SearchBar />
-          <Link to={'/tweets'}>Subdreddits</Link>
-          <Link to={'/profile'}>Profile</Link>
-          <Link to={'/submit'}>Create a Post</Link>
-          <button onClick={this.logoutUser}>Logout</button>
+        <div className='nav-auth-links'>
+          <div className='nav-subdreddits'>
+            <div className='nav-subdreddits-link'>
+              <Link className='drop-subdreddits-link' to={'/tweets'}>Subdreddits</Link>
+            </div>
+            
+          </div>
+          <div className='nav-search'>
+            <label>
+              <div className='nav-search-logo'>
+              </div>
+            </label>
+            <input
+              className='nav-search-input'
+              type='text'
+              placeholder="Search Dreddit"
+            />
+            
+          </div>
+          <div className='nav-right-links'>
+            <Link className='nav-post' to={'/submit'}></Link>
+            <div className='nav-profile-div'>
+              <div className='nav-profile'>
+                <div className='nav-drop-down'>
+                  <div className='nav-drop-profile'>
+                    <label className='nav-profile-label'>
+                      <div className='nav-profile-pic'>
+                      </div>
+                      <Link className='nav-profile-link' to={'/profile'}>Profile</Link>
+                    </label>
+                  </div>
+                  <div className='nav-drop-logout'>
+                    <label className='nav-logout-label'>
+                      <div className='nav-logout-pic'>
+                      </div>
+                      <button className='nav-logout-link' onClick={this.logoutUser}>Logout</button>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       );
     } else {
       return (
-        <div>
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
+        <div className='nav-links'>
+          <div className='nav-signup'>
+            <Link className='nav-signup-link' to={'/signup'}>Sign Up</Link>
+          </div>
+          <div className='nav-login'>
+            <Link className='nav-login-link' to={'/login'}>Log In</Link>
+          </div>
         </div>
       );
     }
@@ -39,7 +79,14 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <h1>Dreddit</h1>
+        <div className='nav-logo-div'>
+          <div className='nav-logo'>
+          </div>
+          <div className='nav-site-name'>
+            dreddit
+          </div>
+        </div>
+        
         {this.getLinks()}
       </div>
     );
