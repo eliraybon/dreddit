@@ -9,6 +9,7 @@ import {
 } from '../actions/post_actions';
 import { RECEIVE_SUBDREDDIT } from '../actions/sub_dreddit_actions';
 import { RECEIVE_COMMENT } from '../actions/comment_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 
 const postsReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -53,6 +54,8 @@ const postsReducer = (state = {}, action) => {
         state,
         { [action.payload.post._id]: action.payload.post }
       )
+    case RECEIVE_USER:
+      return action.payload.posts;
     default: 
       return state;
   }

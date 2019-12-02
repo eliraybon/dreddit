@@ -39,6 +39,20 @@ export default class CommentIndex extends React.Component {
           })}
         </ul>
       )
+    } else if (this.props.context === "user") {
+      return (
+        <ul className="comment-index">
+          {this.props.comments.map(comment => {
+              return <CommentIndexItem
+                comment={comment}
+                comments={this.props.comments}
+                currentUserId={this.props.currentUserId}
+                key={comment._id}
+              />
+            })
+          }
+        </ul>
+      )
     }
   }
 }

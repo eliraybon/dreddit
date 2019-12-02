@@ -9,18 +9,25 @@ const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 const validatePostInput = require('../../validation/posts');
 
+//for file uploads 
+const upload = require('../../services/file_upload');
+const singleUpload = upload.single('content');
+
+
 //create new post
 router.post('/', (req, res) => {
-  const { errors, isValid } = validatePostInput(req.body);
+  // const { errors, isValid } = validatePostInput(req.body);
 
-  if (!isValid) {
-    return res.status(422).json(errors);
-  }
+  // if (!isValid) {
+  //   return res.status(422).json(errors);
+  // }
+  debugger;
   const newPost = new Post({
     user: req.body.user,
     title: req.body.title,
     text: req.body.text,
     imgUrl: req.body.imgUrl,
+    videoUrl: req.body.videoUrl,
     subDreddit: req.body.subDreddit,
   })
 
@@ -39,7 +46,6 @@ router.post('/', (req, res) => {
                   sub.posts.push(post._id);
                   sub.save()
                     .then(sub => res.send({ post, user: userJSON, sub }))
-                  // return res.send({post, user, sub});
                 })
             })
         })
@@ -58,11 +64,14 @@ router.get('/', (req, res) => {
 
 // get a single post
 router.get('/:id', (req, res) => {
+  let commentsObj = {};
+
   Post.findById(req.params.id)
     .then(post => {
       Comment.find({ post: post._id })
         .then(comments => {
-          return res.send({ post, comments })
+          comments.forEach(comment => commentsObj[comment._id] = comment);
+          return res.send({ post, comments: commentsObj })
         })
     })
     .catch(err => res.status(404).json({ missing: 'No post found' }));
@@ -90,7 +99,7 @@ router.delete('/:id', (req, res) => {
                   user.posts = newPosts;
                   user.save()
                     .then(user => {
-                      Post.deleteOne({ user: user._id, subDreddit: sub._id})
+                      Post.deleteOne({ _id: req.params.id})
                         .then(post => {
                           return res.send({ user, sub, postId: req.params.id })
                         })

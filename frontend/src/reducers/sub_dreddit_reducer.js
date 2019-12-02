@@ -4,6 +4,7 @@ import {
   RECEIVE_NEW_SUBDREDDIT 
 } from '../actions/sub_dreddit_actions';
 import { RECEIVE_NEW_POST, REMOVE_POST } from '../actions/post_actions';
+import { RECEIVE_USER } from '../actions/user_actions';
 
 const subDredditReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -34,6 +35,8 @@ const subDredditReducer = (state = {}, action) => {
         state,
         { [action.payload.sub._id]: action.payload.sub }
       )
+    case RECEIVE_USER:
+      return action.payload.subs;
     default:
       return state;
   }
