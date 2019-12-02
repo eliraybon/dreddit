@@ -6,8 +6,9 @@
   display: flex;
   flex-direction: row;
   list-style: none;
-  width: 80%;
-  margin: 6px 0 6px 0;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 0 12px 0;
   padding: 5px;
   border: 1px solid lightgray;
   border-radius: 5px;
