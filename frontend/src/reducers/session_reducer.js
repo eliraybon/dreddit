@@ -45,28 +45,30 @@ export default function (state = initialState, action) {
     case RECEIVE_NEW_SUBDREDDIT:
       return {
         ...state, 
-        subs: Object.assign(
+        userSubs: Object.assign(
           {},
-          state.subs, 
+          state.userSubs, 
           { [action.payload.sub._id]: action.payload.sub }
         )
       }
     case RECEIVE_FOLLOW:
       return {
         ...state,
-        subs: Object.assign(
+        userSubs: Object.assign(
           {},
-          state.subs,
+          state.userSubs,
           { [action.payload.sub._id]: action.payload.sub }
         )
       }
     case RECEIVE_UNFOLLOW:
+      const newSubs = Object.assign({}, state.userSubs);
+      delete newSubs[action.payload.sub._id]
+
       return {
         ...state,
-        subs: Object.assign(
+        userSubs: Object.assign(
           {},
-          state.subs,
-          { [action.payload.sub._id]: action.payload.sub }
+          newSubs
         )
       }
     default:
