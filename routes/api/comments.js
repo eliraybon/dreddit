@@ -46,12 +46,12 @@ router.post('/:commentId/reply', (req, res) => {
     post: req.body.post,
     comment: req.body.comment
   })
-  debugger;
+
   reply.save()
     .then(reply => {
       User.findById(reply.user.toJSON())
         .then(user => {
-          debugger;
+
           user.comments.push(reply._id);
           user.save()
             .then(user => {
@@ -60,11 +60,11 @@ router.post('/:commentId/reply', (req, res) => {
               delete userJSON['date'];
               Post.findById(reply.post.toJSON())
                 .then(post => {
-                  debugger;
+   
                   post.comments.push(reply._id);
                   post.save()
                     .then(post => {
-                      debugger;
+
                       return res.send({ post, comment: reply, user: userJSON })
                     })
                 })
