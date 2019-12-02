@@ -89,10 +89,14 @@ export default class PostIndexItem extends React.Component {
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
     if (post.user !== currentUserId) return null;
-    return <button 
-      onClick={() => this.props.deletePost(post._id)}>
-      Delete
-    </button>
+    return <div className='pii-remove'>
+        <div className='pii-remove-image'>
+        </div>
+        <button 
+        onClick={() => this.props.deletePost(post._id)}>
+        Remove
+      </button>
+    </div>
   }
 
   render() {
@@ -106,6 +110,7 @@ export default class PostIndexItem extends React.Component {
             {this.state.votes}
             <button onClick={this.downvote} className='pii-downvote'></button>
           </div>
+          <div className='pii-content'>
           <Link to={`/posts/${post._id}`} className='pii-show-link'>
             <div className='pii-top'>
               
@@ -129,22 +134,29 @@ export default class PostIndexItem extends React.Component {
                 </video>
               )} 
             </div>
+            
+          </Link>
             <div className='pii-bottom'>
               <div className='pii-comment'>
-                <div className='pii-comment-image'>
-                </div>
-                <div>
-                  Comments
-                </div>
+                <Link 
+                  to={`/posts/${post._id}`}
+                  >
+                  <div className='pii-comment-link'>
+                  <div className='pii-comment-image'>
+                  </div>
+                  <div>
+                    Comments
+                  </div>
+                  </div>
+                </Link>
+              </div>
+              
+              <div classname='pii-remove'>
+                {this.renderDeleteButton()}
               </div>
             </div>
-          </Link>
-
+          </div>
         {/* {this.renderTest()} */}
-
-        <div className='pii-bottom-nav'>
-          {this.renderDeleteButton()}
-        </div>
       </li>
     )
   }
