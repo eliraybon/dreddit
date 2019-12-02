@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
   // if (!isValid) {
   //   return res.status(422).json(errors);
   // }
-  debugger;
+  
   const newPost = new Post({
     user: req.body.user,
     title: req.body.title,
