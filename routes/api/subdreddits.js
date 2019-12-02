@@ -7,11 +7,15 @@ const Vote = require('../../models/Vote');
 const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 
-// router.get("/:id", (req, res) => {
-//   Subdreddit.findById(req.params.id)
-//     .then(subdreddit => res.json(subdreddit))
-//     .catch(err => res.status(404).json({ missing: 'No SubDreddit found'}))
-// })
+router.post('/search', (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  if (!searchTerm) return res.send([]);
+
+  Subdreddit.find({ title: { $regex: searchTerm, $options: "i" } })
+    .then(subs => {
+      return res.send(subs);
+    })
+})
 
 router.get("/:id", (req, res) => {
   const postsObj = {};
@@ -31,38 +35,10 @@ router.get("/:id", (req, res) => {
               delete userJSON['date'];
               return res.send({ sub, user: userJSON, posts: postsObj });
             })
-          // return res.send({ sub, posts: postsObj });
         })
     })
     .catch(err => res.status(404).json({ missing: 'No SubDreddit found' }))
 })
-
-// router.get("/:id", (req, res) => {
-//   const token = req.headers.authorization;
-//   const currentUser = jwt_decode(token);
-
-//   const postsObj = {};
-
-//   Subdreddit.findById(req.params.id)
-//     .then(sub => {
-//       Post.find({ subDreddit: sub._id })
-//         .then(posts => {
-//           posts.forEach(post => {
-//             debugger;
-//             Vote.find({ user: currentUser.id, post: post._id })
-//               .then(vote => {
-//                 debugger;
-//                 if (vote && vote.upvote) post.isUpvoted = true;
-//                 if (vote && !vote.upvote) post.isDownvoted = true;
-//                 postsObj[post._id] = post;
-//               })
-//           });
-//           return res.send({ sub, posts: postsObj });
-//         })
-//     })
-//     .catch(err => res.status(404).json({ missing: 'No SubDreddit found' }))
-// })
-
 
 
 router.get('/', (req, res) => {
@@ -95,7 +71,66 @@ router.post('/', (req, res) => {
           })
         })
     })
-    
 })
+
+router.post('/follow', (req, res) => {
+  const { subId, userId } = req.body;
+  debugger;
+  Subdreddit.findById(subId)
+    .then(sub => {
+      debugger;
+      User.findById(userId)
+        .then(user => {
+          user.subs.push(sub.id);
+          debugger;
+          if (sub.user !== userId) sub.followers.push(user.id);
+          user.save()
+            .then(user => {
+              debugger;
+              const userJSON = user.toJSON();
+              delete userJSON['password'];
+              delete userJSON['date'];
+              sub.save()
+                .then(sub => {
+                  return res.send({ sub, user: userJSON });
+                })
+            })
+        })
+    })
+})
+
+router.delete('/unfollow', (req, res) => {
+  const { subId, userId } = req.body;
+
+  Subdreddit.findById(subId)
+    .then(sub => {
+      debugger;
+      User.findById(userId)
+        .then(user => {
+          debugger;
+          const userJSON = user.toJSON();
+          const subIdx = userJSON.subs.findIndex(ele => ele.toJSON() === sub._id.toJSON());
+          delete userJSON.subs[subIdx];
+          const newSubs = userJSON.subs.filter(ele => ele !== undefined);
+          user.subs = newSubs;
+          delete userJSON['password'];
+          delete userJSON['date'];
+          user.save()
+            .then(user => {
+              debugger;
+              const subJSON = sub.toJSON();
+              const followerIdx = subJSON.followers.findIndex(ele => ele.toJSON() === user._id.toJSON());
+              delete subJSON.followers[followerIdx];
+              const newFollowers = subJSON.followers.filter(ele => ele !== undefined);
+              sub.followers = newFollowers;
+              sub.save()
+                .then(sub => {
+                  return res.send({ sub, user })
+                })
+            })
+        })
+    })
+})
+
 
 module.exports = router;

@@ -85,6 +85,7 @@ export default class PostIndexItem extends React.Component {
     this.props.removeVote({ userId, postId });
   }
 
+
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
     if (post.user !== currentUserId) return null;
@@ -96,12 +97,30 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
-
     return (
       <li className="pii">  
         <Link to={`/posts/${post._id}`}>
           {post.title}  
         </Link>
+
+        {post.imgUrl && (
+          <img
+            src={post.imgUrl}
+            width="200px"
+            height="200px"
+          />
+        )}
+
+        {post.videoUrl && (
+          <video src={post.videoUrl}
+            width="320px"
+            height="240px"
+            controls
+          >
+          </video>
+        )}
+
+        {/* {this.renderTest()} */}
 
         {this.state.votes}
         <button onClick={this.upvote}>Upvote</button>

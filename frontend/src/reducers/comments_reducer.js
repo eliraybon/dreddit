@@ -1,6 +1,7 @@
 import { 
   RECEIVE_POST
 } from '../actions/post_actions';
+
 import { 
   RECEIVE_COMMENT, 
   REMOVE_COMMENT,
@@ -9,11 +10,15 @@ import {
   RECEIVE_UPDATED_VOTE 
 } from '../actions/comment_actions';
 
+import { RECEIVE_USER } from '../actions/user_actions';
+
+
 const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
     case RECEIVE_POST:
-      return Object.assign({}, state, action.payload.comments);
+      return action.payload.comments;
+      // return Object.assign({}, state, action.payload.comments);
     case RECEIVE_COMMENT:
       return Object.assign(
         {},
@@ -41,6 +46,10 @@ const commentsReducer = (state = {}, action) => {
     case RECEIVE_UPDATED_VOTE:
       if (!action.comment) return state;
       return Object.assign({}, state, { [action.comment._id]: action.comment })
+      
+    case RECEIVE_USER:
+      return action.payload.comments;
+
     default: 
       return state;
   };

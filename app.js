@@ -8,9 +8,10 @@ require('./config/passport')(passport);
 
 //import routes 
 const users = require('./routes/api/users');
-const subdreddits = require('./routes/api/subdreddits');
+const subDreddits = require('./routes/api/subdreddits');
 const posts = require("./routes/api/posts");
 const comments = require('./routes/api/comments');
+const files = require('./routes/api/file_upload');
 //
 
 //import models
@@ -50,7 +51,8 @@ app.get("/", (req, res) => {
 app.use('/api/users', users);
 app.use('/api/posts', posts);
 app.use('/api/comments', comments);
+app.use('/api/files', files);
 
-app.use('/api/subDreddits', subdreddits);
+app.use('/api/subDreddits', subDreddits);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

@@ -1,6 +1,6 @@
 # Dreddit
 
-An online hub for grumbles, gripes, and other grievances. Dreddit is a Reddit clone built with the MERN stack, 
+An online hub for gripes, grumbles, and other grievances. Dreddit is a Reddit clone built with the MERN stack, 
 a combination of following four technologies: MongoDB, Express, React, and Node.
 
 [Live Link](https://github.com/eliraybon/dreadit)
@@ -14,7 +14,7 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 -  Persistant auth token across refreshes 
 
 ### Posts
--  Users can create, read, uddate, and delete posts
+-  Users can create, read, update, and delete posts
 
 ### Comments 
 -  Users can comment on posts and other comments
