@@ -14,6 +14,10 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
+  returnHome = () => {
+    this.props.history.push('/')
+  }
+
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
     if (this.props.loggedIn) {
@@ -30,12 +34,7 @@ class NavBar extends React.Component {
               <div className='nav-search-logo'>
               </div>
             </label>
-            <input
-              className='nav-search-input'
-              type='text'
-              placeholder="Search Dreddit"
-            />
-            
+            <SearchBar />
           </div>
           <div className='nav-right-links'>
             <Link className='nav-post' to={'/submit'}></Link>
@@ -77,9 +76,10 @@ class NavBar extends React.Component {
   }
 
   render() {
+    debugger;
     return (
       <div className="navbar">
-        <div className='nav-logo-div'>
+        <div className='nav-logo-div' onClick={ this.returnHome }>
           <div className='nav-logo'>
           </div>
           <div className='nav-site-name'>

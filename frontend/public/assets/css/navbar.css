@@ -104,7 +104,7 @@
 }
 
 .nav-subdreddits-link {
-  /* display: none; */
+  display: none;
   position: absolute;
   background-color: #ffffff;
   border-left: 1px solid #dae0e6;
