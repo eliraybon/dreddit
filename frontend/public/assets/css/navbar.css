@@ -104,19 +104,13 @@
   padding: 0 10px 0 10px;
 }
 
-/* .user-subs {
-  position: absolute;
-  width: 120%;
-  background: white;
-} */
-
 .user-subs {
   position: absolute;
   width: 180%;
   top: 39px;
   left: 0;
   background: white;
-  border: 1px solid lightgray;
+  /* border: 1px solid lightgray; */
   border-radius: 5px;
   /* border-top: none; */
   /* border-bottom-left-radius: 5px;
@@ -197,7 +191,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: content-box;
   background: url('../images/nav-post.png') no-repeat;
   background-size: 50% 50%;
   background-position: center;

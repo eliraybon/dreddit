@@ -7,13 +7,17 @@ import NavBar from './navbar';
 
 const mapStateToProps = state => {
   let currentUserId;
+  let userSubs = [];
   if (state.session.user) {
-    currentUserId = state.session.user.id || state.session.user._id
+    currentUserId = state.session.user.id || state.session.user._id;
+    if (state.session.userSubs) {
+      userSubs = Object.values(state.session.userSubs);
+    }
   }
 
   return {
     loggedIn: state.session.isAuthenticated,
-    userSubs: Object.values(state.session.userSubs),
+    userSubs,
     currentUserId
   }
 };

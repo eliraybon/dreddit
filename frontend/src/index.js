@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } else {
     // If this is a first time user, start with an empty store
-    store = configureStore({});
+    const preloadedState = { session: { userSubs: {} } };
+    store = configureStore(preloadedState);
+    // store = configureStore({});
   }
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');

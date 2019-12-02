@@ -6,12 +6,44 @@ import SubdredditIndex from '../subdreddit/subdreddit_index_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { userSubsDropdown: false };
+
+    this.container = React.createRef();
+
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.toggleSubsDropdown = this.toggleSubsDropdown.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
 
   componentDidMount() {
+    document.addEventListener("mousedown", this.handleOutsideClick);
     this.props.fetchUserSubs(this.props.currentUserId);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleOutsideClick);
+  }
+
+  handleOutsideClick(e) {
+    if (this.container.current && !this.container.current.contains(e.target)) {
+      this.setState({ userSubsDropdown: false });
+    };
+  }
+
+  toggleSubsDropdown() {
+    if (!this.props.userSubs.length && !this.state.userSubsDropdown) {
+      this.props.fetchUserSubs(this.props.currentUserId)
+        .then(res => {
+          this.setState(state => {
+            return { userSubsDropdown: true }
+          })
+        })
+    }
+
+    this.setState(state => {
+      return { userSubsDropdown: !state.userSubsDropdown }
+    });
   }
 
   logoutUser(e) {
@@ -28,9 +60,11 @@ class NavBar extends React.Component {
     if (this.props.loggedIn) {
       return (
         <div className='nav-auth-links'>
-          <div className='nav-subdreddits'>
+          <div className='nav-subdreddits' ref={this.container} onClick={this.toggleSubsDropdown}>
             <div className="user-subs">
-              <SubdredditIndex subs={ this.props.userSubs } />
+              {this.state.userSubsDropdown && (
+                <SubdredditIndex subs={ this.props.userSubs } />
+              )}
             </div>
           </div>
           <div className='nav-search'>

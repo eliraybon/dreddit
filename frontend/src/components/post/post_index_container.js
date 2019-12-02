@@ -13,9 +13,10 @@ const mapStateToProps = state => {
   if (state.session.user) {
     currentUserId = state.session.user.id || state.session.user._id
   }
+  
   return {
     posts: Object.values(state.entities.posts),
-    currentUserId: state.session.user.id || state.session.user._id
+    currentUserId//: state.session.user.id || state.session.user._id
   };
 };
 
