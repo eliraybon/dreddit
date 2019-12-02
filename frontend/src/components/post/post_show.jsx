@@ -7,7 +7,6 @@ export default class PostShow extends React.Component {
     this.props.fetchPost(this.props.match.params.postId)
   }
 
-  //not sure why I had to use the match params here. Kinda weird
   componentDidUpdate(prevProps) {
     if (this.props.postId !== prevProps.postId) {
       this.props.fetchPost(this.props.postId);

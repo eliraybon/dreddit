@@ -14,7 +14,7 @@ export default class PostIndex extends React.Component {
     } = this.props;
     
     if (!posts.length) return null;
-
+    
     return (
       <ul className="post-index">
         {posts.map(post => {

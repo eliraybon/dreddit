@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
+const SubDreddit = require('../../models/Subdreddit');
+const Post = require('../../models/Post');
+const Comment = require('../../models/Comment');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
@@ -81,6 +84,35 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.get('/:userId', (req, res) => {
+  let subsObj = {};
+  let postsObj = {};
+  let commentsObj = {};
+
+  User.findById(req.params.userId)
+    .then(user => {
+      SubDreddit.find({ user: user._id.toJSON() })
+        .then(subs => {
+          Post.find({ user: user._id.toJSON() })
+            .then(posts => {
+              Comment.find({ user: user._id.toJSON() })
+                .then(comments => {
+                  subs.forEach(sub => subsObj[sub._id] = sub);
+                  posts.forEach(post => postsObj[post._id] = post);
+                  comments.forEach(comment => commentsObj[comment._id] = comment);
+
+                  return res.send({ 
+                    user, 
+                    subs: subsObj, 
+                    posts: postsObj, 
+                    comments: commentsObj
+                  })
+                })
+            })
+        })
+    })
+})
 
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
   res.json({
