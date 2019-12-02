@@ -104,7 +104,7 @@
 }
 
 .nav-subdreddits-link {
-  display: none;
+  /* display: none; */
   position: absolute;
   background-color: #ffffff;
   border-left: 1px solid #dae0e6;
@@ -116,7 +116,7 @@
   width: 160px;
   z-index: 1;
   margin-top: 40px;
-  left: 170px;
+  left: 176px;
 }
 
 .nav-subdreddits:hover {
@@ -144,6 +144,7 @@
   /* border: 1px solid red; */
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  
 }
 
 .nav-right-links {
@@ -200,8 +201,6 @@
   display: block;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
-
 }
 
 .nav-drop-down {
@@ -321,7 +320,6 @@
   background-size: 80% 60%;
   background-position: center;
 }
-
 
 .nav-profile-label, .nav-logout-label {
   /* border: 3px solid green; */
