@@ -76,7 +76,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-    debugger;
     return (
       <div className="navbar">
         <div className='nav-logo-div' onClick={ this.returnHome }>
