@@ -3,19 +3,75 @@
 */
 
 .pii {
+  display: flex;
+  flex-direction: row;
   list-style: none;
   width: 80%;
   margin: 6px 0 6px 0;
-  padding: 10px;
+  padding: 5px;
   border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: white;
 }
 
 .pii:hover {
   border-color: gray;
 }
 
-.pii a {
+.pii-top {
+  display: flex;
+  flex-direction: row;
+}
+
+.pii-votes {
+  /* border: 3px solid purple; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.pii-upvote {
+  /* border: 3px solid red; */
+  width: 30px;
+  height: 32px;
+  background: url('../images/post_item/upvote.png') no-repeat;
+  background-size: 17px 18px;
+  background-position: center;
+}
+
+.pii-upvote:hover {
+  background: url('../images/post_item/upvote_hover.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.pii-downvote {
+  /* border: 3px solid blue; */
+  width: 30px;
+  height: 32px;
+  background: url('../images/post_item/downvote.png') no-repeat;
+  background-size: 17px 18px;
+  background-position: center;
+}
+
+.pii-downvote:hover {
+  background: url('../images/post_item/downvote_hover.png') no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.pii-show-link {
+  display: flex;
+  flex-direction: column;
   border: 3px solid blue;
   color: black;
   text-decoration: none;
+  width: 100%;
+}
+
+.pii-media {
+  border: 3px solid yellow;
+  display: flex;
+  justify-content: center;
 }
