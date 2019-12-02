@@ -15,7 +15,6 @@ export default class PostForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    debugger;
     this.props.processForm(this.state);
       // .then(res => this.props.history.push('/'));
   }

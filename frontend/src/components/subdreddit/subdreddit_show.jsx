@@ -16,7 +16,7 @@ class SubDredditShow extends React.Component {
 
   render(){
     const { sub } = this.props;
-    debugger;
+    
     if (!sub) return null; 
 
     return (
