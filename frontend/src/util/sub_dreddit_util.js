@@ -11,3 +11,11 @@ export const fetchSubDreddits = () => {
 export const createSubDreddit = data => {
   return axios.post('/api/subDreddits', data);
 };
+
+export const followSub = followInfo => {
+  return axios.post('/api/subDreddits/follow', followInfo);
+}
+
+export const unfollowSub = followInfo => {
+  return axios.delete('/api/subDreddits/unfollow', { data: followInfo });
+}

@@ -21,6 +21,7 @@ const commentSchema = new Schema({
     ref: 'comments'
   },
   replies: [{ type: Schema.Types.ObjectId, ref: 'comments' }],
+  votes: [{ type: Schema.Types.ObjectId, ref: 'votes' }],
   date: {
     type: Date,
     default: Date.now

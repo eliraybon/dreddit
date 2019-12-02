@@ -5,6 +5,8 @@ import {
 } from '../actions/sub_dreddit_actions';
 import { RECEIVE_NEW_POST, REMOVE_POST } from '../actions/post_actions';
 import { RECEIVE_USER } from '../actions/user_actions';
+import { RECEIVE_FOLLOW, RECEIVE_UNFOLLOW } from '../actions/sub_dreddit_actions';
+
 
 const subDredditReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -30,6 +32,18 @@ const subDredditReducer = (state = {}, action) => {
         { [action.payload.sub._id]: action.payload.sub }
       )
     case REMOVE_POST:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.sub._id]: action.payload.sub }
+      )
+    case RECEIVE_FOLLOW:
+      return Object.assign(
+        {},
+        state,
+        { [action.payload.sub._id]: action.payload.sub }
+      )
+    case RECEIVE_UNFOLLOW:
       return Object.assign(
         {},
         state,

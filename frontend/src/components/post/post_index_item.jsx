@@ -85,6 +85,7 @@ export default class PostIndexItem extends React.Component {
     this.props.removeVote({ userId, postId });
   }
 
+
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
     if (post.user !== currentUserId) return null;
@@ -118,6 +119,7 @@ export default class PostIndexItem extends React.Component {
           >
           </video>
         )}
+
         {/* {this.renderTest()} */}
 
         {this.state.votes}

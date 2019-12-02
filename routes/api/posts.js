@@ -65,7 +65,6 @@ router.get('/', (req, res) => {
 // get a single post
 router.get('/:id', (req, res) => {
   let commentsObj = {};
-
   Post.findById(req.params.id)
     .then(post => {
       Comment.find({ post: post._id })
@@ -78,6 +77,7 @@ router.get('/:id', (req, res) => {
 })
 
 // delete's a post. This also needs to delete all of a posts comments and those comments' replies 
+//not a big deal for now thought. Just a note that there will be some orphaned data.
 router.delete('/:id', (req, res) => {
   Post.findById(req.params.id)
     .then(post => {
@@ -178,6 +178,8 @@ router.delete('/vote', (req, res) => {
           delete userJSON.votes[voteIdx];
           const newVotes = userJSON.votes.filter(ele => ele !== undefined);
           user.votes = newVotes;
+          delete userJSON['password'];
+          delete userJSON['date'];
           user.save()
             .then(user => {
               Post.findById(postId)
