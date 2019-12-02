@@ -17,6 +17,9 @@ const postSchema = new Schema({
   imgUrl: {
     type: String
   },
+  videoUrl: {
+    type: String
+  },
   subDreddit: {
     type: Schema.Types.ObjectId,
     ref: "subDreddits",
