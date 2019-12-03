@@ -93,7 +93,8 @@ export default class PostIndexItem extends React.Component {
 
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
-    if (post.user !== currentUserId) return null;
+    debugger;
+    if ((post.user._id || post.user) !== currentUserId) return null;
     return <div className='pii-remove'>
         <div className='pii-remove-image'>
         </div>
@@ -226,7 +227,7 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
-    console.log(post);
+
     return (
       <li className="pii">  
           <div className='pii-votes'>

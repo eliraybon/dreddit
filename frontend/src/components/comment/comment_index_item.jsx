@@ -19,7 +19,9 @@ class CommentIndexItem extends React.Component {
       votes: 0,
       upvoted: false,
       downvoted: false,
-      isCounted: false 
+      isCounted: false,
+      upHover: false, 
+      downHover: false  
     };
 
     this.openReplyForm = this.openReplyForm.bind(this);
@@ -99,7 +101,10 @@ class CommentIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const commentId = this.props.comment._id;
 
-    this.props.removeVote({ userId, commentId });
+    this.props.removeVote({ userId, commentId })
+      .then(() => {
+        this.setState({ upHover: false, downHover: false })
+      })
   }
 
   openReplyForm() {
@@ -130,7 +135,7 @@ class CommentIndexItem extends React.Component {
 
   renderDeleteButton() {
     const { comment, currentUserId } = this.props;
-    if (comment.user !== currentUserId) return null;
+    if ((comment.user._id || comment.user) !== currentUserId) return null;
     return <div className='comment-remove'>
       <div className='comment-remove-image'></div>
       <button
@@ -140,6 +145,126 @@ class CommentIndexItem extends React.Component {
     </div>
   }
 
+  enterUp = () => {
+    this.setState({ upHover: true });
+  }
+
+  leaveUp = () => {
+    this.setState({ upHover: false });
+  }
+
+  renderUpArrow = () => {
+    if (this.state.upvoted && !this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/comment_arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (this.state.upvoted && this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/comment_arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.upvoted && !this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/comment_arrows/up.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.upvoted && this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/comment_arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    }
+  }
+
+  enterDown = () => {
+    this.setState({ downHover: true });
+  }
+
+  leaveDown = () => {
+    this.setState({ downHover: false });
+  }
+
+  renderDownArrow = () => {
+    if (this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/comment_arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/comment_arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/comment_arrows/down.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/comment_arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    }
+  }
+
   render() {
     const { comment } = this.props; 
 
@@ -147,9 +272,11 @@ class CommentIndexItem extends React.Component {
       <li className='post-comment'>
         <div className='comment-content'>
           <div className='comment-votes'>
-            <button className='comment-upvote' onClick={this.upvote}></button>
+            {this.renderUpArrow()}
+            {/* <button className='comment-upvote' onClick={this.upvote}></button> */}
             {/* {this.state.votes} */}
-            <button className='comment-downvote' onClick={this.downvote}></button>
+            {this.renderDownArrow()}
+            {/* <button className='comment-downvote' onClick={this.downvote}></button> */}
           </div>
           <div className='comment-main'>
             <div className='comment-points'>

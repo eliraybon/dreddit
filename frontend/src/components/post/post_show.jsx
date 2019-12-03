@@ -230,7 +230,7 @@ export default class PostShow extends React.Component {
 
   render() {
     const { post } = this.props;
-    console.log(post);
+
     if (!post) return null;
 
     return (
