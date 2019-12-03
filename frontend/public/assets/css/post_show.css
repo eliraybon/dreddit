@@ -1,0 +1,16 @@
+.post-show {
+  border: 3px solid blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-show-description {
+  
+}
+
+.post-comments {
+  border: 3px solid red;
+  width: 90%;
+  max-width: 640px;
+}

@@ -112,15 +112,54 @@ export default class PostShow extends React.Component {
     if (!post) return null;
 
     return (
-      <div className="post-show">
-        <button onClick={this.upvote}>Upvote</button>
-        <button onClick={this.downvote}>Downvote</button>
-        {this.state.votes}
-        <h1>{post.title}</h1>
-        <p>{post.text}</p>
+      <div className='post-show'>
+        <div className="pii">
 
-        <CommentForm postId={ post._id } />
-        <CommentIndex comments={ this.props.comments } context="post" />
+
+          <div className='pii-votes'>
+            <button onClick={this.upvote} className='pii-upvote'></button>
+            {this.state.votes}
+            <button onClick={this.downvote} className='pii-downvote'></button>
+          </div>
+          <div className='pii-content'>
+      
+              <div className='pii-top'>
+
+                {post.title}
+              </div>
+              <div className='pii-media'>
+                {post.imgUrl && (
+                  <img
+                    src={post.imgUrl}
+                    width="200px"
+                    height="200px"
+                  />
+                )}
+
+                {post.videoUrl && (
+                  <video src={post.videoUrl}
+                    width="320px"
+                    height="240px"
+                    controls
+                  >
+                  </video>
+                )}
+              </div>
+          </div>
+          {/* {this.renderTest()} */}
+          {/* {<button onClick={this.upvote}>Upvote</button>
+          <button onClick={this.downvote}>Downvote</button>
+          {this.state.votes}
+          <h1>{post.title}</h1> */}
+          </div>
+          <div className='post-show-description'>
+            <p>{post.text}</p>
+          </div>
+          <div className='post-comments'>
+            <CommentForm postId={ post._id } />
+            <CommentIndex comments={ this.props.comments } context="post" /> }
+          </div>
+        
       </div>
     )
   }
