@@ -18,11 +18,13 @@ export default class UserShow extends React.Component {
     const { user, subs, posts, comments } = this.props;
     if (!user) return null; 
     return (
-      <div className="user-show">
-        <h1>{user.username}</h1>
-        <SubDredditIndex subs={ subs } />
-        <PostIndex posts={ posts } />
-        <CommentIndex comments={ comments } context="user" />
+      <div>
+        <div className="user-show-blue">
+          <h1 className="user-show-username">u/{user.username}</h1>
+        </div>
+        <div className="user-show-content">
+          <PostIndex posts={ posts } />
+        </div>
       </div>
     )
   } 

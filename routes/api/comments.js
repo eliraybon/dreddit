@@ -7,6 +7,43 @@ const Vote = require('../../models/Vote');
 const passport = require('passport');
 const jwt_decode = require('jwt-decode');
 
+router.delete('/vote', (req, res) => {
+  const { commentId, userId } = req.body;
+
+  Vote.findOne({ user: userId, comment: commentId })
+    .then(vote => {
+
+      User.findById(userId)
+        .then(user => {
+
+          const userJSON = user.toJSON();
+          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+          delete userJSON.votes[voteIdx];
+          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
+          user.votes = newVotes;
+          user.save()
+            .then(user => {
+              Comment.findById(commentId)
+                .then(comment => {
+
+                  const commentJSON = comment.toJSON();
+                  const voteIdx = commentJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+                  delete commentJSON.votes[voteIdx];
+                  const newVotes = commentJSON.votes.filter(ele => ele !== undefined);
+                  comment.votes = newVotes;
+                  comment.save()
+                    .then(comment => {
+                      comment.populate('user').execPopulate();
+                      Vote.deleteOne({ user: user._id, comment: comment._id })
+                        .then(vote => {
+                          return res.send({ user, comment });
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
 
 router.post('/', (req, res) => {
 
@@ -18,6 +55,7 @@ router.post('/', (req, res) => {
 
   newComment.save()
     .then(comment => {
+      comment.populate('user').execPopulate();
       User.findById(comment.user.toJSON())
         .then(user => {
           user.comments.push(comment._id);
@@ -27,6 +65,8 @@ router.post('/', (req, res) => {
               delete userJSON['password'];
               delete userJSON['date'];
               Post.findById(comment.post.toJSON())
+                .populate('user')
+                .populate('subDreddit')
                 .then(post => {
                   post.comments.push(comment._id);
                   post.save()
@@ -49,6 +89,7 @@ router.post('/:commentId/reply', (req, res) => {
 
   reply.save()
     .then(reply => {
+      reply.populate('user').execPopulate();
       User.findById(reply.user.toJSON())
         .then(user => {
 
@@ -59,6 +100,8 @@ router.post('/:commentId/reply', (req, res) => {
               delete userJSON['password'];
               delete userJSON['date'];
               Post.findById(reply.post.toJSON())
+                .populate('user')
+                .populate('subDreddit')
                 .then(post => {
    
                   post.comments.push(reply._id);
@@ -75,11 +118,15 @@ router.post('/:commentId/reply', (req, res) => {
 
 //this does not recursively delete all of a comment's replies 
 router.delete('/:id', (req, res) => {
-
+  debugger;
   Comment.findById(req.params.id)
     .then(comment => {
+      debugger;
       Post.findById(comment.post)
+        .populate('user')
+        .populate('subDreddit')
         .then(post => {
+
           const postJSON = post.toJSON();
           const commentIdx = postJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
           delete postJSON.comments[commentIdx];
@@ -87,8 +134,10 @@ router.delete('/:id', (req, res) => {
           post.comments = newComments;
           post.save()
             .then(post => {
+
               User.findById(comment.user)
                 .then(user => {
+
                   const userJSON = user.toJSON();
                   const commentIdx = userJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
                   delete userJSON.comments[commentIdx];
@@ -96,6 +145,7 @@ router.delete('/:id', (req, res) => {
                   user.comments = newComments;
                   user.save()
                     .then(user => {
+
                       Comment.deleteOne({ user: user._id, post: post._id })
                         .then(comment => {
                           return res.send({ user, post, commentId: req.params.id });
@@ -111,6 +161,7 @@ router.post('/vote', (req, res) => {
   const { commentId, userId } = req.body;
 
   Comment.findOne({ _id: commentId })
+    .populate('user')
     .then(comment => {
       User.findOne({ _id: userId })
         .then(user => {
@@ -147,6 +198,7 @@ router.patch('/vote', (req, res) => {
       vote.save()
         .then(vote => {
           Comment.findById(vote.comment)
+            .populate('user')
             .then(comment => {
               return res.send(comment)
             })
@@ -154,42 +206,6 @@ router.patch('/vote', (req, res) => {
     })
 })
 
-router.delete('/vote', (req, res) => {
-  const { commentId, userId } = req.body;
-
-  Vote.findOne({ user: userId, comment: commentId })
-    .then(vote => {
-
-      User.findById(userId)
-        .then(user => {
-
-          const userJSON = user.toJSON();
-          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-          delete userJSON.votes[voteIdx];
-          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
-          user.votes = newVotes;
-          user.save()
-            .then(user => {
-              Comment.findById(commentId)
-                .then(comment => {
-
-                  const commentJSON = comment.toJSON();
-                  const voteIdx = commentJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-                  delete commentJSON.votes[voteIdx];
-                  const newVotes = commentJSON.votes.filter(ele => ele !== undefined);
-                  comment.votes = newVotes;
-                  comment.save()
-                    .then(comment => {
-                      Vote.deleteOne({ user: user._id, comment: comment._id })
-                        .then(vote => {
-                          return res.send({ user, comment });
-                        })
-                    })
-                })
-            })
-        })
-    })
-})
 
 //route that returns all the votes on a comment
 router.get('/:id/votes', (req, res) => {

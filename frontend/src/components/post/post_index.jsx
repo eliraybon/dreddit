@@ -17,7 +17,7 @@ export default class PostIndex extends React.Component {
     
     return (
       <ul className="post-index">
-        {posts.map(post => {
+        {posts.reverse().map(post => {
           return <PostIndexItem 
             post={ post } 
             currentUserId={ currentUserId }

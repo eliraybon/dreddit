@@ -19,7 +19,7 @@ router.post('/search', (req, res) => {
 
 router.get('/user/:userId', (req, res) => {
   let subsObj = {};
-  debugger;
+
   User.findById(req.params.userId)
     .then(user => {
       Subdreddit.find({ _id: { $in: user.subs } })
@@ -40,6 +40,8 @@ router.get("/:id", (req, res) => {
   Subdreddit.findById(req.params.id)
     .then(sub => {
       Post.find({ subDreddit: sub._id })
+        .populate('user')
+        .populate('subDreddit')
         .then(posts => {
           posts.forEach(post => postsObj[post._id] = post);
           User.findById(currentUser.id)

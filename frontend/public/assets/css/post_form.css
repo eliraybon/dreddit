@@ -16,7 +16,8 @@
 }
 
 .post-form-type {
-  border-bottom: 1px solid white;
+  font-weight: bold;
+  border-bottom: 1px solid rgb(237, 239, 241);
   padding-bottom: 4px;
   margin-bottom: 20px;
 }

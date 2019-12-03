@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PostIndex from '../post/post_index_container';
+import DailyDredd from '../nav/daily_dredd';
 import { fetchPosts } from '../../actions/post_actions';
 
 class MainPage extends React.Component {
@@ -14,6 +15,7 @@ class MainPage extends React.Component {
     return (
       <div className="main-page-content">
         <PostIndex posts={ posts } />
+        <DailyDredd />
       </div>
     );
   }

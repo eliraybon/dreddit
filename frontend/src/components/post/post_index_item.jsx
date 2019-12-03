@@ -8,7 +8,9 @@ export default class PostIndexItem extends React.Component {
       votes: 0, 
       upvoted: false, 
       downvoted: false, 
-      isCounted: false 
+      isCounted: false,
+      upHover: false,
+      downHover: false   
     };
 
     this.countVotes = this.countVotes.bind(this);
@@ -81,14 +83,18 @@ export default class PostIndexItem extends React.Component {
   removeVote() {
     const userId = this.props.currentUserId;
     const postId = this.props.post._id;
-    
-    this.props.removeVote({ userId, postId });
+
+    this.props.removeVote({ userId, postId })
+      .then(() => {
+        this.setState({ upvoted: false, downvoted: false })
+      })
   }
 
 
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
-    if (post.user !== currentUserId) return null;
+
+    if ((post.user._id || post.user) !== currentUserId) return null;
     return <div className='pii-remove'>
         <div className='pii-remove-image'>
         </div>
@@ -99,19 +105,157 @@ export default class PostIndexItem extends React.Component {
     </div>
   }
 
+  enterUp = () => {
+    this.setState({ upHover: true });
+  }
+
+  leaveUp = () => {
+    this.setState({ upHover: false });
+  }
+
+  renderUpArrow = () => {
+    if (this.state.upvoted && !this.state.upHover) {
+      return (
+        <img 
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+          alt="up-arrow"
+        />
+      )
+    } else if (this.state.upvoted && this.state.upHover) {
+      return (
+        <img 
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+          alt="up-arrow"
+        />
+      )
+    } else if (!this.state.upvoted && !this.state.upHover) {
+      return (
+        <img 
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/up.png"
+          width="17px"
+          height="18px"
+          alt="up-arrow"
+        />
+      )
+    } else if (!this.state.upvoted && this.state.upHover) {
+      return (
+        <img 
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+          alt="up-arrow"
+        />
+      )
+    }
+  }
+
+  enterDown = () => {
+    this.setState({ downHover: true });
+  }
+
+  leaveDown = () => {
+    this.setState({ downHover: false });
+  }
+
+  renderDownArrow = () => {
+    if (this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+          alt="down-arrow"
+        />
+      )
+    } else if (this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+          alt="down-arrow"
+        />
+      )
+    } else if (!this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/down.png"
+          width="17px"
+          height="18px"
+          alt="down-arrow"
+        />
+      )
+    } else if (!this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+          alt="down-arrow"
+        />
+      )
+    }
+  }
+
   render() {
     const { post } = this.props;
-    console.log(post);
+
     return (
       <li className="pii">  
-        
-        
           <div className='pii-votes'>
-            <button onClick={this.upvote} className='pii-upvote'></button>
+            {this.renderUpArrow()}
             {this.state.votes}
-            <button onClick={this.downvote} className='pii-downvote'></button>
+            {this.renderDownArrow()}
           </div>
           <div className='pii-content'>
+          <div className="pii-sub-and-name">
+            <Link 
+              to={`/subdreddits/${post.subDreddit._id}`}
+              className="pii-sub-title">
+                d/{post.subDreddit.title}
+            </Link>
+            <span className="pii-username"><span>Posted by  </span> 
+              <Link to={`/users/${post.user._id}`} className="user-username-link">
+                u/{post.user.username}
+              </Link>
+            </span>
+          </div>
           <Link to={`/posts/${post._id}`} className='pii-show-link'>
             <div className='pii-top'>
               
@@ -126,6 +270,7 @@ export default class PostIndexItem extends React.Component {
                 src={post.imgUrl}
                 width="200px"
                 height="200px"
+                alt="post"
               />
               )}
 
@@ -162,7 +307,6 @@ export default class PostIndexItem extends React.Component {
               </div>
             </div>
           </div>
-        {/* {this.renderTest()} */}
       </li>
     )
   }

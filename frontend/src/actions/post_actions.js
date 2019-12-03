@@ -84,7 +84,9 @@ export const voteOnPost = voteInfo => dispatch => {
 
 export const removeVote = voteInfo => dispatch => {
   return PostAPIUtil.removeVote(voteInfo)
-    .then(res => dispatch(receiveUnvote(res.data)));
+    .then(res => {
+      dispatch(receiveUnvote(res.data))
+    });
 }
 
 export const updateVote = voteInfo => dispatch => {
