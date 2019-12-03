@@ -120,7 +120,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.removeVote}
           onMouseOver={this.enterUp}
           onMouseOut={this.leaveUp}
-          src="assets/images/post_index_item/upvote.png"
+          src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
         />
@@ -132,7 +132,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.removeVote}
           onMouseOver={this.enterUp}
           onMouseOut={this.leaveUp}
-          src="assets/images/post_index_item/upvote.png"
+          src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
         />
@@ -144,7 +144,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.upvote}
           onMouseOver={this.enterUp}
           onMouseOut={this.leaveUp}
-          src="assets/images/post_index_item/up.png"
+          src="assets/images/arrows/up.png"
           width="17px"
           height="18px"
         />
@@ -156,7 +156,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.upvote}
           onMouseOver={this.enterUp}
           onMouseOut={this.leaveUp}
-          src="assets/images/post_index_item/upvote.png"
+          src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
         />
@@ -180,7 +180,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.removeVote}
           onMouseOver={this.enterDown}
           onMouseOut={this.leaveDown}
-          src="assets/images/post_index_item/downvote.png"
+          src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
         />
@@ -192,7 +192,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.removeVote}
           onMouseOver={this.enterDown}
           onMouseOut={this.leaveDown}
-          src="assets/images/post_index_item/downvote.png"
+          src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
         />
@@ -204,7 +204,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.downvote}
           onMouseOver={this.enterDown}
           onMouseOut={this.leaveDown}
-          src="assets/images/post_index_item/down.png"
+          src="assets/images/arrows/down.png"
           width="17px"
           height="18px"
         />
@@ -216,7 +216,7 @@ export default class PostIndexItem extends React.Component {
           onClick={this.downvote}
           onMouseOver={this.enterDown}
           onMouseOut={this.leaveDown}
-          src="assets/images/post_index_item/downvote.png"
+          src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
         />

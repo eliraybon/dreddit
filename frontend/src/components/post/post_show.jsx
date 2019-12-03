@@ -9,7 +9,9 @@ export default class PostShow extends React.Component {
       votes: 0,
       upvoted: false,
       downvoted: false,
-      isCounted: false 
+      isCounted: false,
+      upHover: false, 
+      downHover: false 
     }
 
     this.countVotes = this.countVotes.bind(this);
@@ -106,6 +108,125 @@ export default class PostShow extends React.Component {
       })
   }
 
+  enterUp = () => {
+    this.setState({ upHover: true });
+  }
+
+  leaveUp = () => {
+    this.setState({ upHover: false });
+  }
+
+  renderUpArrow = () => {
+    if (this.state.upvoted && !this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (this.state.upvoted && this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.upvoted && !this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/up.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.upvoted && this.state.upHover) {
+      return (
+        <img
+          className="up-arrow"
+          onClick={this.upvote}
+          onMouseOver={this.enterUp}
+          onMouseOut={this.leaveUp}
+          src="assets/images/arrows/upvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    }
+  }
+
+  enterDown = () => {
+    this.setState({ downHover: true });
+  }
+
+  leaveDown = () => {
+    this.setState({ downHover: false });
+  }
+
+  renderDownArrow = () => {
+    if (this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.removeVote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.downvoted && !this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/down.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    } else if (!this.state.downvoted && this.state.downHover) {
+      return (
+        <img
+          className="down-arrow"
+          onClick={this.downvote}
+          onMouseOver={this.enterDown}
+          onMouseOut={this.leaveDown}
+          src="assets/images/arrows/downvote.png"
+          width="17px"
+          height="18px"
+        />
+      )
+    }
+  }
 
   render() {
     const { post } = this.props;
@@ -118,9 +239,11 @@ export default class PostShow extends React.Component {
 
 
           <div className='pii-votes'>
-            <button onClick={this.upvote} className='pii-upvote'></button>
+            {this.renderUpArrow()}
+            {/* <button onClick={this.upvote} className='pii-upvote'></button> */}
             {this.state.votes}
-            <button onClick={this.downvote} className='pii-downvote'></button>
+            {/* <button onClick={this.downvote} className='pii-downvote'></button> */}
+            {this.renderDownArrow()}
           </div>
           <div className='pii-content'>
       
