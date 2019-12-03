@@ -21,6 +21,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://static-wp.lonewolfmag.com/distorted-bust.jpg"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Existential
@@ -31,6 +32,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/qn70ym2k2kxrqfjo28ew.jpg"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Workplace Woes
@@ -41,6 +43,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://aleteiaen.files.wordpress.com/2017/11/web3-brother-sister-arguing-fight-yiorgos-gr-i-shutterstock1.jpg?quality=100&strip=all&w=620&h=310&crop=1"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Schoolyard Squabbles
@@ -51,6 +54,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://miro.medium.com/max/960/1*FpkWaPDZPTKW5n-yJMpuaA.jpeg"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Coorporate Complaints
@@ -61,6 +65,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg/220px-Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Anger and Angst
@@ -71,6 +76,7 @@ class DailyDredd extends React.Component {
             <img
               className="dd-sub-img"
               src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555309086/shape/mentalfloss/road-rage-primary.png"
+              alt="subdreddit-logo"
             />
             <h3 className="dd-sub-text">
               Transit Tantrums

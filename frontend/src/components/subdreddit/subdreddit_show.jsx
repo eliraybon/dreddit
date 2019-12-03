@@ -1,7 +1,5 @@
 import React from 'react';
-import PostForm from '../post/create_post_form_container';
 import PostIndex from '../post/post_index_container';
-import { Link } from 'react-router-dom';
 import SubDredditMenu from './subdreddit_menu';
 import DailyDredd from '../nav/daily_dredd';
 

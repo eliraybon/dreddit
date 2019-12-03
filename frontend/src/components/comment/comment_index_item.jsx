@@ -3,7 +3,6 @@ import CommentIndex from './comment_index_container';
 import CommentForm from './create_comment_form_container';
 import { connect } from 'react-redux';
 import {
-  makeReply,
   voteOnComment,
   removeVote,
   updateVote,
@@ -164,6 +163,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (this.state.upvoted && this.state.upHover) {
@@ -176,6 +176,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (!this.state.upvoted && !this.state.upHover) {
@@ -188,6 +189,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/up.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (!this.state.upvoted && this.state.upHover) {
@@ -200,6 +202,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     }
@@ -224,6 +227,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (this.state.downvoted && this.state.downHover) {
@@ -236,6 +240,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (!this.state.downvoted && !this.state.downHover) {
@@ -248,6 +253,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/down.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (!this.state.downvoted && this.state.downHover) {
@@ -260,6 +266,7 @@ class CommentIndexItem extends React.Component {
           src="assets/images/comment_arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     }

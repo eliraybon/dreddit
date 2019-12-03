@@ -124,6 +124,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (this.state.upvoted && this.state.upHover) {
@@ -136,6 +137,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (!this.state.upvoted && !this.state.upHover) {
@@ -148,6 +150,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/up.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     } else if (!this.state.upvoted && this.state.upHover) {
@@ -160,6 +163,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/upvote.png"
           width="17px"
           height="18px"
+          alt="up-arrow"
         />
       )
     }
@@ -184,6 +188,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (this.state.downvoted && this.state.downHover) {
@@ -196,6 +201,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (!this.state.downvoted && !this.state.downHover) {
@@ -208,6 +214,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/down.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     } else if (!this.state.downvoted && this.state.downHover) {
@@ -220,6 +227,7 @@ export default class PostIndexItem extends React.Component {
           src="assets/images/arrows/downvote.png"
           width="17px"
           height="18px"
+          alt="down-arrow"
         />
       )
     }
@@ -258,6 +266,7 @@ export default class PostIndexItem extends React.Component {
                 src={post.imgUrl}
                 width="200px"
                 height="200px"
+                alt="post"
               />
               )}
 
