@@ -33,6 +33,7 @@ router.delete('/vote', (req, res) => {
                   comment.votes = newVotes;
                   comment.save()
                     .then(comment => {
+                      comment.populate('user').execPopulate();
                       Vote.deleteOne({ user: user._id, comment: comment._id })
                         .then(vote => {
                           return res.send({ user, comment });
@@ -154,6 +155,7 @@ router.post('/vote', (req, res) => {
   const { commentId, userId } = req.body;
 
   Comment.findOne({ _id: commentId })
+    .populate('user')
     .then(comment => {
       User.findOne({ _id: userId })
         .then(user => {
@@ -190,6 +192,7 @@ router.patch('/vote', (req, res) => {
       vote.save()
         .then(vote => {
           Comment.findById(vote.comment)
+            .populate('user')
             .then(comment => {
               return res.send(comment)
             })
