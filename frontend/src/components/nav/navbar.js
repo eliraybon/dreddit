@@ -84,7 +84,7 @@ class NavBar extends React.Component {
                     <label className='nav-profile-label'>
                       <div className='nav-profile-pic'>
                       </div>
-                      <Link className='nav-profile-link' to={'/profile'}>Profile</Link>
+                      <Link className='nav-profile-link' to={`/users/${this.props.currentUserId}`}>Profile</Link>
                     </label>
                   </div>
                   <div className='nav-drop-logout'>

@@ -9,6 +9,7 @@ import {
   deleteComment
 } from '../../actions/comment_actions';  
 import { fetchCommentVotes } from '../../util/vote_api_util';
+import { Link } from 'react-router-dom';
 
 class CommentIndexItem extends React.Component {
   constructor(props) {
@@ -284,16 +285,16 @@ class CommentIndexItem extends React.Component {
           </div>
           <div className='comment-main'>
             <div className="cii-info">
-              <div className="posted-by">{comment.user.username}</div>
+              <div className="posted-by">
+                <Link to={`/users/${comment.user._id}`}>
+                  {comment.user.username}
+                </Link>
+              </div>
               <div className='comment-points'>
                 {this.state.votes}
                 <p className='comment-points-label'>{this.state.votes === 1 ? 'point' : 'points'}</p>
               </div>
             </div>
-            {/* <div className='comment-points'>
-              {this.state.votes}
-              <p className='comment-points-label'>{this.state.votes === 1 ? 'point' : 'points'}</p>
-            </div> */}
             <div className='comment-text'>
               {comment.text}
             </div>

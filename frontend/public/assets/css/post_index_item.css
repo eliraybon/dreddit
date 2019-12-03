@@ -210,3 +210,7 @@
 .pii-username {
   color: gray;
 }
+
+.user-username-link:hover {
+  text-decoration: underline;
+}

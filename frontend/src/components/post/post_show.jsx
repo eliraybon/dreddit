@@ -258,7 +258,11 @@ export default class PostShow extends React.Component {
                 className="pii-sub-title">
                 d/{post.subDreddit.title}
               </Link>
-              <span className="pii-username">Posted by u/{post.user.username}</span>
+              <span className="pii-username"><span>Posted by </span> 
+                <Link to={`/users/${post.user._id}`} className="user-username-link">
+                  u/{post.user.username}
+                </Link>
+              </span>
             </div>
       
               <div className='pii-top'>

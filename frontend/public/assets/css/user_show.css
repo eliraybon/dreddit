@@ -1,0 +1,20 @@
+.user-show-blue {
+  display: flex;
+  align-items: center;
+  background: rgb(55, 123, 208);
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.user-show-content {
+  display: flex;
+  justify-content: center;
+}
+
+.user-show-username {
+  font-size: 30px;
+  margin-left: 20px;
+  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
+
+}
