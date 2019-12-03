@@ -29,22 +29,28 @@ export default class CommentForm extends React.Component {
   }
 
   render() {
-    let buttonText = (this.props.commentId) ? "reply" : "comment";
+    let buttonText = (this.props.commentId) ? "reply" : "COMMENT";
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <textarea 
-            value={this.state.text}
-            placeholder="What are your thoughts?"
-            onChange={this.update('text')}
-          />
-  
-          <button>{buttonText}</button>
+        <form onSubmit={this.handleSubmit}
+          className='post-comment-form'>
+          <div className='comment-area'>
+            <textarea 
+              className='comment-input'
+              value={this.state.text}
+              placeholder="What are your thoughts?"
+              onChange={this.update('text')}
+            />
+          </div>
+          <div className='comment-bottom'>
+            {this.props.commentId && (
+              <button className='comment-cancel' onClick={ this.props.closeReplyForm }>cancel</button>
+            )}
+            <button className='comment-button'>{buttonText}</button>
+          </div>
         </form>
-        {this.props.commentId && (
-          <button onClick={ this.props.closeReplyForm }>cancel</button>
-        )}
+        
       </div>
     )
   }

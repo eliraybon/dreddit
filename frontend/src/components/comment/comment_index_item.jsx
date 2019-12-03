@@ -131,23 +131,45 @@ class CommentIndexItem extends React.Component {
   renderDeleteButton() {
     const { comment, currentUserId } = this.props;
     if (comment.user !== currentUserId) return null;
-    return <button
-      onClick={() => this.props.deleteComment(comment._id)}>
-      Delete
-    </button>
+    return <div className='comment-remove'>
+      <div className='comment-remove-image'></div>
+      <button
+        onClick={() => this.props.deleteComment(comment._id)}>
+        Delete
+      </button>
+    </div>
   }
 
   render() {
     const { comment } = this.props; 
 
     return (
-      <li>
-        {comment.text}
-        <button onClick={ this.openReplyForm }>Reply</button>
-        {this.state.votes}
-        <button onClick={this.upvote}>Upvote</button>
-        <button onClick={this.downvote}>Downvote</button>
-        {this.renderDeleteButton()}
+      <li className='post-comment'>
+        <div className='comment-content'>
+          <div className='comment-votes'>
+            <button className='comment-upvote' onClick={this.upvote}></button>
+            {/* {this.state.votes} */}
+            <button className='comment-downvote' onClick={this.downvote}></button>
+          </div>
+          <div className='comment-main'>
+            <div className='comment-points'>
+              {this.state.votes}
+              <p className='comment-points-label'>{this.state.votes === 1 ? 'point' : 'points'}</p>
+            </div>
+            <div className='comment-text'>
+              {comment.text}
+            </div>
+          </div>
+        </div>
+        <div className='comments-bottom'>
+          <div className='comment-reply'>
+            <div className='comment-reply-image'></div>
+            <button onClick={ this.openReplyForm }>Reply</button>
+          </div>
+          {this.renderDeleteButton()}
+          
+        </div>
+        
         {this.renderReplyForm()}
         <CommentIndex 
           comments={ this.props.comments } 

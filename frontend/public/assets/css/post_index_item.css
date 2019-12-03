@@ -23,7 +23,7 @@
   /* border: 3px solid black; */
   display: flex;
   flex-direction: row;
-  font-size: 18px;
+  font-size: 22px;
   margin-left: 10px;
 }
 
@@ -112,11 +112,12 @@
   width: 100px;
 }
 
-.pii-comment:hover {
+.pii-comment:hover, .comment-reply:hover {
   background-color: rgba(135, 138, 140, .2);
+  cursor:pointer;
 }
 
-.pii-comment-image {
+.pii-comment-image, .comment-reply-image {
   /* border: 3px solid red; */
   width: 26px;
   height: 18px;
@@ -125,23 +126,23 @@
   background-position: center;
 }
 
-.pii-comment-image:hover {
+.pii-comment-image:hover, .comment-reply-image:hover {
   background: url('../images/post_item/comment_hover.png') no-repeat;
   background-size: 15px 15px;
   background-position: center;
 }
 
-.pii-comment-image:hover .pii-comment {
+.pii-comment-image:hover .pii-comment, .comment-reply-image:hover .comment-reply {
   background-color: rgba(135, 138, 140, .2);
 }
 
-.pii-comment:hover .pii-comment-image {
+.pii-comment:hover .pii-comment-image, .comment-reply:hover .comment-reply-image {
   background: url('../images/post_item/comment_hover.png') no-repeat;
   background-size: 16px 15px;
   background-position: center;
 }
 
-.pii-remove {
+.pii-remove, .comment-remove{
   /* border: 3px solid blue; */
   width: 75px;
   height: 100%;
@@ -154,7 +155,7 @@
   cursor: pointer;
 }
 
-.pii-remove-image {
+.pii-remove-image, .comment-remove-image{
   /* border: 3px solid red; */
   width: 26px;
   height: 26px;
@@ -163,11 +164,11 @@
   background-position: center;
 }
 
-.pii-remove:hover {
+.pii-remove:hover, .comment-remove:hover {
   background-color: rgba(135, 138, 140, .2);
 }
 
-.pii-remove:hover .pii-remove-image {
+.pii-remove:hover .pii-remove-image, .comment-remove:hover .comment-remove-image {
   background: url('../images/post_item/remove_hover.png') no-repeat;
   background-size: 13px 16px;
   background-position: center;
