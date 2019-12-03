@@ -93,3 +93,9 @@
   width: 90%;
   margin-bottom: 16px;
 }
+
+.sub-form-bottom {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+}

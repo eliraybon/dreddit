@@ -26,33 +26,62 @@ class SubRedditForm extends React.Component {
 
   render(){
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label>
-              Title
-              <input 
+      <div className='post-form-page'>
+        <h3 className='post-form-type'>{this.props.formType} Subdreddit</h3>
+        <form onSubmit={this.handleSubmit} className='post-form' encType="multipart/form-data">
+          <div className='post-form-title'>
+            <div className='post-form-input'>
+              <input
                 type="text"
                 value={this.state.title}
                 onChange={this.update('title')}
+                placeholder='Name'
               />
-            </label>
+            </div>
           </div>
-          <div>
-            <label>
-              Description
-              <input
-                type="text"
-                value={this.state.description}
-                onChange={this.update('description')}
-              />
-            </label>
+
+          <div className='post-form-text'>
+            <textarea
+              className='post-text-input'
+              value={this.state.text}
+              onChange={this.update('text')}
+              placeholder='Description'
+            />
           </div>
-          <div>
-            <button>{this.props.formType}</button>
+
+          <div className='sub-form-bottom'>
+
+            <button className='post-form-button'>{this.props.formType}</button>
           </div>
         </form>
       </div>
+      // <div>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <div>
+      //       <label>
+      //         Title
+      //         <input 
+      //           type="text"
+      //           value={this.state.title}
+      //           onChange={this.update('title')}
+      //         />
+      //       </label>
+      //     </div>
+      //     <div>
+      //       <label>
+      //         Description
+      //         <input
+      //           type="text"
+      //           value={this.state.description}
+      //           onChange={this.update('description')}
+      //         />
+      //       </label>
+      //     </div>
+      //     <div>
+      //       <button>{this.props.formType}</button>
+      //     </div>
+      //   </form>
+      // </div>
     )
   }
 }
