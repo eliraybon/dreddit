@@ -151,7 +151,7 @@ export default class PostIndexItem extends React.Component {
                 </Link>
               </div>
               
-              <div classname='pii-remove'>
+              <div className='pii-remove'>
                 {this.renderDeleteButton()}
               </div>
             </div>
