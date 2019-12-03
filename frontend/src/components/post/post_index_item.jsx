@@ -227,17 +227,23 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
-
+    debugger;
     return (
       <li className="pii">  
           <div className='pii-votes'>
-            {/* <button onClick={this.upvote} className='pii-upvote'></button> */}
             {this.renderUpArrow()}
             {this.state.votes}
-            {/* <button onClick={this.downvote} className='pii-downvote'></button> */}
             {this.renderDownArrow()}
           </div>
           <div className='pii-content'>
+          <div className="pii-sub-and-name">
+            <Link 
+              to={`/subdreddits/${post.subDreddit._id}`}
+              className="pii-sub-title">
+                d/{post.subDreddit.title}
+            </Link>
+            <span className="pii-username">Posted by u/{post.user.username}</span>
+          </div>
           <Link to={`/posts/${post._id}`} className='pii-show-link'>
             <div className='pii-top'>
               

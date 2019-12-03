@@ -189,3 +189,24 @@
 .down-arrow {
   margin: 8px 5px;
 }
+
+.pii-sub-and-name {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 13px;
+}
+
+.pii-sub-title {
+  font-weight: bold;
+  margin: 0 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.pii-sub-title:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.pii-username {
+  color: gray;
+}

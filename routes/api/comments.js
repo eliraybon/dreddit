@@ -54,6 +54,7 @@ router.post('/', (req, res) => {
 
   newComment.save()
     .then(comment => {
+      comment.populate('user').execPopulate();
       User.findById(comment.user.toJSON())
         .then(user => {
           user.comments.push(comment._id);
@@ -85,6 +86,7 @@ router.post('/:commentId/reply', (req, res) => {
 
   reply.save()
     .then(reply => {
+      reply.populate('user').execPopulate();
       User.findById(reply.user.toJSON())
         .then(user => {
 

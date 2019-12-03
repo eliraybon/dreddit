@@ -97,6 +97,8 @@ router.post('/', (req, res) => {
 // get posts 
 router.get('/', (req, res) => {
   Post.find({})
+    .populate('user')
+    .populate('subDreddit')
     .then(posts => {
       let postsObj = {};
       posts.forEach(post => postsObj[post._id] = post);
@@ -108,6 +110,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let commentsObj = {};
   Post.findById(req.params.id)
+    .populate('subDreddit')
     .then(post => {
       Comment.find({ post: post._id })
         .populate('user')
@@ -202,50 +205,6 @@ router.patch('/vote', (req, res) => {
     })
 
 })
-
-
-// //this is one of the most confoluded methods I've ever written.
-// //Whoever is reading this... I am sincerely sorry 
-// router.delete('/vote', (req, res) => {
-//   debugger;
-//   const postId = req.body.postId;
-//   const userId = req.body.userId;
-
-//   Vote.findOne({ user: userId, post: postId })
-//     .then(vote => {
-
-//       User.findById(userId)
-//         .then(user => {
-
-//           const userJSON = user.toJSON();
-//           const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-//           delete userJSON.votes[voteIdx];
-//           const newVotes = userJSON.votes.filter(ele => ele !== undefined);
-//           user.votes = newVotes;
-//           delete userJSON['password'];
-//           delete userJSON['date'];
-//           user.save()
-//             .then(user => {
-//               Post.findById(postId)
-//                 .then(post => {
-        
-//                   const postJSON = post.toJSON();
-//                   const voteIdx = postJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-//                   delete postJSON.votes[voteIdx];
-//                   const newVotes = postJSON.votes.filter(ele => ele !== undefined);
-//                   post.votes = newVotes;
-//                   post.save()
-//                     .then(post => {
-//                       Vote.deleteOne({ user: user._id, post: post._id })
-//                         .then(vote => {
-//                           return res.send({ user, post });
-//                         })
-//                     })
-//                 })
-//             })
-//         })
-//     })
-// })
 
 //route that returns all the votes on a post 
 router.get('/:id/votes', (req, res) => {

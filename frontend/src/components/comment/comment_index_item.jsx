@@ -273,16 +273,20 @@ class CommentIndexItem extends React.Component {
         <div className='comment-content'>
           <div className='comment-votes'>
             {this.renderUpArrow()}
-            {/* <button className='comment-upvote' onClick={this.upvote}></button> */}
-            {/* {this.state.votes} */}
             {this.renderDownArrow()}
-            {/* <button className='comment-downvote' onClick={this.downvote}></button> */}
           </div>
           <div className='comment-main'>
-            <div className='comment-points'>
+            <div className="cii-info">
+              <div className="posted-by">{comment.user.username}</div>
+              <div className='comment-points'>
+                {this.state.votes}
+                <p className='comment-points-label'>{this.state.votes === 1 ? 'point' : 'points'}</p>
+              </div>
+            </div>
+            {/* <div className='comment-points'>
               {this.state.votes}
               <p className='comment-points-label'>{this.state.votes === 1 ? 'point' : 'points'}</p>
-            </div>
+            </div> */}
             <div className='comment-text'>
               {comment.text}
             </div>
