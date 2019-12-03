@@ -23,11 +23,13 @@ export default class SearchBar extends React.Component {
         <input
           className="search-bar"
           type="text"
-          placeholder="⌕ Search"
+          placeholder="Search Dreddit"
           onChange={this.handleUpdate}
         />
 
-        <SubDredditIndex subs={ this.state.subs } />
+        <div className="search-results">
+          <SubDredditIndex subs={ this.state.subs } />
+        </div>
       </div>
     )
   }

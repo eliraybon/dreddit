@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
     // Create a preconfigured state we can immediately add to our store
-    const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+    const preloadedState = { session: { isAuthenticated: true, user: decodedUser, userSubs: {} } };
 
     store = configureStore(preloadedState);
 
@@ -40,7 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } else {
     // If this is a first time user, start with an empty store
-    store = configureStore({});
+    const preloadedState = { session: { userSubs: {} } };
+    store = configureStore(preloadedState);
+    // store = configureStore({});
   }
   // Render our root component and pass in the store as a prop
   const root = document.getElementById('root');

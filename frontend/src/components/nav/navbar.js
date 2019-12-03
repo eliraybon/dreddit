@@ -1,12 +1,49 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import SearchBar from './search_bar_container';
+import SubdredditIndex from '../subdreddit/subdreddit_index_container';
 
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
+    this.state = { userSubsDropdown: false };
+
+    this.container = React.createRef();
+
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
+    this.toggleSubsDropdown = this.toggleSubsDropdown.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleOutsideClick);
+    this.props.fetchUserSubs(this.props.currentUserId);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleOutsideClick);
+  }
+
+  handleOutsideClick(e) {
+    if (this.container.current && !this.container.current.contains(e.target)) {
+      this.setState({ userSubsDropdown: false });
+    };
+  }
+
+  toggleSubsDropdown() {
+    if (!this.props.userSubs.length && !this.state.userSubsDropdown) {
+      this.props.fetchUserSubs(this.props.currentUserId)
+        .then(res => {
+          this.setState(state => {
+            return { userSubsDropdown: true }
+          })
+        })
+    }
+
+    this.setState(state => {
+      return { userSubsDropdown: !state.userSubsDropdown }
+    });
   }
 
   logoutUser(e) {
@@ -14,31 +51,31 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
+  returnHome = () => {
+    this.props.history.push('/')
+  }
+
   // Selectively render links dependent on whether the user is logged in
   getLinks() {
     if (this.props.loggedIn) {
       return (
         <div className='nav-auth-links'>
-          <div className='nav-subdreddits'>
-            <div className='nav-subdreddits-link'>
-              <Link className='drop-subdreddits-link' to={'/tweets'}>Subdreddits</Link>
+          <div className='nav-subdreddits' ref={this.container} onClick={this.toggleSubsDropdown}>
+            <div className="user-subs">
+              {this.state.userSubsDropdown && (
+                <SubdredditIndex subs={ this.props.userSubs } />
+              )}
             </div>
-            
           </div>
           <div className='nav-search'>
             <label>
               <div className='nav-search-logo'>
               </div>
             </label>
-            <input
-              className='nav-search-input'
-              type='text'
-              placeholder="Search Dreddit"
-            />
-            
+            <SearchBar />
           </div>
           <div className='nav-right-links'>
-            <Link className='nav-post' to={'/submit'}></Link>
+            <Link className='nav-post' to={'/subdreddits/new'}></Link>
             <div className='nav-profile-div'>
               <div className='nav-profile'>
                 <div className='nav-drop-down'>
@@ -79,7 +116,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <div className='nav-logo-div'>
+        <div className='nav-logo-div' onClick={ this.returnHome }>
           <div className='nav-logo'>
           </div>
           <div className='nav-site-name'>

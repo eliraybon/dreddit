@@ -19,7 +19,6 @@ export default class PostForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.content) {
-      debugger;
       const formData = new FormData();
       formData.append('content', this.state.content, this.state.content.name);
       if (this.state.content.type === "video/mp4") {

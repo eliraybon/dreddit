@@ -17,6 +17,20 @@ router.post('/search', (req, res) => {
     })
 })
 
+router.get('/user/:userId', (req, res) => {
+  let subsObj = {};
+  debugger;
+  User.findById(req.params.userId)
+    .then(user => {
+      Subdreddit.find({ _id: { $in: user.subs } })
+        .then(subs => {
+          subs.forEach(sub => subsObj[sub._id] = sub);
+          return res.send(subsObj);
+        })
+    })
+})
+
+
 router.get("/:id", (req, res) => {
   const postsObj = {};
 
@@ -75,18 +89,18 @@ router.post('/', (req, res) => {
 
 router.post('/follow', (req, res) => {
   const { subId, userId } = req.body;
-  debugger;
+
   Subdreddit.findById(subId)
     .then(sub => {
-      debugger;
+
       User.findById(userId)
         .then(user => {
           user.subs.push(sub.id);
-          debugger;
+
           if (sub.user !== userId) sub.followers.push(user.id);
           user.save()
             .then(user => {
-              debugger;
+
               const userJSON = user.toJSON();
               delete userJSON['password'];
               delete userJSON['date'];
@@ -104,10 +118,10 @@ router.delete('/unfollow', (req, res) => {
 
   Subdreddit.findById(subId)
     .then(sub => {
-      debugger;
+
       User.findById(userId)
         .then(user => {
-          debugger;
+
           const userJSON = user.toJSON();
           const subIdx = userJSON.subs.findIndex(ele => ele.toJSON() === sub._id.toJSON());
           delete userJSON.subs[subIdx];
@@ -117,7 +131,7 @@ router.delete('/unfollow', (req, res) => {
           delete userJSON['date'];
           user.save()
             .then(user => {
-              debugger;
+
               const subJSON = sub.toJSON();
               const followerIdx = subJSON.followers.findIndex(ele => ele.toJSON() === user._id.toJSON());
               delete subJSON.followers[followerIdx];

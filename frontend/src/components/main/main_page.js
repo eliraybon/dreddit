@@ -7,10 +7,7 @@ class MainPage extends React.Component {
     return (
       <div>
         <PostIndex />
-        {/* <h1>A Reddit Clone</h1>
-        <footer>
-          Copyright &copy; 2019 Dreddit Inc.
-        </footer> */}
+
       </div>
     );
   }

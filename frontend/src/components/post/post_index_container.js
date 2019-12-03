@@ -9,9 +9,14 @@ import {
 import { fetchPostVotes } from '../../util/vote_api_util';
 
 const mapStateToProps = state => {
+  let currentUserId;
+  if (state.session.user) {
+    currentUserId = state.session.user.id || state.session.user._id
+  }
+  
   return {
     posts: Object.values(state.entities.posts),
-    currentUserId: state.session.user.id || state.session.user._id
+    currentUserId//: state.session.user.id || state.session.user._id
   };
 };
 
