@@ -8,7 +8,7 @@ export default class PostForm extends React.Component {
       title: this.props.post.title,
       text: this.props.post.text,
       user: this.props.currentUserId,
-      subDreddit: this.props.subId,
+      subDreddit: this.props.subId || this.props.match.params.subId,
       imgUrl: this.props.post.imgUrl || ""
     }
 
@@ -25,17 +25,26 @@ export default class PostForm extends React.Component {
         axios.post('/api/files/upload', formData)
           .then(res => {
             this.setState({ videoUrl: res.data.imgUrl });
-            this.props.processForm(this.state);
+            this.props.processForm(this.state)
+              .then(() => {
+                this.props.history.push(`/subdreddits/${this.state.subDreddit}`)
+              });
           })
       } else {
         axios.post('/api/files/upload', formData)
           .then(res => {
             this.setState({ imgUrl: res.data.imgUrl });
-            this.props.processForm(this.state);
+            this.props.processForm(this.state)
+              .then(() => {
+                this.props.history.push(`/subdreddits/${this.state.subDreddit}`)
+              });
           })
       }
     } else {
-      this.props.processForm(this.state);
+      this.props.processForm(this.state)
+        .then(() => {
+          this.props.history.push(`/subdreddits/${this.state.subDreddit}`)
+        });
     }
   }
 
