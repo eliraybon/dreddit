@@ -106,6 +106,7 @@
 
 .user-subs {
   position: absolute;
+  z-index: 3;
   width: 180%;
   top: 39px;
   left: 0;
@@ -361,6 +362,7 @@
 
 .search-results {
   position: absolute;
+  z-index: 10;
   width: 100%;
   top: 39px;
   left: 0;

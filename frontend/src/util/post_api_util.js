@@ -26,6 +26,7 @@ export const voteOnPost = voteInfo => {
 };
 
 export const removeVote = voteInfo => {
+  debugger;
   return axios.delete('/api/posts/vote', { data: voteInfo });
 }
 

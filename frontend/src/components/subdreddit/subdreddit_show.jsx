@@ -2,6 +2,8 @@ import React from 'react';
 import PostForm from '../post/create_post_form_container';
 import PostIndex from '../post/post_index_container';
 import { Link } from 'react-router-dom';
+import SubDredditMenu from './subdreddit_menu';
+import DailyDredd from '../nav/daily_dredd';
 
 class SubDredditShow extends React.Component {
   constructor(props) {
@@ -11,6 +13,7 @@ class SubDredditShow extends React.Component {
       followed: false
     }
   }
+
   componentDidMount(){
     this.props.fetchSubDreddit(this.props.match.params.subId)
       .then(res => {
@@ -75,7 +78,17 @@ class SubDredditShow extends React.Component {
 
     return (
       <div className="sub-dreddit">
-        <div className='sub-info'>
+        <div className="sub-show-sidebar">
+          <SubDredditMenu 
+            sub={ sub } 
+            renderFollowButton={ this.renderFollowButton }
+            history={ this.props.history }
+          />
+
+          <DailyDredd />
+        </div>
+
+        {/* <div className='sub-info'>
           <div className='sub-info-head'>
             COMMUNITY DETAILS
           </div>
@@ -97,8 +110,8 @@ class SubDredditShow extends React.Component {
               </button>
             </div>
           </div>
-        </div>
-        {/* <PostForm subId={sub._id} /> */}
+        </div> */}
+
         <PostIndex posts={this.props.posts} />
       </div>
     )

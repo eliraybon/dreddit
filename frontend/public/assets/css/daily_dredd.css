@@ -1,0 +1,45 @@
+.orange {
+  background: rgb(246, 70, 29)
+}
+
+.dd-header {
+  font-size: 16px;
+}
+
+.explore-button:hover {
+  background-color: rgba(246, 70, 29, .5)
+}
+
+.daily-dredd-description {
+  margin-top: 20px;
+}
+
+.dd-subs {
+  margin-left: 15px;
+}
+
+.dd-sub {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.dd-sub:hover {
+  cursor: pointer;
+}
+
+.dd-sub-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.dd-sub-text {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 18px;
+}
+
+.dd-buttons {
+  margin-top: 20px;
+}
