@@ -56,14 +56,14 @@ class SubDredditShow extends React.Component {
   renderFollowButton = () => {
     if (this.state.followed) {
       return (
-        <button onClick={this.unfollowSub}>
-          Unfollow
+        <button className='sub-info-join' onClick={this.unfollowSub}>
+          Leave
         </button>
       )
     } else {
       return (
-        <button onClick={this.followSub}>
-          Follow
+        <button className='sub-info-join' onClick={this.followSub}>
+          Join
         </button>
       )
     }
@@ -81,10 +81,20 @@ class SubDredditShow extends React.Component {
             COMMUNITY DETAILS
           </div>
           <div className='sub-info-content'>
-            <h1>{sub.title}</h1>
-            <p>{sub.description}</p>
+            <div className='sub-info-brand'>
+              <div className='sub-logo'>
+              </div>
+              <h1>{sub.title}</h1>
+            </div>
+            <div className='sub-info-description'>
+              <p>{sub.description}</p>
+            </div>
             <div className='sub-info-buttons'>
               {this.renderFollowButton()}
+              <button 
+                className='sub-create-post'
+                onClick={console.log('click!')}>CREATE POST
+              </button>
             </div>
           </div>
         </div>
