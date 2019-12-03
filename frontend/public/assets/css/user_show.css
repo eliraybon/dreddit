@@ -1,24 +1,23 @@
 .user-show-blue {
-  border: 3px solid red;
+  /* border: 3px solid red; */
   display: flex;
   align-items: center;
   /* background: rgb(55, 123, 208); */
   background: url('../images/subdreddit/banner.png') no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position-y: 25%;
   height: 140px;
   margin-bottom: 20px;
 }
 
 .user-show-content {
-  display: flex;
+  display: flex; 
   justify-content: center;
 }
 
 .user-show-username {
-  font-size: 30px;
+  font-size: 42px;
   margin-left: 20px;
   font-weight: bold;
   font-family: 'IBM Plex Sans', sans-serif;
-
 }
