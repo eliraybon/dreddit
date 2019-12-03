@@ -19,7 +19,7 @@ router.post('/search', (req, res) => {
 
 router.get('/user/:userId', (req, res) => {
   let subsObj = {};
-  debugger;
+
   User.findById(req.params.userId)
     .then(user => {
       Subdreddit.find({ _id: { $in: user.subs } })
