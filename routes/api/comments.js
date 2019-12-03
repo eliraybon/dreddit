@@ -65,6 +65,8 @@ router.post('/', (req, res) => {
               delete userJSON['password'];
               delete userJSON['date'];
               Post.findById(comment.post.toJSON())
+                .populate('user')
+                .populate('subDreddit')
                 .then(post => {
                   post.comments.push(comment._id);
                   post.save()
@@ -98,6 +100,8 @@ router.post('/:commentId/reply', (req, res) => {
               delete userJSON['password'];
               delete userJSON['date'];
               Post.findById(reply.post.toJSON())
+                .populate('user')
+                .populate('subDreddit')
                 .then(post => {
    
                   post.comments.push(reply._id);
@@ -119,6 +123,8 @@ router.delete('/:id', (req, res) => {
     .then(comment => {
       debugger;
       Post.findById(comment.post)
+        .populate('user')
+        .populate('subDreddit')
         .then(post => {
 
           const postJSON = post.toJSON();
