@@ -45,6 +45,8 @@ router.delete('/vote', (req, res) => {
                   post.votes = newVotes;
                   post.save()
                     .then(post => {
+                      post.populate('user').execPopulate();
+                      post.populate('subDreddit').execPopulate();
                       Vote.deleteOne({ user: user._id, post: post._id })
                         .then(vote => {
                           return res.send({ user, post });
@@ -162,6 +164,8 @@ router.post('/vote', (req, res) => {
   const userId = req.body.userId;
 
   Post.findOne({ _id: postId })
+     .populate('user')
+     .populate('subDreddit')
     .then(post => {
       User.findOne({ _id: userId })
         .then(user => {
@@ -181,6 +185,8 @@ router.post('/vote', (req, res) => {
                   delete userJSON['date'];
                   post.save()
                     .then(post => {
+                      // post.populate('user').execPopulate();
+                      // post.populate('subDreddit').execPopulate();
                       return res.send({ post, user: userJSON });
                     })
                 })
@@ -198,6 +204,8 @@ router.patch('/vote', (req, res) => {
       vote.save()
         .then(vote => {
           Post.findById(vote.post)
+            .populate('user')
+            .populate('subDreddit')
             .then(post => {
               return res.send(post)
             })

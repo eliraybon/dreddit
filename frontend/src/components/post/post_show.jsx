@@ -240,9 +240,7 @@ export default class PostShow extends React.Component {
 
           <div className='pii-votes'>
             {this.renderUpArrow()}
-            {/* <button onClick={this.upvote} className='pii-upvote'></button> */}
             {this.state.votes}
-            {/* <button onClick={this.downvote} className='pii-downvote'></button> */}
             {this.renderDownArrow()}
           </div>
           <div className='pii-content'>
@@ -274,11 +272,7 @@ export default class PostShow extends React.Component {
                 
               </div>
           </div>
-          {/* {this.renderTest()} */}
-          {/* {<button onClick={this.upvote}>Upvote</button>
-          <button onClick={this.downvote}>Downvote</button>
-          {this.state.votes}
-          <h1>{post.title}</h1> */}
+
           </div>
           <div className='post-comments'>
             <CommentForm postId={ post._id } />
