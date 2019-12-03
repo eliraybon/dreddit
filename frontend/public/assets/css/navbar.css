@@ -326,6 +326,22 @@
   font-weight: bold;
 }
 
+.nav-logout-link {
+  border-bottom-right-radius: 4px;
+}
+
+.nav-logout-pic {
+  border-bottom-left-radius: 4px;
+}
+
+.nav-profile-pic {
+  border-top-left-radius: 4px;
+}
+
+.nav-drop-down {
+  border-top-left-radius: 5px;
+}
+
 .nav-profile-link:hover, .nav-logout-link:hover, .drop-subdreddits-link:hover{
   background-color: rgba(50, 121, 211, 1);
   color: white;
