@@ -1,6 +1,7 @@
 import React from 'react';
 import CommentForm from '../comment/create_comment_form_container';
 import CommentIndex from '../comment/comment_index_container';
+import { Link } from 'react-router-dom';
 
 export default class PostShow extends React.Component {
   constructor(props) {
@@ -237,13 +238,20 @@ export default class PostShow extends React.Component {
       <div className='post-show'>
         <div className="pii-show">
 
-
           <div className='pii-votes'>
             {this.renderUpArrow()}
             {this.state.votes}
             {this.renderDownArrow()}
           </div>
           <div className='pii-content'>
+            <div className="pii-sub-and-name">
+              <Link
+                to={`/subdreddits/${post.subDreddit._id}`}
+                className="pii-sub-title">
+                d/{post.subDreddit.title}
+              </Link>
+              <span className="pii-username">Posted by u/{post.user.username}</span>
+            </div>
       
               <div className='pii-top'>
 

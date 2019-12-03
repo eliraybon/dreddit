@@ -112,6 +112,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let commentsObj = {};
   Post.findById(req.params.id)
+    .populate('user')
     .populate('subDreddit')
     .then(post => {
       Comment.find({ post: post._id })
