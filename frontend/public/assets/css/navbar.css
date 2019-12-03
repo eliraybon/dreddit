@@ -21,7 +21,7 @@
 }
 
 .nav-logo {
-  background: url('../images/logo.png');
+  background: url('../images/nav_bar/logo.png');
   background-size: cover;
   width: 38px;
   height: 38px;
@@ -97,7 +97,7 @@
   align-items: center;
   height: 80%;
   min-width: 90px;
-  background: url('../images/subreddit_nav.png') no-repeat;
+  background: url('../images/nav_bar/subreddit_nav.png') no-repeat;
   background-size: 90% 40%;
   background-position: center;
   cursor: pointer;
@@ -191,7 +191,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('../images/nav-post.png') no-repeat;
+  background: url('../images/nav_bar/nav-post.png') no-repeat;
   background-size: 50% 50%;
   background-position: center;
   height: 60%;
@@ -211,7 +211,7 @@
   width: 50%;
   height: 80%;
   margin-left: 10px;
-  background: url('../images/profile_drop.png') no-repeat;
+  background: url('../images/nav_bar/profile_drop.png') no-repeat;
   background-size: 80% 80%;
   background-position: center;
   padding: 0 10px 0 10px;
@@ -270,7 +270,7 @@
   /* border: 3px solid blue; */
   width: 30px;
   height: 20px;
-  background: url('../images/search.png') no-repeat;
+  background: url('../images/nav_bar/search.png') no-repeat;
   background-size: contain;
   margin-left: 10px;
 }
@@ -312,7 +312,7 @@
 
 .nav-profile-label:hover .nav-profile-pic{
   /* border: 3px solid red; */
-  background: url('../images/profile_hover.png') no-repeat;
+  background: url('../images/nav_bar/profile_hover.png') no-repeat;
   background-size: 80% 60%;
   background-position: center;
   background-color: rgba(50, 121, 211, 1);
@@ -320,7 +320,7 @@
 }
 
 .nav-logout-label:hover .nav-logout-pic{
-  background: url('../images/logout-hover.png') no-repeat;
+  background: url('../images/nav_bar/logout-hover.png') no-repeat;
   background-size: 80% 60%;
   background-position: center;
   background-color: rgba(50, 121, 211, 1);
@@ -337,7 +337,7 @@
   /* border: 3px solid red; */
   width: 33%;
   height: 100%;
-  background: url('../images/profile.png') no-repeat;
+  background: url('../images/nav_bar/profile.png') no-repeat;
   background-size: 80% 60%;
   background-position: center;
 }
@@ -346,7 +346,7 @@
   /* border: 3px solid red; */
   width: 33%;
   height: 100%;
-  background: url('../images/logout.png') no-repeat;
+  background: url('../images/nav_bar/logout.png') no-repeat;
   background-size: 80% 60%;
   background-position: center;
 }

@@ -118,7 +118,6 @@ router.delete('/unfollow', (req, res) => {
 
   Subdreddit.findById(subId)
     .then(sub => {
-
       User.findById(userId)
         .then(user => {
 
@@ -131,7 +130,6 @@ router.delete('/unfollow', (req, res) => {
           delete userJSON['date'];
           user.save()
             .then(user => {
-
               const subJSON = sub.toJSON();
               const followerIdx = subJSON.followers.findIndex(ele => ele.toJSON() === user._id.toJSON());
               delete subJSON.followers[followerIdx];

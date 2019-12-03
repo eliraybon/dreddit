@@ -89,43 +89,74 @@ export default class PostIndexItem extends React.Component {
   renderDeleteButton() {
     const { post, currentUserId } = this.props;
     if (post.user !== currentUserId) return null;
-    return <button 
-      onClick={() => this.props.deletePost(post._id)}>
-      Delete
-    </button>
+    return <div className='pii-remove'>
+        <div className='pii-remove-image'>
+        </div>
+        <button 
+        onClick={() => this.props.deletePost(post._id)}>
+        Remove
+      </button>
+    </div>
   }
 
   render() {
     const { post } = this.props;
     return (
       <li className="pii">  
-        <Link to={`/posts/${post._id}`}>
-          {post.title}  
-        </Link>
+        
+        
+          <div className='pii-votes'>
+            <button onClick={this.upvote} className='pii-upvote'></button>
+            {this.state.votes}
+            <button onClick={this.downvote} className='pii-downvote'></button>
+          </div>
+          <div className='pii-content'>
+          <Link to={`/posts/${post._id}`} className='pii-show-link'>
+            <div className='pii-top'>
+              
+              {post.title} 
+            </div>
+            <div className='pii-media'>
+              {post.imgUrl && (
+              <img
+                src={post.imgUrl}
+                width="200px"
+                height="200px"
+              />
+              )}
 
-        {post.imgUrl && (
-          <img
-            src={post.imgUrl}
-            width="200px"
-            height="200px"
-          />
-        )}
-
-        {post.videoUrl && (
-          <video src={post.videoUrl}
-            width="320px"
-            height="240px"
-            controls
-          >
-          </video>
-        )}
-
+              {post.videoUrl && (
+                <video src={post.videoUrl}
+                  width="320px"
+                  height="240px"
+                  controls
+                >
+                </video>
+              )} 
+            </div>
+            
+          </Link>
+            <div className='pii-bottom'>
+              <div className='pii-comment'>
+                <Link 
+                  to={`/posts/${post._id}`}
+                  >
+                  <div className='pii-comment-link'>
+                  <div className='pii-comment-image'>
+                  </div>
+                  <div>
+                    Comments
+                  </div>
+                  </div>
+                </Link>
+              </div>
+              
+              <div classname='pii-remove'>
+                {this.renderDeleteButton()}
+              </div>
+            </div>
+          </div>
         {/* {this.renderTest()} */}
-
-        {this.state.votes}
-        <button onClick={this.upvote}>Upvote</button>
-        <button onClick={this.downvote}>Downvote</button>
-        {this.renderDeleteButton()}
       </li>
     )
   }

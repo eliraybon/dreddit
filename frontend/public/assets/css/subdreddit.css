@@ -1,0 +1,95 @@
+.sub-dreddit {
+  /* border: 3px solid black; */
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  margin: 0 30px 0 30px;
+}
+
+.sub-info {
+  /* border: 3px solid red; */
+  width: 40%;
+  max-width: 320px;
+  height: fit-content;
+  border-radius: 5px;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.sub-info-head {
+  /* border: 3px solid blue; */
+  width: 100%;
+  height: 35px;
+  z-index: 1;
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.sub-info-content {
+  /* border: 3px solid red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 90%;
+}
+
+.sub-info-buttons {
+  /* border: 3px solid blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.sub-info-join, .sub-create-post {
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  height: 36px;
+  width: 90%;
+  border-radius: 5px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.sub-info-join:hover, .sub-create-post:hover {
+  background-color: rgba(50, 121, 211, .5)
+}
+
+.sub-info-brand {
+  /* border: 3px solid blue; */
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: flex-start;
+  font-size: 18px;
+}
+
+.sub-logo {
+  /* border: 3px solid red; */
+  height: 65%;
+  width: 50px;
+  background: url('../images/subdreddit/logo.png') no-repeat;
+  background-size: contain;
+  margin: 16px 16px 16px 16px;
+}
+
+.sub-info-description {
+  /* border: 3px solid green; */
+  width: 90%;
+  margin-bottom: 16px;
+}

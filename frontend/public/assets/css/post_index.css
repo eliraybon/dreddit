@@ -1,0 +1,8 @@
+.post-index {
+  /* border: 3px solid black; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 66%;
+  max-width: 640px;
+}

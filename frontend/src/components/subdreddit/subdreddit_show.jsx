@@ -56,14 +56,14 @@ class SubDredditShow extends React.Component {
   renderFollowButton = () => {
     if (this.state.followed) {
       return (
-        <button onClick={this.unfollowSub}>
-          Unfollow
+        <button className='sub-info-join' onClick={this.unfollowSub}>
+          Leave
         </button>
       )
     } else {
       return (
-        <button onClick={this.followSub}>
-          Follow
+        <button className='sub-info-join' onClick={this.followSub}>
+          Join
         </button>
       )
     }
@@ -71,15 +71,34 @@ class SubDredditShow extends React.Component {
 
   render(){
     const { sub } = this.props;
-    
+    console.log(sub);
     if (!sub) return null; 
 
     return (
       <div className="sub-dreddit">
-        <h1>{sub.title}</h1>
-        {this.renderFollowButton()}
-
-        <PostForm subId={sub._id} />
+        <div className='sub-info'>
+          <div className='sub-info-head'>
+            COMMUNITY DETAILS
+          </div>
+          <div className='sub-info-content'>
+            <div className='sub-info-brand'>
+              <div className='sub-logo'>
+              </div>
+              <h1>{sub.title}</h1>
+            </div>
+            <div className='sub-info-description'>
+              <p>{sub.description}</p>
+            </div>
+            <div className='sub-info-buttons'>
+              {this.renderFollowButton()}
+              <button 
+                className='sub-create-post'
+                onClick={console.log('click!')}>CREATE POST
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* <PostForm subId={sub._id} /> */}
         <PostIndex posts={this.props.posts} />
       </div>
     )
