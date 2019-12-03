@@ -18,7 +18,7 @@ class NavBar extends React.Component {
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleOutsideClick);
-    this.props.fetchUserSubs(this.props.currentUserId);
+    // this.props.fetchUserSubs(this.props.currentUserId);
   }
 
   componentWillUnmount() {

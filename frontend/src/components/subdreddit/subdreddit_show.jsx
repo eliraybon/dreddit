@@ -71,7 +71,6 @@ class SubDredditShow extends React.Component {
 
   render(){
     const { sub } = this.props;
-    console.log(sub);
     if (!sub) return null; 
 
     return (
@@ -93,7 +92,8 @@ class SubDredditShow extends React.Component {
               {this.renderFollowButton()}
               <button 
                 className='sub-create-post'
-                onClick={console.log('click!')}>CREATE POST
+                onClick={() => this.props.history.push(`/submit/${sub._id}`)}>
+                  CREATE POST
               </button>
             </div>
           </div>
