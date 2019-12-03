@@ -1,4 +1,6 @@
 .main-page-content {
   display: flex;
   justify-content: center;
+  /* border: 3px solid black; */
+  margin: 40px 30px 40px 30px;
 }

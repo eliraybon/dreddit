@@ -13,6 +13,8 @@
 .user-show-content {
   display: flex; 
   justify-content: center;
+  /* border: 3px solid blue; */
+  margin-top: 40px;
 }
 
 .user-show-username {
