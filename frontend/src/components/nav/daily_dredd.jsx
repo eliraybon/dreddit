@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 
 class DailyDredd extends React.Component {
   render() {
-    debugger;
+
     return (
       <div className='sub-info'>
         <div className='sub-info-head orange dd-header'>

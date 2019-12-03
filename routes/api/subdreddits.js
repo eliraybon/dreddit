@@ -40,6 +40,7 @@ router.get("/:id", (req, res) => {
   Subdreddit.findById(req.params.id)
     .then(sub => {
       Post.find({ subDreddit: sub._id })
+        .populate('user')
         .then(posts => {
           posts.forEach(post => postsObj[post._id] = post);
           User.findById(currentUser.id)

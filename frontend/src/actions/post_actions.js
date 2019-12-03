@@ -83,8 +83,12 @@ export const voteOnPost = voteInfo => dispatch => {
 };
 
 export const removeVote = voteInfo => dispatch => {
+  debugger;
   return PostAPIUtil.removeVote(voteInfo)
-    .then(res => dispatch(receiveUnvote(res.data)));
+    .then(res => {
+      debugger;
+      dispatch(receiveUnvote(res.data))
+    });
 }
 
 export const updateVote = voteInfo => dispatch => {

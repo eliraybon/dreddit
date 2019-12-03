@@ -180,3 +180,11 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.up-arrow {
+  margin: 8px 5px;
+}
+
+.down-arrow {
+  margin: 8px 5px;
+}
