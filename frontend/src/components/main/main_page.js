@@ -12,7 +12,7 @@ class MainPage extends React.Component {
     const { posts } = this.props;
 
     return (
-      <div>
+      <div className="main-page-content">
         <PostIndex posts={ posts } />
       </div>
     );
