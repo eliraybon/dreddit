@@ -118,10 +118,10 @@ router.post('/:commentId/reply', (req, res) => {
 
 //this does not recursively delete all of a comment's replies 
 router.delete('/:id', (req, res) => {
-  debugger;
+
   Comment.findById(req.params.id)
     .then(comment => {
-      debugger;
+
       Post.findById(comment.post)
         .populate('user')
         .populate('subDreddit')

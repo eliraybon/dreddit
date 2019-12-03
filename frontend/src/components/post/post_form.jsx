@@ -65,6 +65,7 @@ export default class PostForm extends React.Component {
           <div className='post-form-title'>
             <div className='post-form-input'>
               <input 
+                className='post-input'
                 type="text"
                 value={this.state.title}
                 onChange={this.update('title')}
