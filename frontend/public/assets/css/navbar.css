@@ -217,6 +217,7 @@
 .nav-post:hover {
   border: 1px solid #dae0e6;
   border-radius: 5px;
+  background-size: 16px 17px;
 }
 
 .nav-profile-div {
@@ -228,7 +229,7 @@
   height: 80%;
   margin-left: 10px;
   background: url('../images/nav_bar/profile_drop.png') no-repeat;
-  background-size: 80% 80%;
+  background-size: 64px 36px;
   background-position: center;
   padding: 0 10px 0 10px;
 }
@@ -240,6 +241,8 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background-color: #ffffff;
+  background-size: 64px 36px;
+  background-position: center;
 }
 
 .nav-profile-div:hover .nav-drop-down {
@@ -289,6 +292,15 @@
   background: url('../images/nav_bar/search.png') no-repeat;
   background-size: contain;
   margin-left: 10px;
+}
+
+.search-bar-div {
+  width: 100%;
+}
+
+.search-bar {
+  /* border: 1px solid red; */
+  width: 99%;
 }
 
 .nav-search-input {

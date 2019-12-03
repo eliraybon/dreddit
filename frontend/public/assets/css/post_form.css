@@ -7,6 +7,7 @@
   flex-direction: column;
   /* background-color: white; */
   border-radius: 5px;
+  margin-top: 40px;
 }
 
 .post-form {
@@ -30,7 +31,12 @@
 }
 
 .post-form-input {
+  /* border: 1px solid red; */
   margin: 5px 0 0 10px;
+}
+
+.post-input {
+  width: 100%;
 }
 
 .post-form-text {
