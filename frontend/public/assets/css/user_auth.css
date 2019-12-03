@@ -33,6 +33,10 @@
   transform: rotate(180deg);
 }
 
+.auth-logo:hover { 
+  cursor: pointer;
+}
+
 .form-type {
   display: flex;
   align-items: center;

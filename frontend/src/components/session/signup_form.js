@@ -60,13 +60,17 @@ class SignupForm extends React.Component {
     this.props.login(demoUser);
   }
 
+  returnHome = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <div className="auth-div">
         <div className='auth-image'>
         </div>
         <form onSubmit={this.handleSubmit} className='auth-form'>
-          <div className='auth-logo'>
+          <div className='auth-logo' onClick={ this.returnHome }>
           </div>
           <div className='form-type'>
             Sign Up
