@@ -59,30 +59,38 @@ export default class PostForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>{this.props.formType} Post</h3>
-        <form onSubmit={this.handleSubmit} encType="multipart/form-data">
-          <label>Title
-            <input 
-              type="text"
-              value={this.state.title}
-              onChange={this.update('title')}
-            />
-          </label>
+      <div className='post-form-page'>
+        <h3 className='post-form-type'>{this.props.formType} Post</h3>
+        <form onSubmit={this.handleSubmit} className='post-form' encType="multipart/form-data">
+          <div className='post-form-title'>
+            <div className='post-form-input'>
+              <input 
+                type="text"
+                value={this.state.title}
+                onChange={this.update('title')}
+                placeholder='Title'
+              />
+            </div>
+          </div>
 
-          <label>Text
+          <div className='post-form-text'>
             <textarea
+              className='post-text-input'
               value={this.state.text}
               onChange={this.update('text')}
+              placeholder='Text (optional)'
             />
-          </label>
+          </div>
 
-          <input
-            type="file"
-            onChange={this.handleFile}
-          />
+          <div className='post-form-bottom'>
+            <input
+              className='post-media-input'
+              type="file"
+              onChange={this.handleFile}
+            />
 
-          <button>{this.props.formType}</button>
+            <button className='post-form-button'>{this.props.formType === 'Create' ? 'Post' : this.props.formType}</button>
+          </div>
         </form>
       </div>
     )
