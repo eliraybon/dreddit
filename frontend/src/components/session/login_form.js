@@ -60,7 +60,8 @@ class LoginForm extends React.Component {
     );
   }
 
-  demoLogin() {
+  demoLogin(e) {
+    e.preventDefault();
     const demoUser = { username: 'demo', password: 'lola12' };
     this.props.login(demoUser);
   }
@@ -101,9 +102,13 @@ class LoginForm extends React.Component {
           <div className='auth-errors'>
             {this.renderErrors()}
           </div>
-          
-          <div className='auth-btn'>
-            <input className='auth-btn-text' type="submit" value="SIGN IN" />
+          <div className='auth-btns'>
+            <div className='auth-btn'>
+              <input className='auth-btn-text' type="submit" value="SIGN IN" />
+            </div>
+            <div className='auth-demo'>
+              <button onClick={this.demoLogin}>Log In As Demo User</button>
+            </div>
           </div>
           <div className='auth-signup-link'>
             <div className='auth-new'>
@@ -114,7 +119,7 @@ class LoginForm extends React.Component {
             </div>
           </div>
         </form>
-        {/* <button onClick={this.demoLogin}>Log In As Demo User</button> */}
+        
       </div>
     );
   }
