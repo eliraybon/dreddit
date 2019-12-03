@@ -104,8 +104,13 @@ class SignupForm extends React.Component {
           <div className='auth-errors'>
             {this.renderErrors()}
           </div>
-          <div className='auth-btn'>
-            <input className='auth-btn-text' type="submit" value="Submit" />
+          <div className='auth-btns'>
+            <div className='auth-btn'>
+              <input className='auth-btn-text' type="submit" value="Submit" />
+            </div>
+            <div className='auth-demo'>
+              <button onClick={this.demoLogin}>Log In As Demo User</button>
+            </div>
           </div>
           <div className='auth-signin-link'>
             <div className='auth-user'>
@@ -116,7 +121,7 @@ class SignupForm extends React.Component {
             </div>
           </div>
         </form>
-        {/* <button onClick={this.demoLogin}>Log In As Demo User</button> */}
+        
       </div>
     );
   }
