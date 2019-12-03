@@ -29,7 +29,6 @@ export default class SearchBar extends React.Component {
 
   handleOutsideClick = e => {
     if (!this.container.current.contains(e.target)) {
-
       this.setState({ resultsDropdown: false });
     }
   }

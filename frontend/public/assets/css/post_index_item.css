@@ -33,6 +33,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 2;
+  background: rgb(248, 249, 250);
 }
 
 .pii-upvote {
