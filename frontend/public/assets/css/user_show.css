@@ -1,8 +1,12 @@
 .user-show-blue {
+  border: 3px solid red;
   display: flex;
   align-items: center;
-  background: rgb(55, 123, 208);
-  height: 80px;
+  /* background: rgb(55, 123, 208); */
+  background: url('../images/subdreddit/banner.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 140px;
   margin-bottom: 20px;
 }
 
