@@ -159,7 +159,7 @@ export default class PostShow extends React.Component {
           </div>
           <div className='post-comments'>
             <CommentForm postId={ post._id } />
-            <CommentIndex comments={ this.props.comments } context="post" /> }
+            <CommentIndex comments={ this.props.comments } context="post" /> 
           </div>
         
       </div>
