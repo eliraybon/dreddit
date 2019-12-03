@@ -144,8 +144,7 @@
 
 .user-subs li:hover {
   /* background: rgb(246, 247, 248) */
-  background-color: rgba(50, 121, 211, 1);
-  color: white;
+  background-color: #ebebeb;
 }
 
 
@@ -203,11 +202,6 @@
   align-items: center;
   margin-right: 2vw;
 }
-
-/* .nav-left-links {
-  display: flex;
-  justify-content: flex-start;
-} */
 
 .nav-post {
   display: flex;
@@ -385,9 +379,27 @@
   position: absolute;
   z-index: 10;
   width: 100%;
-  top: 39px;
+  top: 44px;
   left: 0;
   background: white;
+}
+
+.search-results li{
+  border-left: 2px solid #dae0e6;
+  border-right: 2px solid #dae0e6;
+  
+}
+
+.search-results li:first-child {
+  border-top: 2px solid #dae0e6;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.search-results li:last-child {
+  border-bottom: 2px solid #dae0e6;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .search-results li a{
@@ -396,7 +408,7 @@
 }
 
 .search-results li:hover {
-  background: rgb(246, 247, 248)
+  background-color: #ebebeb;
 }
 
 
