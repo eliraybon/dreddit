@@ -39,6 +39,10 @@ export default class SearchBar extends React.Component {
     };
   }
 
+  closeResults = () => {
+    this.setState({ resultsDropdown: false });
+  }
+
   toggleResultsDropdown = () => {
     if (!this.state.subs.length) return null;
 
@@ -60,7 +64,7 @@ export default class SearchBar extends React.Component {
           onClick={this.toggleResultsDropdown}
         />
 
-        <div className="search-results" ref={this.container}>
+        <div className="search-results" ref={this.container} onClick={this.closeResults}>
           {this.state.resultsDropdown && (
             <SubDredditIndex subs={ this.state.subs } />
           )}
