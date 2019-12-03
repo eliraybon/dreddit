@@ -74,17 +74,43 @@
   width: 100%;
 }
 
+.auth-btns {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: row;
+  width: 390px;
+  margin-left: 22px;
+  justify-content: space-evenly;
+}
+
 .auth-btn {
   background-color: rgba(50, 121, 211, 1);
   color: white;
   height: 36px;
   width: 155px;
   border-radius: 5px;
-  margin-left: 22px;
+  /* margin-left: 22px; */
   display: flex;
   justify-content: center;
   font-weight: bolder;
   font-size: 14px;
+}
+
+.auth-demo {
+  background-color: rgba(50, 121, 211, 1);
+  color: white;
+  height: 36px;
+  width: 155px;
+  border-radius: 5px;
+  /* margin-left: 22px; */
+  display: flex;
+  justify-content: center;
+  font-weight: bolder;
+  font-size: 14px;
+}
+
+.auth-btn:hover, .auth-demo:hover {
+  background-color: rgba(50, 121, 211, .5);
 }
 
 .auth-btn-text {
