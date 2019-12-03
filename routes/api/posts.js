@@ -14,6 +14,50 @@ const upload = require('../../services/file_upload');
 const singleUpload = upload.single('content');
 
 
+//this is one of the most confoluded methods I've ever written.
+//Whoever is reading this... I am sincerely sorry 
+router.delete('/vote', (req, res) => {
+  const postId = req.body.postId;
+  const userId = req.body.userId;
+
+  Vote.findOne({ user: userId, post: postId })
+    .then(vote => {
+
+      User.findById(userId)
+        .then(user => {
+
+          const userJSON = user.toJSON();
+          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+          delete userJSON.votes[voteIdx];
+          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
+          user.votes = newVotes;
+          delete userJSON['password'];
+          delete userJSON['date'];
+          user.save()
+            .then(user => {
+              Post.findById(postId)
+                .then(post => {
+
+                  const postJSON = post.toJSON();
+                  const voteIdx = postJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
+                  delete postJSON.votes[voteIdx];
+                  const newVotes = postJSON.votes.filter(ele => ele !== undefined);
+                  post.votes = newVotes;
+                  post.save()
+                    .then(post => {
+                      post.populate('user').execPopulate();
+                      post.populate('subDreddit').execPopulate();
+                      Vote.deleteOne({ user: user._id, post: post._id })
+                        .then(vote => {
+                          return res.send({ user, post });
+                        })
+                    })
+                })
+            })
+        })
+    })
+})
+
 //create new post
 router.post('/', (req, res) => {
   // const { errors, isValid } = validatePostInput(req.body);
@@ -55,6 +99,8 @@ router.post('/', (req, res) => {
 // get posts 
 router.get('/', (req, res) => {
   Post.find({})
+    .populate('user')
+    .populate('subDreddit')
     .then(posts => {
       let postsObj = {};
       posts.forEach(post => postsObj[post._id] = post);
@@ -66,8 +112,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   let commentsObj = {};
   Post.findById(req.params.id)
+    .populate('user')
+    .populate('subDreddit')
     .then(post => {
       Comment.find({ post: post._id })
+        .populate('user')
         .then(comments => {
           comments.forEach(comment => commentsObj[comment._id] = comment);
           return res.send({ post, comments: commentsObj })
@@ -116,6 +165,8 @@ router.post('/vote', (req, res) => {
   const userId = req.body.userId;
 
   Post.findOne({ _id: postId })
+     .populate('user')
+     .populate('subDreddit')
     .then(post => {
       User.findOne({ _id: userId })
         .then(user => {
@@ -135,6 +186,8 @@ router.post('/vote', (req, res) => {
                   delete userJSON['date'];
                   post.save()
                     .then(post => {
+                      // post.populate('user').execPopulate();
+                      // post.populate('subDreddit').execPopulate();
                       return res.send({ post, user: userJSON });
                     })
                 })
@@ -152,55 +205,14 @@ router.patch('/vote', (req, res) => {
       vote.save()
         .then(vote => {
           Post.findById(vote.post)
+            .populate('user')
+            .populate('subDreddit')
             .then(post => {
               return res.send(post)
             })
         })
     })
 
-})
-
-
-//this is one of the most confoluded methods I've ever written.
-//Whoever is reading this... I am sincerely sorry 
-router.delete('/vote', (req, res) => {
-  const postId = req.body.postId;
-  const userId = req.body.userId;
-
-  Vote.findOne({ user: userId, post: postId })
-    .then(vote => {
-
-      User.findById(userId)
-        .then(user => {
-
-          const userJSON = user.toJSON();
-          const voteIdx = userJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-          delete userJSON.votes[voteIdx];
-          const newVotes = userJSON.votes.filter(ele => ele !== undefined);
-          user.votes = newVotes;
-          delete userJSON['password'];
-          delete userJSON['date'];
-          user.save()
-            .then(user => {
-              Post.findById(postId)
-                .then(post => {
-        
-                  const postJSON = post.toJSON();
-                  const voteIdx = postJSON.votes.findIndex(ele => ele.toJSON() === vote._id.toJSON());
-                  delete postJSON.votes[voteIdx];
-                  const newVotes = postJSON.votes.filter(ele => ele !== undefined);
-                  post.votes = newVotes;
-                  post.save()
-                    .then(post => {
-                      Vote.deleteOne({ user: user._id, post: post._id })
-                        .then(vote => {
-                          return res.send({ user, post });
-                        })
-                    })
-                })
-            })
-        })
-    })
 })
 
 //route that returns all the votes on a post 

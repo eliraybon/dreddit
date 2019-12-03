@@ -6,9 +6,10 @@ import SubdredditIndex from '../subdreddit/subdreddit_index_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userSubsDropdown: false };
+    this.state = { userSubsDropdown: false, searchBarOpen: false };
 
     this.container = React.createRef();
+    this.searchContainer = React.createRef();
 
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
@@ -83,7 +84,7 @@ class NavBar extends React.Component {
                     <label className='nav-profile-label'>
                       <div className='nav-profile-pic'>
                       </div>
-                      <Link className='nav-profile-link' to={'/profile'}>Profile</Link>
+                      <Link className='nav-profile-link' to={`/users/${this.props.currentUserId}`}>Profile</Link>
                     </label>
                   </div>
                   <div className='nav-drop-logout'>
