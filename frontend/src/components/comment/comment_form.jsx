@@ -20,7 +20,10 @@ export default class CommentForm extends React.Component {
       this.props.makeReply(this.state);
       this.props.closeReplyForm();
     } else { 
-      this.props.makeComment(this.state);
+      this.props.makeComment(this.state)
+        .then(() => {
+          this.setState({ text: '' })
+        })
     }
   }
 
