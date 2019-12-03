@@ -109,11 +109,12 @@ export default class PostShow extends React.Component {
 
   render() {
     const { post } = this.props;
+    console.log(post);
     if (!post) return null;
 
     return (
       <div className='post-show'>
-        <div className="pii">
+        <div className="pii-show">
 
 
           <div className='pii-votes'>
@@ -127,6 +128,9 @@ export default class PostShow extends React.Component {
 
                 {post.title}
               </div>
+              <div className='post-text'>
+                  {post.text}
+                </div>
               <div className='pii-media'>
                 {post.imgUrl && (
                   <img
@@ -144,6 +148,7 @@ export default class PostShow extends React.Component {
                   >
                   </video>
                 )}
+                
               </div>
           </div>
           {/* {this.renderTest()} */}
@@ -151,9 +156,6 @@ export default class PostShow extends React.Component {
           <button onClick={this.downvote}>Downvote</button>
           {this.state.votes}
           <h1>{post.title}</h1> */}
-          </div>
-          <div className='post-show-description'>
-            <p>{post.text}</p>
           </div>
           <div className='post-comments'>
             <CommentForm postId={ post._id } />

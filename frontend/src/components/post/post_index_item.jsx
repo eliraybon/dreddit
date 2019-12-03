@@ -101,6 +101,7 @@ export default class PostIndexItem extends React.Component {
 
   render() {
     const { post } = this.props;
+    console.log(post);
     return (
       <li className="pii">  
         
@@ -116,6 +117,9 @@ export default class PostIndexItem extends React.Component {
               
               {post.title} 
             </div>
+            <div className='post-text'>
+                {post.text}
+              </div>
             <div className='pii-media'>
               {post.imgUrl && (
               <img
@@ -133,6 +137,8 @@ export default class PostIndexItem extends React.Component {
                 >
                 </video>
               )} 
+
+              
             </div>
             
           </Link>

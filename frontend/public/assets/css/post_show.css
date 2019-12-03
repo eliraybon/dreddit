@@ -1,16 +1,45 @@
 .post-show {
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
+  width: 65%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-self: center;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0 auto;
 }
 
 .post-show-description {
-  
+  /* border: 3px solid yellow; */
+  width: 90%;
+  max-width: 640px;
+  height: auto;
+  font-size: 24px;
+  margin: 8px 0 12px 0;
 }
 
 .post-comments {
-  border: 3px solid red;
+  /* border: 3px solid red; */
   width: 90%;
   max-width: 640px;
+  font-size: 16px;
+}
+
+.post-text {
+  /* border: 3px solid yellow; */
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.pii-show {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 0 12px 0;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: white;
 }
