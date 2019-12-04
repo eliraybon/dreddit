@@ -7,7 +7,7 @@
 }
 
 .sub-show-sidebar {
-  width: 40%;
+  width: max-content;
 }
 
 .sub-info {
