@@ -5,7 +5,7 @@ class DailyDredd extends React.Component {
   render() {
 
     return (
-      <div className='sub-info'>
+      <div className='sub-info daily-dredd'>
         <div className='sub-info-head orange dd-header'>
           DAILY DREDD
         </div>

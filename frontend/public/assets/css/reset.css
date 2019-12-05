@@ -58,3 +58,13 @@ button, input[type="submit"] {
   display: block;
   clear: both;
 }
+
+@media screen and (max-width: 500px) {
+  .main-page-content {
+    overflow: hidden;
+  }
+
+  .navbar {
+    overflow: hidden;
+  }
+}
