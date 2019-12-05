@@ -105,3 +105,18 @@
   display: flex;
   justify-content: flex-end;
 }
+
+@media screen and (max-width: 500px) {
+  .sub-dreddit {
+    flex-direction: column;
+  }
+
+  .sub-show-sidebar {
+    width: 100%;
+  }
+
+  .sub-info {
+    width: 100%;
+    margin-left: 0;
+  }
+}

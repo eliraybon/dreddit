@@ -6,10 +6,10 @@ import SubdredditIndex from '../subdreddit/subdreddit_index_container';
 class NavBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { userSubsDropdown: false, searchBarOpen: false };
+    this.state = { userSubsDropdown: false, profileOpen: false };
 
     this.container = React.createRef();
-    this.searchContainer = React.createRef();
+    this.profileContainer = React.createRef();
 
     this.logoutUser = this.logoutUser.bind(this);
     this.getLinks = this.getLinks.bind(this);
@@ -19,7 +19,6 @@ class NavBar extends React.Component {
 
   componentDidMount() {
     document.addEventListener("mousedown", this.handleOutsideClick);
-    // this.props.fetchUserSubs(this.props.currentUserId);
   }
 
   componentWillUnmount() {
@@ -30,6 +29,11 @@ class NavBar extends React.Component {
     if (this.container.current && !this.container.current.contains(e.target)) {
       this.setState({ userSubsDropdown: false });
     };
+
+    if (this.profileContainer.current &&
+        !this.profileContainer.current.contains(e.target)) {
+          this.setState({ profileOpen: false })
+        }
   }
 
   toggleSubsDropdown() {
@@ -45,6 +49,12 @@ class NavBar extends React.Component {
     this.setState(state => {
       return { userSubsDropdown: !state.userSubsDropdown }
     });
+  }
+
+  toggleProfileOpen = () => {
+    this.setState(state => {
+      return { profileOpen: !state.profileOpen }
+    })
   }
 
   logoutUser(e) {
@@ -77,7 +87,9 @@ class NavBar extends React.Component {
           </div>
           <div className='nav-right-links'>
             <Link className='nav-post' to={'/subdreddits/new'}></Link>
-            <div className='nav-profile-div'>
+            <div className='nav-profile-div' ref={this.profileContainer} onClick={this.toggleProfileOpen}>
+              {this.state.profileOpen && (
+
               <div className='nav-profile'>
                 <div className='nav-drop-down'>
                   <div className='nav-drop-profile'>
@@ -96,6 +108,7 @@ class NavBar extends React.Component {
                   </div>
                 </div>
               </div>
+              )}
             </div>
           </div>
         </div>
