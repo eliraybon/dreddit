@@ -121,39 +121,53 @@ router.delete('/:id', (req, res) => {
 
   Comment.findById(req.params.id)
     .then(comment => {
+      if (comment.comment) {
+        Comment.findByIdAndDelete(comment._id)
+          .then(comment => {
+            Post.findById(comment.post)
+              .populate('user')
+              .populate('subDreddit')
+              .then(post => {
+                User.findById(comment.user)
+                  .then(user => {
+                    return res.send({ user, post, commentId: req.params.id });
+                  })
+              })
+          })
+      } else {
+        Post.findById(comment.post)
+          .populate('user')
+          .populate('subDreddit')
+          .then(post => {
 
-      Post.findById(comment.post)
-        .populate('user')
-        .populate('subDreddit')
-        .then(post => {
+            const postJSON = post.toJSON();
+            const commentIdx = postJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
+            delete postJSON.comments[commentIdx];
+            const newComments = postJSON.comments.filter(ele => ele !== undefined);
+            post.comments = newComments;
+            post.save()
+              .then(post => {
 
-          const postJSON = post.toJSON();
-          const commentIdx = postJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
-          delete postJSON.comments[commentIdx];
-          const newComments = postJSON.comments.filter(ele => ele !== undefined);
-          post.comments = newComments;
-          post.save()
-            .then(post => {
+                User.findById(comment.user)
+                  .then(user => {
 
-              User.findById(comment.user)
-                .then(user => {
+                    const userJSON = user.toJSON();
+                    const commentIdx = userJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
+                    delete userJSON.comments[commentIdx];
+                    const newComments = userJSON.comments.filter(ele => ele !== undefined);
+                    user.comments = newComments;
+                    user.save()
+                      .then(user => {
 
-                  const userJSON = user.toJSON();
-                  const commentIdx = userJSON.comments.findIndex(ele => ele.toJSON() === comment._id.toJSON());
-                  delete userJSON.comments[commentIdx];
-                  const newComments = userJSON.comments.filter(ele => ele !== undefined);
-                  user.comments = newComments;
-                  user.save()
-                    .then(user => {
-
-                      Comment.deleteOne({ user: user._id, post: post._id })
-                        .then(comment => {
-                          return res.send({ user, post, commentId: req.params.id });
-                        })
-                    })
-                })
-            })
-        })
+                        Comment.deleteOne({ user: user._id, post: post._id })
+                          .then(comment => {
+                            return res.send({ user, post, commentId: req.params.id });
+                          })
+                      })
+                  })
+              })
+          })
+      }
     })
 })
 

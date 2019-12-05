@@ -3,7 +3,7 @@
 An online hub for gripes, grumbles, and other grievances. Dreddit is a Reddit clone built with the MERN stack, 
 a combination of following four technologies: MongoDB, Express, React, and Node.
 
-[Live Link](https://github.com/eliraybon/dreadit)
+[Live Link](http://dreddit-dredd.herokuapp.com/#/)
 
 ## Functionality & MVP
 

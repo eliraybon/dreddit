@@ -160,3 +160,12 @@
   padding: 10px 0 10px 0;
 }
 
+@media screen and (max-width: 500px) {
+  .auth-form {
+    overflow: hidden;
+  }
+
+  .auth-image {
+    display: none;
+  }
+}
