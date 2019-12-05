@@ -9,7 +9,7 @@
 }
 
 .auth-image {
-  width: 155px;
+  width: 5vw;
   background: url('../images/login/reddit_space.png') no-repeat;
   background-size: cover;
   
