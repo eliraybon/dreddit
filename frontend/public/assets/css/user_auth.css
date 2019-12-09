@@ -168,4 +168,16 @@
   .auth-image {
     display: none;
   }
+
+  .auth-btns {
+    flex-direction: column;
+  }
+
+  .auth-btns div {
+    margin-bottom: 10px;
+  }
+
+  .username-div, .password-div {
+    width: 300px;
+  }
 }

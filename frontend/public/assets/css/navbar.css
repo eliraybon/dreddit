@@ -102,6 +102,10 @@
   background-position: center;
   cursor: pointer;
   padding: 0 10px 0 10px;
+  /* border-left: 1px solid #dae0e6;
+  border-bottom: 1px solid #dae0e6;
+  border-right: 1px solid #dae0e6;
+  background-size: 81px 18px; */
 }
 
 .user-subs {
@@ -437,6 +441,50 @@
 
 .search-results li:hover {
   background-color: #ebebeb;
+}
+
+@media screen and (max-width: 500px) {
+  .nav-logo-div {
+    display: block;
+    width: 38px;
+    min-width: 38px;
+  }
+
+  /* this may not work */
+  .nav-right-links {
+    justify-content: space-between;
+  }
+
+  .nav-auth-links {
+    /* originally 20px */
+    margin-left: 22px;
+    margin-right: 2px;
+  }
+
+  .nav-profile-div {
+    margin-left: 20px;
+  }
+
+  .nav-right-links {
+    margin-right: 0;
+  }
+
+  .nav-site-name {
+    display: none;
+  }
+
+  .nav-subdreddits {
+    display: none;
+  }
+
+  .nav-search {
+    margin-left: 10px;
+    width: 200px;
+  }
+
+  .nav-post {
+    display: none;
+  }
 }
 
 

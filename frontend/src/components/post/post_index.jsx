@@ -27,6 +27,7 @@ export default class PostIndex extends React.Component {
             fetchPostVotes={ fetchPostVotes }
             deletePost={ deletePost }
             key={ post._id } 
+            history ={ this.props.history }
           />
         })}
       </ul>

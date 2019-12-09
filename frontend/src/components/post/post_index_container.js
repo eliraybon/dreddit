@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import PostIndex from './post_index';
+import { withRouter } from 'react-router-dom';
 import { 
   voteOnPost, 
   removeVote,
@@ -30,7 +31,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostIndex);
+)(PostIndex));
