@@ -485,6 +485,10 @@
   .nav-post {
     display: none;
   }
+
+  .nav-links {
+    margin-right: 10px;
+  }
 }
 
 
