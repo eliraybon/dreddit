@@ -159,7 +159,7 @@ router.delete('/:id', (req, res) => {
                     user.save()
                       .then(user => {
 
-                        Comment.deleteOne({ user: user._id, post: post._id })
+                        Comment.deleteOne({ _id: req.params.id })
                           .then(comment => {
                             return res.send({ user, post, commentId: req.params.id });
                           })
