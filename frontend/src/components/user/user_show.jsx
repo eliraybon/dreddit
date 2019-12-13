@@ -1,7 +1,5 @@
 import React from 'react';
 import PostIndex from '../post/post_index_container';
-import CommentIndex from '../comment/comment_index_container';
-import SubDredditIndex from '../subdreddit/subdreddit_index_container';
 
 export default class UserShow extends React.Component {
   componentDidMount() {
@@ -15,7 +13,7 @@ export default class UserShow extends React.Component {
   }
 
   render() {
-    const { user, subs, posts, comments } = this.props;
+    const { user, posts } = this.props;
     if (!user) return null; 
     return (
       <div>
