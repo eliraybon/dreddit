@@ -59,6 +59,8 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = true;
 
+    if (!userId) this.props.history.push('/login');
+
     if (this.state.upvoted || this.state.downvoted) {
       this.props.updateVote({ postId, userId, upvote });
     } else {
@@ -72,6 +74,8 @@ export default class PostIndexItem extends React.Component {
     const userId = this.props.currentUserId;
     const upvote = false;
 
+    if (!userId) this.props.history.push('/login');
+
     if (this.state.upvoted || this.state.downvoted) {
       this.props.updateVote({ postId, userId, upvote });
     } else {
@@ -83,6 +87,8 @@ export default class PostIndexItem extends React.Component {
   removeVote() {
     const userId = this.props.currentUserId;
     const postId = this.props.post._id;
+
+    if (!userId) this.props.history.push('/login');
 
     this.props.removeVote({ userId, postId })
       .then(() => {

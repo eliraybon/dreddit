@@ -88,7 +88,8 @@ class DailyDredd extends React.Component {
         <div className='sub-info-buttons dd-buttons'>
           {/* {this.renderFollowButton()} */}
           <button
-            className='sub-create-post orange explore-button'>
+            className='sub-create-post orange explore-button'
+            onClick={() => this.props.history.push('/subdreddits/5de6ee477f466be4ea0dfa30')}>
             EXPLORE
         </button>
         </div>
