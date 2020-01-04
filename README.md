@@ -6,10 +6,21 @@
 
 # <h1 align="center">Dreddit</h1>
 
+[Live Link](http://dreddit-dredd.herokuapp.com/#/)
+
 An online hub for gripes, grumbles, and other grievances. Dreddit is a Reddit clone built with the MERN stack, 
 a combination of following four technologies: MongoDB, Express, React, and Node.
 
-[Live Link](http://dreddit-dredd.herokuapp.com/#/)
+Created by Seth Ullman and Eli Raybon.
+
+## Features
+-  Create and delete posts
+-  Photo and video uploads (using Multer and Amazon AWS)
+-  Comment on posts or reply to other comments
+-  Upvote/downvote posts and comments 
+-  Creating your own SubDreddit 
+-  Search Bar
+-  User Authentication
 
 <p align="center">
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/homepage.png">
@@ -21,6 +32,12 @@ A typical SubDreddit contains all of the posts that were made within it as well 
 
 <p align="center">
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/subDreddit.png">
+</p>
+
+Users can create posts with a SubDreddit and uplaod their own grumbling photos and videos.
+
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/uploads.png">
 </p>
 
 The Search Bar lets users search the site for specific SubDreddits and other subjects they may wish to gripe about. This is accomplished using regular expressions to match the user's query and return the closest results. 
@@ -50,33 +67,6 @@ Another cool feature of Dreddit is the nested comment system. All comments can b
 </p>
 
 
-## Functionality & MVP
-
-### User Authentication
--  Users can sign up and login
--  Demo login
--  Auth and protected routes 
--  Persistant auth token across refreshes 
-
-### Posts
--  Users can create, read, update, and delete posts
-
-### Comments 
--  Users can comment on posts and other comments
--  Users can edit and delete their own comments
-
-### Upvotes 
--  Users can upvote/downvote posts
-
-### Subdreddit
--  Users can create subdreddits
--  Users can follow/unfollow subdreddits
-
-### Hosting on Heroku
-
-### Production README
-
-
 ## Technololgies
 -  React
 -  Redux
@@ -87,23 +77,5 @@ Another cool feature of Dreddit is the nested comment system. All comments can b
 -  BCrypt
 -  HTML
 -  CSS
-
-## Group Members & Work Breakdown
-Seth Ullman & Eli Raybon
-
-### Day 1
--  Implement User Auth (Eli & Seth)
-
-### Day 2
--  Posts (Eli)
--  Subdreddits (Seth)
-
-### Day 3
--  Complete features & style (Eli & Seth)
-
-### Day 4
--  Comments (Seth)
--  Upvotes (Eli)
-
-### Day 5
--  Tie up loose ends and deploy to Heroku
+-  Multer
+-  AWS S3
