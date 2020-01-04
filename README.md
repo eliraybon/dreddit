@@ -15,9 +15,9 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/homepage.png">
 </p>
 
-The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. Users can also quickly jump to the associated SubDreddit or user profile of a post they are intested in.
+The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. If a user is interested in a post, there are links to quickly jump to the associated SubDreddit and User Profile.
 
-A typical SubDreddit contains all of the posts that were made within it as well a menu to quickly join/leave. The Daily Dredd menu is also present here to encourage exploration.
+A typical SubDreddit contains all of the posts that were made within it as well a menu to quickly join/leave. Users are given easy access to all of the SubDreddits they have joined in the navbar (the flying saucer button). The Daily Dredd menu is also present here to enoucorage users to continue to explore the site and bask in the bad vibes.
 
 <p align="center">
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/subDreddit.png">
@@ -26,7 +26,7 @@ A typical SubDreddit contains all of the posts that were made within it as well 
 The Search Bar lets users search the site for specific SubDreddits and other subjects they may wish to gripe about. This is accomplished using regular expressions to match the user's query and return the closest results. 
 
 <p align="center">
-  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/searcgbar.png">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/searchbar.png">
 </p>
 
 Here's a look at what the search route looks like:
@@ -43,7 +43,7 @@ router.post('/search', (req, res) => {
 })
 ```
 
-Another cool feature of Dreddit is the nested comment system. All comments, as well as replies, can be upvoted and downvoted as well. 
+Another cool feature of Dreddit is the nested comment system. All comments can be upvoted, downvoted and replied to.
 
 <p align="center">
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/nestedcomments.png">
