@@ -17,15 +17,19 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 
 The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. Users can also quickly jump to the associated SubDreddit or user profile of a post they are intested in.
 
-Here's a look at what a typical SubDreddit looks like:
+A typical SubDreddit contains all of the posts that were made within it as well a menu to quickly join/leave. The Daily Dredd menu is also present here to encourage exploration.
 
-//subdreddit show page 
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/subDreddit.png">
+</p>
 
 The Search Bar lets users search the site for specific SubDreddits and other subjects they may wish to gripe about. This is accomplished using regular expressions to match the user's query and return the closest results. 
 
-//search image
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/searcgbar.png">
+</p>
 
-Here's a look at what the search route looks like. 
+Here's a look at what the search route looks like:
 
 ```js
 router.post('/search', (req, res) => {
@@ -39,10 +43,11 @@ router.post('/search', (req, res) => {
 })
 ```
 
-
 Another cool feature of Dreddit is the nested comment system. All comments, as well as replies, can be upvoted and downvoted as well. 
 
-// nested comments photo 
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/nestedcomments.png">
+</p>
 
 
 ## Functionality & MVP
