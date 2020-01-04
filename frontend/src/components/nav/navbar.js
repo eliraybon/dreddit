@@ -88,6 +88,11 @@ class NavBar extends React.Component {
           <div className='nav-right-links'>
             <Link className='nav-post' to={'/subdreddits/new'}></Link>
             <div className='nav-profile-div' ref={this.profileContainer} onClick={this.toggleProfileOpen}>
+              <img
+                src="/assets/images/bars-solid.svg"
+                width="26px"
+                height="26px"
+              />
               {this.state.profileOpen && (
 
               <div className='nav-profile'>
