@@ -131,8 +131,12 @@ class NavBar extends React.Component {
     return (
       <div className="navbar">
         <div className='nav-logo-div' onClick={ this.returnHome }>
-          <div className='nav-logo'>
-          </div>
+          {/* <div className='nav-logo'>
+          </div> */}
+          <img
+            className="new-logo"
+            src="/assets/images/frown-solid.svg"
+          />
           <div className='nav-site-name'>
             dreddit
           </div>

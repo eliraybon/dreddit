@@ -21,12 +21,18 @@
 }
 
 .nav-logo {
-  background: url('../images/nav_bar/logo.png');
-  background-size: cover;
+  background: url('../images/frown-solid.svg');
+  /* background-size: cover; */
   width: 38px;
   height: 38px;
   margin: 0 8px 0 16px;
-  transform: rotate(180deg);
+  /* transform: rotate(180deg); */
+}
+
+.new-logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 8px 0 16px;
 }
 
 .nav-site-name {

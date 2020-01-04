@@ -71,8 +71,13 @@ class SignupForm extends React.Component {
         <div className='auth-image'>
         </div>
         <form onSubmit={this.handleSubmit} className='auth-form'>
-          <div className='auth-logo' onClick={ this.returnHome }>
-          </div>
+          {/* <div className='auth-logo' onClick={ this.returnHome }>
+          </div> */}
+          <img
+            className="new-auth-logo"
+            onClick={this.returnHome}
+            src="/assets/images/frown-solid.svg"
+          />
           <div className='form-type'>
             Sign Up
           </div>
