@@ -21,12 +21,18 @@
 }
 
 .nav-logo {
-  background: url('../images/nav_bar/logo.png');
-  background-size: cover;
+  background: url('../images/frown-solid.svg');
+  /* background-size: cover; */
   width: 38px;
   height: 38px;
   margin: 0 8px 0 16px;
-  transform: rotate(180deg);
+  /* transform: rotate(180deg); */
+}
+
+.new-logo {
+  width: 38px;
+  height: 38px;
+  margin: 0 8px 0 16px;
 }
 
 .nav-site-name {
@@ -232,13 +238,14 @@
   width: 50%;
   height: 80%;
   margin-left: 10px;
-  background: url('../images/nav_bar/profile_drop.png') no-repeat;
-  background-size: 64px 36px;
+  /* background: url('../images/nav_bar/profile_drop.png') no-repeat;
+  background-size: 64px 36px; */
   background-position: center;
   padding: 0 10px 0 10px;
+  cursor: pointer;
 }
 
-.nav-profile-div:hover {
+/* .nav-profile-div:hover {
   border-left: 1px solid #dae0e6;
   border-right: 1px solid #dae0e6;
   border-top: 1px solid #dae0e6;
@@ -247,7 +254,7 @@
   background-color: #ffffff;
   background-size: 64px 36px;
   background-position: center;
-}
+} */
 
 .nav-profile-div:hover .nav-drop-down {
   display: block;

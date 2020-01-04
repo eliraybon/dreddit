@@ -88,6 +88,11 @@ class NavBar extends React.Component {
           <div className='nav-right-links'>
             <Link className='nav-post' to={'/subdreddits/new'}></Link>
             <div className='nav-profile-div' ref={this.profileContainer} onClick={this.toggleProfileOpen}>
+              <img
+                src="/assets/images/bars-solid.svg"
+                width="26px"
+                height="26px"
+              />
               {this.state.profileOpen && (
 
               <div className='nav-profile'>
@@ -131,8 +136,12 @@ class NavBar extends React.Component {
     return (
       <div className="navbar">
         <div className='nav-logo-div' onClick={ this.returnHome }>
-          <div className='nav-logo'>
-          </div>
+          {/* <div className='nav-logo'>
+          </div> */}
+          <img
+            className="new-logo"
+            src="/assets/images/frown-solid.svg"
+          />
           <div className='nav-site-name'>
             dreddit
           </div>

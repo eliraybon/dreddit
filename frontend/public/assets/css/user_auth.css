@@ -37,6 +37,13 @@
   cursor: pointer;
 }
 
+.new-auth-logo {
+  width: 38px;
+  height: 38px;
+  margin-left: 22px;
+  cursor: pointer;
+}
+
 .form-type {
   display: flex;
   align-items: center;
