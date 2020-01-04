@@ -11,7 +11,9 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 
 [Live Link](http://dreddit-dredd.herokuapp.com/#/)
 
-//homepage here 
+<p align="center">
+  <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/homepage.png">
+</p>
 
 The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. Users can also quickly jump to the associated SubDreddit or user profile of a post they are intested in.
 
