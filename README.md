@@ -11,6 +11,38 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 
 [Live Link](http://dreddit-dredd.herokuapp.com/#/)
 
+//homepage here 
+
+The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. Users can also quickly jump to the associated SubDreddit or user profile of a post they are intested in.
+
+Here's a look at what a typical SubDreddit looks like:
+
+//subdreddit show page 
+
+The Search Bar lets users search the site for specific SubDreddits and other subjects they may wish to gripe about. This is accomplished using regular expressions to match the user's query and return the closest results. 
+
+//search image
+
+Here's a look at what the search route looks like. 
+
+```js
+router.post('/search', (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  if (!searchTerm) return res.send([]);
+
+  Subdreddit.find({ title: { $regex: searchTerm, $options: "i" } })
+    .then(subs => {
+      return res.send(subs);
+    })
+})
+```
+
+
+Another cool feature of Dreddit is the nested comment system. All comments, as well as replies, can be upvoted and downvoted as well. 
+
+// nested comments photo 
+
+
 ## Functionality & MVP
 
 ### User Authentication
@@ -37,7 +69,6 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 
 ### Production README
 
-BONUS: Search bar, uploading photos to customize subdreddits
 
 ## Technololgies
 -  React
@@ -48,7 +79,7 @@ BONUS: Search bar, uploading photos to customize subdreddits
 -  Axios
 -  BCrypt
 -  HTML
--  SCSS
+-  CSS
 
 ## Group Members & Work Breakdown
 Seth Ullman & Eli Raybon
@@ -69,7 +100,3 @@ Seth Ullman & Eli Raybon
 
 ### Day 5
 -  Tie up loose ends and deploy to Heroku
-
-
-
-
