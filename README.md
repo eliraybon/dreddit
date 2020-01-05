@@ -26,7 +26,7 @@ Created by Seth Ullman and Eli Raybon.
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/homepage.png">
 </p>
 
-The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. If a user is interested in a post, there are links to quickly jump to the associated SubDreddit and User Profile.
+The Dreddit homepage hits users with a cavalcade of the latest complaints, which can be upvoted, downvoted or commented on. If a user is interested in a post, there are links to quickly jump to the associated SubDreddit or User Profile.
 
 A typical SubDreddit contains all of the posts that were made within it as well a menu to quickly join/leave. Users are given easy access to all of the SubDreddits they have joined in the navbar (the flying saucer button). The Daily Dredd menu is also present here to enoucorage users to continue to explore the site and bask in the bad vibes.
 
@@ -34,7 +34,7 @@ A typical SubDreddit contains all of the posts that were made within it as well 
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/subDreddit.png">
 </p>
 
-Users can create posts with a SubDreddit and uplaod their own grumbling photos and videos.
+Users can create posts within a SubDreddit and upload their own photos and videos.
 
 <p align="center">
   <img src="https://github.com/eliraybon/dreddit/blob/master/frontend/public/assets/images/readme/uploads.png">
