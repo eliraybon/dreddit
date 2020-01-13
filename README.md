@@ -13,6 +13,20 @@ a combination of following four technologies: MongoDB, Express, React, and Node.
 
 Created by Seth Ullman and Eli Raybon.
 
+## Technololgies
+-  React
+-  Redux
+-  Node
+-  Express
+-  MongoDB
+-  Axios
+-  BCrypt
+-  HTML
+-  CSS
+-  Multer
+-  AWS S3
+
+
 ## Features
 -  Create and delete posts
 -  Photo and video uploads (using Multer and Amazon AWS)
@@ -67,15 +81,3 @@ Another cool feature of Dreddit is the nested comment system. All comments can b
 </p>
 
 
-## Technololgies
--  React
--  Redux
--  Node
--  Express
--  MongoDB
--  Axios
--  BCrypt
--  HTML
--  CSS
--  Multer
--  AWS S3
